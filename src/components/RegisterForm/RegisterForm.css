@@ -1,6 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
-.login-page {
+.form-page {
   width: 360px;
   padding: 4% 0 0;
   margin: auto;
@@ -67,5 +67,5 @@ form a {
 }
 
 form a:hover {
-    color: #bbbbbb; 
+    color: #bbb; 
 }
