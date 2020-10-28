@@ -5,7 +5,7 @@ import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
 import SignupPage from "./pages/SignupPage";
 import OrganisationListPage from "./pages/OrganisationListPage";
-import ListingListPage from "./pages/ListingListPage";
+import OpportunityListPage from "./pages/OpportunityListPage";
 
 function App() {
   return (
@@ -21,7 +21,7 @@ function App() {
             <SignupPage />
           </Route>
           <Route path="/opportunities">
-            <ListingListPage />
+            <OpportunityListPage />
           </Route>
           <Route path="/organisations">
             <OrganisationListPage />
