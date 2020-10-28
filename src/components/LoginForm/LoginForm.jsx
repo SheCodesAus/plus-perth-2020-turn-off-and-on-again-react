@@ -57,6 +57,12 @@ function LoginForm() {
   return (
     <form>
       <div>
+          <h1>Login</h1>
+      </div>
+      <div>
+          <p>Sign in to post a new opportunity.</p>
+      </div>
+      <div>
         <label htmlFor="username">Username:</label>
         <input
           type="text"
