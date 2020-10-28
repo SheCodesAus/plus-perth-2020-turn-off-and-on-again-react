@@ -1,0 +1,85 @@
+POWERSHELL COMMANDS
+
+npm install react-router-dom
+npm start (should automatically open http://localhost:3000/ in browser)
+
+
+
+CONNECT DJANGO (COMMANDS)
+
+
+DEPLOY TO HEROKU (COMMANDS)
+
+
+PUSH CHANGES TO HEROKU (COMMANDS)
+
+
+
+
+DUMMY DATA LAYOUT (needs updating)
+
+{
+    id: 1,
+    username: "username1",
+    email: "email1",
+    organisation: "organisation1",
+    description: "description1",
+    website: "website1",
+    logo: "https://via.placeholder.com/300.jpg"
+    listing: [
+      {
+        id: 1,
+        title: "listing1a",
+        description: "description1a",
+        final_url: "example.com/event",
+        start_date: "2020-03-20T14:22:23.382748Z",
+        apply_by_date: "2020-04-20T14:22:23.382748Z",
+        image: "https://via.placeholder.com/300.jpg",
+        type: 1,
+        level: 2,
+        location: 2,
+        audience: 1,
+        created_date: "2020-03-20T14:22:23.382748Z",
+      },
+      {
+        id: 2,
+        title: "listing1b",
+        description: "description1b",
+        final_url: "example.com/event",
+        start_date: "2020-03-20T14:22:23.382748Z",
+        apply_by_date: "2020-04-20T14:22:23.382748Z",
+        image: "https://via.placeholder.com/300.jpg",
+        type: 2,
+        level: 3,
+        location: 1,
+        audience: 1,
+        created_date: "2020-03-20T14:22:23.382748Z",
+      },
+    ],
+};
+
+
+ORIGINAL APP.JS CODE
+
+function App() {
+  return (
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
+    </div>
+  );
+}
+
+export default App;
