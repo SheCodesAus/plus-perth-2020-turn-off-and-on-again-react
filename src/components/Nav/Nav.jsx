@@ -9,7 +9,8 @@ function Nav() {
             <Link to ="/about">About</Link>
             <Link to ="/opportunities">Opportunities</Link>
             <Link to ="/organisations">Organisations</Link>
-            <Link to ="/signup">Sign Up</Link>
+            <Link to ="/register">Register</Link>
+            <Link to ="/login">Login</Link>
         </nav>
     );
 }

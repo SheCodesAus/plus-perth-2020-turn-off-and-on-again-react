@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Nav from "./components/Nav/Nav";
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
-import SignupPage from "./pages/SignupPage";
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
 import OrganisationListPage from "./pages/OrganisationListPage";
 import OpportunityListPage from "./pages/OpportunityListPage";
 
@@ -17,14 +18,17 @@ function App() {
           <Route path="/about">
             <AboutPage />
           </Route>
-          <Route path="/signup">
-            <SignupPage />
+          <Route path="/register">
+            <RegisterPage />
           </Route>
           <Route path="/opportunities">
             <OpportunityListPage />
           </Route>
           <Route path="/organisations">
             <OrganisationListPage />
+          </Route>
+          <Route path="/login">
+            <LoginPage />
           </Route>
           <Route path="/">
             <HomePage />
