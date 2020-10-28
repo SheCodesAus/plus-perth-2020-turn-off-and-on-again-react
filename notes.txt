@@ -1,8 +1,6 @@
 POWERSHELL COMMANDS
-
 npm install react-router-dom
 npm start (should automatically open http://localhost:3000/ in browser)
-
 
 
 CONNECT DJANGO (COMMANDS)
