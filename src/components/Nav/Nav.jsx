@@ -54,17 +54,17 @@ return (
         </div>
         <div className={ `navbar-links ${opened ? `opened` : `closed`}`}>
             <Link to="/" className="navbar-link" onClick={() => {setOpened(false)}}>Home</Link>
-            <Link to="/about" className="navbar-link" onClick={() => {setOpened(false)}}>About</Link>
             <Link to="/opportunities" className="navbar-link" onClick={() => {setOpened(false)}}>Opportunities</Link>
             <Link to="/organisations" className="navbar-link" onClick={() => {setOpened(false)}}>Organisations</Link>
+            <Link to="/about" className="navbar-link" onClick={() => {setOpened(false)}}>About</Link>
             {/* if loggedIn is true, pass the prop setUsername from App.js to the internal component*/}
             {loggedIn ? (
                 <>
-                <Link to="/events/" className="navbar-link" onClick={() => setOpened(false)}>
-                    Create a new Event
+                <Link to="/profile/" className="navbar-link" onClick={() => setOpened(false)}>
+                    Profile
                 </Link>
-                <Link to="/profile" className={"navbar-link"} onClick={() => setOpened(false)}>
-                Profile
+                <Link to="/opportunities/" className="navbar-link" onClick={() => setOpened(false)}>
+                    Create a new Opportunity
                 </Link>
                 <LogoutButton setUsername={setUsername} setOpened={setOpened}/>
                 </>
@@ -81,5 +81,5 @@ return (
 export default Nav
 
 Nav.propTypes = {
-  loggedIn: PropTypes.bool.isRequired,
+    loggedIn: PropTypes.bool.isRequired,
 }
