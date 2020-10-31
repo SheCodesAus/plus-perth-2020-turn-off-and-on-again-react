@@ -1,38 +1,190 @@
-.App {
-  text-align: center;
+/* CSS FILES CONFIGURATION
+1. Configuration
+- Fonts
+- Custom Properties
+  - Main Colours
+  - Font Weight
+  - Font Family
+  - Font Size
+  - box-shadow
+  - padding container
+- Reset
+- General Styles
+- Typography
+2. Layout-related sections
+- Header
+3. Pages
+- Homepage
+4. Forms
+5. Buttons
+*/
+
+
+/* 1. Configuration */
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@300;400;600;700&display=swap');
+/* Custom Properties */
+:root {
+  /* Main colours */
+  --dark: rgb(65, 60, 88);
+  --medium: rgb(53,135,164);
+  --light: rgb(254, 215, 102);
+  --white: rgb(255,255,255) ;
+  --accent: rgb(255,88,87);
+  /* Font Weight */
+  --fw-reg: 300;
+  --fw-bold: 700;
+  /* Font Family */
+  --ff-body: 'Open Sans', sans-serif;
+  --ff-title: 'Bebas Neue', cursive;
+  /* Font size */
+  --fs-h1: 2.3rem;
+  --fs-h2: 2rem;
+  --fs-h3: 1.3rem;
+  --fs-body: 1.05rem;
+  /* box-shadow */
+  --bs: 0.25em 0.25em 0.75em rgba(61,64,91,.25), 
+        0.125em 0.125em 0.25em rgba(61,64,91,.15);
+  /* padding container */
+  --bloc: 5vh 10vw;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+@media (min-width: 900px) {
+  :root {
+    --fs-h1: 2.5em;
+    --fs-h2: 1.7em;
+    --fs-h3: 1.2em;
+    --fs-body: 1.15rem;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* Reset */
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
-.App-link {
-  color: #61dafb;
+/* General Styles */
+html {
+  scroll-behavior: smooth;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+body {
+  font-family: var(--ff-body);
+  color: var(--dark);
+  font-size: var(--fs-body);
+  line-height: 1.6;
 }
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+strong {
+  font-weight: var(--fw-bold);
+}
+
+:focus {
+  outline: 3px solid var(--medium);
+  outline-offset: 3px;
+}
+
+.spinner{
+  margin: 30px auto ;
+  width:20px;
+}
+
+/* Typography */
+h1,
+h2,
+h3 {
+  font-family: var(--ff-title);
+  font-weight: var(--fw-bold);
+  line-height: 1.1;
+  margin: 0;
+  padding: 0.5em 0;
+}
+
+h1 {
+  font-size: var(--fs-h1);
+  color: var(--dark);
+}
+
+h2 {
+  font-size: var(--fs-h2);
+  color: var(--accent)
+}
+
+h3 {
+  font-size: var(--fs-h3);
+  color: var(--medium)
+}
+
+.section__title {
+  font-size: var(--fs-h2);
+  color: var(--medium);
+}
+
+.section_subtitle {
+  margin: 0;
+  font-size: var(--fs-h3);
+  color: var(--accent);
+  font-family: var(--ff-title);
+}
+
+a {
+  font-size: inherit;
+  font-family: var(--ff-body);
+  text-decoration: none;
+  color: var(--dark);
+}
+
+a:hover {
+  color: var(--medium);
+  text-decoration: underline;
+}
+
+/* 2. Layout-related sections */
+/* Header */
+.header {
+  background-color: var(--dark);
+  color: var(--light);
+  padding: 3vh 10vw 0;
+}
+
+.intro-text {
+  padding: 2rem 0;
+}
+
+
+#opportunity-list {
+  display: grid;
+  column-gap: 10px;
+  row-gap: 10px;
+  justify-items: center;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  margin: 20px;
+}
+
+@media screen and (min-width: 600px) {
+  #opportunity-list {
+  grid-template-columns: 1fr 1fr;
+  margin: 20px 100px;
+  }
+
+}
+
+@media screen and (min-width: 900px) {
+  #project-list {
+  grid-template-columns: 1fr 1fr 1fr;
+  }
+
+}
+
+/* 3. Pages */
+/* Homepage */
+
