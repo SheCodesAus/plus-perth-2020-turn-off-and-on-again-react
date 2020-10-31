@@ -1,5 +1,4 @@
 import React from "react";
-import "./ContactUsForm.css";
 
 function ContactUsForm() {
     // template
