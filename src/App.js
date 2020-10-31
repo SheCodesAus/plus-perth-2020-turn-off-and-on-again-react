@@ -7,13 +7,13 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import OrganisationListPage from "./pages/OrganisationListPage";
 import OpportunityListPage from "./pages/OpportunityListPage";
+import "./App.css"
 
 function App() {
   return (
     <Router>
       <div>
         <Nav />
-
         <Switch>
           <Route path="/about">
             <AboutPage />
