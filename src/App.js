@@ -5,9 +5,11 @@ import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
+import EditOrganisationPage from "./pages/EditOrganisationPage";
 import OrganisationListPage from "./pages/OrganisationListPage";
 import OpportunityListPage from "./pages/OpportunityListPage";
 import "./App.css"
+import "./AppForm.css"
 
 function App() {
   return (
@@ -29,6 +31,9 @@ function App() {
           </Route>
           <Route path="/login">
             <LoginPage />
+          </Route>
+          <Route path="/profile">
+            <EditOrganisationPage />
           </Route>
           <Route path="/">
             <HomePage />

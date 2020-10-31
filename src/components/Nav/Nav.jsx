@@ -63,6 +63,9 @@ return (
                 <Link to="/events/" className="navbar-link" onClick={() => setOpened(false)}>
                     Create a new Event
                 </Link>
+                <Link to="/profile" className={"navbar-link"} onClick={() => setOpened(false)}>
+                Profile
+                </Link>
                 <LogoutButton setUsername={setUsername} setOpened={setOpened}/>
                 </>
             ) : (

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Link, useHistory, useParams } from "react-router-dom"
-import "./LoginForm.css"
 import { setStorage, isAuthenticated } from "../Utilities/LocalStorage"
 
 function LoginForm() {
