@@ -1,29 +1,7 @@
 @import url(https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap);
 
-:root {
-  /* Main colours */
-  --dark: rgb(65, 60, 88);
-  --medium: rgb(53,135,164);
-  --light: #C1DFF0;
-  --light-accent: #FED766;
-  --white: rgb(255,255,255);
-  --accent: rgb(255,88,87);
-  /* Font Weight */
-  --fw-reg: 300;
-  --fw-bold: 700;
-  /* Font Family */
-  --ff-body: 'Open Sans', sans-serif;
-  --ff-title: 'Bebas Neue', cursive;
-  /* Font size */
-  --fs-h1: 2.3rem;
-  --fs-h2: 2rem;
-  --fs-h3: 1.3rem;
-  --fs-body: 1.05rem;
-  /* box-shadow */
-  --bs: 0.25em 0.25em 0.75em rgba(61,64,91,.25), 
-        0.125em 0.125em 0.25em rgba(61,64,91,.15);
-  /* padding container */
-  --bloc: 5vh 10vw;
+label {
+  font-size:  var(--fs-body);
 }
 
 .login-page {

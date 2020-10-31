@@ -9,6 +9,7 @@ import EditOrganisationPage from "./pages/EditOrganisationPage";
 import OrganisationListPage from "./pages/OrganisationListPage";
 import OpportunityListPage from "./pages/OpportunityListPage";
 import "./App.css"
+import "./AppForm.css"
 
 function App() {
   return (
