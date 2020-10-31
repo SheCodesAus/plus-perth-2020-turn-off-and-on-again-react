@@ -1,9 +1,24 @@
-.App {
-  text-align: center;
-  min-height: 100vh;
-  color: var(--dark);
-  background-color: var(--light);
-}
+/* CSS FILES CONFIGURATION
+1. Configuration
+- Fonts
+- Custom Properties
+  - Main Colours
+  - Font Weight
+  - Font Family
+  - Font Size
+  - box-shadow
+  - padding container
+- Reset
+- General Styles
+- Typography
+2. Layout-related sections
+- Header
+3. Pages
+- Homepage
+4. Forms
+5. Buttons
+*/
+
 
 /* 1. Configuration */
 /* Fonts */
@@ -16,10 +31,13 @@
   --light: rgb(254, 215, 102);
   --white: rgb(255,255,255) ;
   --accent: rgb(255,88,87);
+  /* Font Weight */
   --fw-reg: 300;
   --fw-bold: 700;
+  /* Font Family */
   --ff-body: 'Open Sans', sans-serif;
   --ff-title: 'Bebas Neue', cursive;
+  /* Font size */
   --fs-h1: 2.3rem;
   --fs-h2: 2rem;
   --fs-h3: 1.3rem;
@@ -72,6 +90,11 @@ strong {
 :focus {
   outline: 3px solid var(--medium);
   outline-offset: 3px;
+}
+
+.spinner{
+  margin: 30px auto ;
+  width:20px;
 }
 
 /* Typography */
@@ -132,14 +155,10 @@ a:hover {
   padding: 3vh 10vw 0;
 }
 
-.intro__text {
+.intro-text {
   padding: 2rem 0;
 }
 
-.spinner{
-  margin: 30px auto ;
-  width:20px;
-}
 
 #opportunity-list {
   display: grid;
@@ -165,3 +184,7 @@ a:hover {
   }
 
 }
+
+/* 3. Pages */
+/* Homepage */
+
