@@ -2,16 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./ListingCard.css";
 
-function ListingCard(props) {
-    //variables
-    const { listingData } = props;
+function ListingCard({opportunityData, ...props}) {
 
-    //template
     return (
         <div className="listing-card">
-            <Link to={`/case/${listingData.id}`}>
-                <img src={listingData.image} />
-                <h3>{listingData.title}</h3>
+            <Link to={`/case/${opportunityData.slug}`}>
+                <img src={opportunityData.image} alt="ooportunity"/>
+                <h3>{opportunityData.title}</h3>
+                <p>Created by{opportunityData.owner}</p>
             </Link>
         </div>
     );
