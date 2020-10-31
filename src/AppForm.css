@@ -5,13 +5,15 @@ label {
 }
 
 .login-page {
-  width: 360px;
+  max-width: 360px;
+  width: 70vw;
   padding: 4% 0 0;
   margin: auto;
 }
 
 .form-page {
-  width: 550px;
+  max-width: 550px;
+  width: 70vw;
   padding: 4% 0 0;
   margin: auto;
 }
