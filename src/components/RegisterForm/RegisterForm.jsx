@@ -50,6 +50,8 @@ function RegisterForm() {
     return (
         <div className="form-page">
             <form >
+                <p className="message">*This form is only for organisation wanting to post opportunities. You don't need an account to view listings.*</p>
+                <p></p>
                 <div>
                     <label htmlFor="username">Username:</label>
                     <input 
@@ -63,7 +65,7 @@ function RegisterForm() {
                     <label htmlFor="email">Email:</label>
                     <input 
                         type="email" 
-                        id="email" placeholder="Enter email" 
+                        id="email" placeholder="Enter a work email" 
                         onChange={handleChange}
                     />
                 </div>
@@ -71,13 +73,15 @@ function RegisterForm() {
                     <label htmlFor="password">Password:</label>
                     <input 
                         type="password" 
-                        id="password" placeholder="Enter Password" 
+                        id="password" placeholder="Enter a secure password" 
                         onChange={handleChange}
                     />
                 </div>
                 <button type="submit" onClick={handleSubmit}>Register</button>
+                
                 <p className="message">Already registered?</p>
                 <Link to="/login">Login</Link>
+
             </form>
         </div>
     )

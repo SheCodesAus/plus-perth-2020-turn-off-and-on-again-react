@@ -10,6 +10,7 @@ function Nav() {
             <Link to ="/opportunities">Opportunities</Link>
             <Link to ="/organisations">Organisations</Link>
             <Link to ="/register">Register</Link>
+            <Link to ="/profile">Profile</Link>
             <Link to ="/login">Login</Link>
         </nav>
     );
