@@ -1,7 +1,12 @@
 import React from "react";
+import ContactUsForm from "../components/ContactUsForm/ContactUsForm";
 
 function AboutPage() {
-    return <h1>About Page</h1>;
+    return (
+    <div id="">
+        <ContactUsForm />
+    </div>
+    );
 }
 
 export default AboutPage;
