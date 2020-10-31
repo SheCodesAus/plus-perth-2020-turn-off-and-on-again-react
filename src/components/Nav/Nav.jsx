@@ -66,9 +66,6 @@ return (
                 <Link to="/opportunities/" className="navbar-link" onClick={() => setOpened(false)}>
                     Create a new Opportunity
                 </Link>
-                <Link to="/profile" className={"navbar-link"} onClick={() => setOpened(false)}>
-                Profile
-                </Link>
                 <LogoutButton setUsername={setUsername} setOpened={setOpened}/>
                 </>
             ) : (
@@ -84,5 +81,5 @@ return (
 export default Nav
 
 Nav.propTypes = {
-  loggedIn: PropTypes.bool.isRequired,
+    loggedIn: PropTypes.bool.isRequired,
 }
