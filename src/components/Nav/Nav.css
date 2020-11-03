@@ -26,7 +26,7 @@
   }
   
   .navbar-link {
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid var(--dark);
   }
   .navbar-links.closed {
     display: none;
@@ -67,8 +67,10 @@
       border: var(--white) solid 1px;
     }
     a.navbar-link:hover {
-      text-decoration: none;
-      border: var(--medium) solid 1px;
+      text-decoration: solid var(--light-accent)!important;
+    }
+    a.navbar-link:focus {
+      border: var(--light-accent) solid 1px;
     }
     .toggle {
       display: none;

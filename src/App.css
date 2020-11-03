@@ -70,6 +70,8 @@
 /* General Styles */
 html {
   scroll-behavior: smooth;
+  background-color: white!important;
+
 }
 
 body {
@@ -77,6 +79,7 @@ body {
   color: var(--dark);
   font-size: var(--fs-body);
   line-height: 1.6;
+  background-color: white!important;
 }
 
 img {
@@ -154,12 +157,20 @@ a:hover {
   background-color: var(--dark);
   color: var(--light);
   padding: 3vh 10vw 0;
+  background-image: url(./images/ready-to-study.jpg);
 }
 
 .intro-text {
   padding: 2rem 0;
 }
 
+.project-header {
+  background-color: white;
+  background-image: url(./images/paint-top.png), url(./images/halftone.png);
+  background-size: 1800px 130px, 300px 300px;
+  background-repeat: repeat-x, repeat;
+  background-position: 0 0;
+}
 
 #opportunity-list {
   display: grid;
@@ -188,4 +199,5 @@ a:hover {
 
 /* 3. Pages */
 /* Homepage */
+
 
