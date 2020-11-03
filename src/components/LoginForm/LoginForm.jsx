@@ -13,16 +13,16 @@ function LoginForm({setUsername}) {
     const [UserData, setUserData] = useState({});
     const { id } = useParams();
 
-  
-    useEffect(() => {
-      fetch(`${process.env.REACT_APP_API_URL}organisations/${id}`)
-        .then((results) => {
-          return results.json();
-        })
-        .then((data) => {
-          setUserData(data);
-        });
-    }, [id]);
+
+useEffect(() => {
+    fetch(`${process.env.REACT_APP_API_URL}organisations/${id}`)
+    .then((results) => {
+        return results.json();
+    })
+    .then((data) => {
+        setUserData(data);
+    });
+}, [id]);
 
     
 

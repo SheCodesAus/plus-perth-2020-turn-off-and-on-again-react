@@ -22,21 +22,21 @@
 
 /* 1. Configuration */
 /* Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@300;400;500;600;700&display=swap');
 /* Custom Properties */
 :root {
   /* Main colours */
   --dark: rgb(65, 60, 88);
   --medium: rgb(53,135,164);
-  --light: #C1DFF0;
-  --light-accent: #FED766;
+  --light: rgb(193,223,240);
+  --light-accent: rgb(254,215,102);
   --white: rgb(255,255,255);
   --accent: rgb(255,88,87);
   /* Font Weight */
-  --fw-reg: 300;
-  --fw-bold: 700;
+  --fw-reg: 500;
+  --fw-bold: 600;
   /* Font Family */
-  --ff-body: 'Open Sans', sans-serif;
+  --ff-body: 'Nunito', sans-serif;
   --ff-title: 'Bebas Neue', cursive;
   /* Font size */
   --fs-h1: 2.3rem;
@@ -55,7 +55,7 @@
     --fs-h1: 2.5em;
     --fs-h2: 1.7em;
     --fs-h3: 1.2em;
-    --fs-body: 1.0rem;
+    --fs-body: 1.1rem;
   }
 }
 
@@ -144,6 +144,7 @@ a {
   font-family: var(--ff-body);
   text-decoration: none;
   color: var(--dark);
+  font-weight: var(--fw-bold);
 }
 
 a:hover {

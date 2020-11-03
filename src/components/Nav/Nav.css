@@ -1,5 +1,5 @@
 .logo {
-    width: 200px;
+    width: 230px;
     margin-top: 5px;  
 }
   .navbar {
@@ -54,6 +54,7 @@
     }
     .navbar-links {
       flex-direction: row;
+      margin-top:-15px 10px 0;
     }
     .navbar-home,
     .navbar-link {
@@ -67,7 +68,7 @@
       border: var(--white) solid 1px;
     }
     a.navbar-link:hover {
-      text-decoration: solid var(--light-accent)!important;
+      text-decoration: underline var(--accent)!important;
     }
     a.navbar-link:focus {
       border: var(--light-accent) solid 1px;
