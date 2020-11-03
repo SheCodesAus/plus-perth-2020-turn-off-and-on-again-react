@@ -1,6 +1,7 @@
 .logo {
-    width: 200px;
+    width: 230px;
     margin-top: 5px;  
+
 }
   .navbar {
     display: flex;
@@ -54,20 +55,21 @@
     }
     .navbar-links {
       flex-direction: row;
+      margin-top:-15px 10px 0;
     }
     .navbar-home,
     .navbar-link {
-    flex-direction: row;
-    border-bottom: none;
-    padding: 10px; 
-    margin: 0 10px;
+      flex-direction: row;
+      border-bottom: none;
+      padding:5px;
+      margin: 0px 10px -5px;
   
     }
     a.navbar-link  {
       border: var(--white) solid 1px;
     }
     a.navbar-link:hover {
-      text-decoration: solid var(--light-accent)!important;
+      text-decoration: underline var(--accent)!important;
     }
     a.navbar-link:focus {
       border: var(--light-accent) solid 1px;
