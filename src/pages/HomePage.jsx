@@ -3,6 +3,7 @@ import ReactLoading from "react-loading";
 // import { allEvents } from "../data";
 
 import OpportunityCard from "../components/OpportunityCard/OpportunityCard";
+import banner from '../images/ready-to-study.jpg'
 
 function HomePage() {
     // variables
@@ -28,15 +29,18 @@ function HomePage() {
     // template
     return ( 
         <div>
-            <h1> This is the HomePage </h1> 
-            <div id = "opportunity-list"> 
-                {opportunityList.map((opportunityData, key) => {
-                return <OpportunityCard key = {key}
-                opportunityData = {opportunityData}
-                />;
-                })
-            } 
-            </div> 
+            <img src={banner} alt="Banner"/>
+            <div className="project-header">
+                <h1> This is the HomePage </h1> 
+                <div id="opportunity-list" > 
+                    {opportunityList.map((opportunityData, key) => {
+                    return <OpportunityCard key = {key}
+                    opportunityData = {opportunityData}
+                    />;
+                    })
+                } 
+                </div> 
+            </div>
         </div>
     );
 }
