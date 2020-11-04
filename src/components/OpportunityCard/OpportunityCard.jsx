@@ -1,30 +1,8 @@
-<<<<<<< Updated upstream
 import React from "react";
 import { Link } from "react-router-dom";
-import "./ListingCard.css";
-
-function ListingCard(props) {
-    //variables
-    const { listingData } = props;
-
-    //template
-    return (
-        <div className="listing-card">
-            <Link to={`/case/${listingData.id}`}>
-                <img src={listingData.image} />
-                <h3>{listingData.title}</h3>
-            </Link>
-        </div>
-    );
-}
-
-export default ListingCard;
-=======
-import React from "react"
-import { Link } from "react-router-dom"
 
 function OpportunityCard(props) {
-  const { listingData } = props
+  const { listingData } = props;
   return (
     <div className="listing-card">
       <Link to={`/case/${listingData.slug}`}>
@@ -41,8 +19,7 @@ function OpportunityCard(props) {
         <p>Created by{listingData.user}</p>
       </Link>
     </div>
-  )
+  );
 }
 
-export default OpportunityCard
->>>>>>> Stashed changes
+export default OpportunityCard;
