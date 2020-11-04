@@ -13,9 +13,9 @@ function PostOpportunityForm() {
     location: "",
     website: "",
     description: "",
-    date_close: "",
-    is_open: "true",
-    date_created: "2020-09-09T20:31:00Z",
+    apply_by_date: "",
+    is_open: true,
+    created_date: "2020-09-09T20:31:00Z",
   });
   const history = useHistory();
   //   const token = window.localStorage.getItem("token");
@@ -30,14 +30,17 @@ function PostOpportunityForm() {
   };
 
   const postData = async () => {
-    const response = await fetch(`${process.env.REACT_APP_API_URL}projects/`, {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `token ${token}`,
-      },
-      body: JSON.stringify(credentials),
-    });
+    const response = await fetch(
+      `${process.env.REACT_APP_API_URL}OpportunityListPage/`,
+      {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+          // Authorization: `token ${token}`,
+        },
+        body: JSON.stringify(credentials),
+      }
+    );
     return response.json();
   };
 
@@ -59,13 +62,93 @@ function PostOpportunityForm() {
   return (
     <form>
       <div>
+        <label htmlFor="image">Image:</label>
+        <input
+          type="text"
+          id="image"
+          placeholder="Image"
+          onChange={handleChange}
+          value={credentials.image}
+        />
+      </div>
+      <div>
         <label htmlFor="title">Title:</label>
         <input
           type="text"
           id="title"
-          placeholder="Enter Project Title"
+          placeholder="Enter Opportunity Title"
           onChange={handleChange}
           value={credentials.title}
+        />
+      </div>
+      <div>
+        <label htmlFor="start_date">Start Date:</label>
+        <input
+          type="start_date"
+          id="start_date"
+          placeholder="Start Date"
+          onChange={handleChange}
+          value={credentials.start_date}
+        />
+      </div>
+      <div>
+        <label htmlFor="organisation">Organisation:</label>
+        <input
+          type="text"
+          id="organisation"
+          placeholder="Organisation Name"
+          onChange={handleChange}
+          value={credentials.organisation}
+        />
+      </div>
+      <div>
+        <label htmlFor="is_open">Audience:</label>
+        <input
+          type="checkbox"
+          id="is_open"
+          placeholder="is_open"
+          onChange={handleChange}
+          value={credentials.is_open}
+        />
+      </div>
+      <div>
+        <label htmlFor="is_open">Level:</label>
+        <input
+          type="checkbox"
+          id="is_open"
+          placeholder="is_open"
+          onChange={handleChange}
+          value={credentials.is_open}
+        />
+      </div>
+      <div>
+        <label htmlFor="is_open">Type:</label>
+        <input
+          type="checkbox"
+          id="is_open"
+          placeholder="is_open"
+          onChange={handleChange}
+          value={credentials.is_open}
+        />
+      </div>
+      <div>
+        <label htmlFor="is_open">Location:</label>
+        <input
+          type="checkbox"
+          id="is_open"
+          placeholder="is_open"
+          onChange={handleChange}
+          value={credentials.location}
+        />
+      </div>
+      <div>
+        <label htmlFor="website">Website:</label>
+        <input
+          type="text"
+          id="website"
+          placeholder="Enter website link"
+          onChange={handleChange}
+          value={credentials.website}
         />
       </div>
       <div>
@@ -79,23 +162,13 @@ function PostOpportunityForm() {
         />
       </div>
       <div>
-        <label htmlFor="goal">Goal:</label>
+        <label htmlFor="apply_by_date">Apply by Date:</label>
         <input
-          type="text"
-          id="goal"
-          placeholder="Goal"
+          type="apply_by_date"
+          id="apply_by_date"
+          placeholder="Apply by Date"
           onChange={handleChange}
-          value={credentials.goal}
-        />
-      </div>
-      <div>
-        <label htmlFor="image">Image:</label>
-        <input
-          type="text"
-          id="image"
-          placeholder="Image"
-          onChange={handleChange}
-          value={credentials.image}
+          value={credentials.apply_by_date}
         />
       </div>
       <div>
@@ -120,10 +193,10 @@ function PostOpportunityForm() {
       </div>
 
       <button type="submit" onClick={handleSubmit}>
-        Create Project
+        Create Opportunity
       </button>
     </form>
   );
 }
 
-export default CreateProjectForm;
+export default PostOpportunityForm;

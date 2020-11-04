@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link, useHistory, useParams } from "react-router-dom"
-import "./LoginForm.css"
 import { setStorage, isAuthenticated } from "../Utilities/LocalStorage"
 
-function LoginForm() {
+function LoginForm({setUsername}) {
     //variables 
     const [credentials, setCredentials] = useState({
         username: "",
@@ -14,16 +13,16 @@ function LoginForm() {
     const [UserData, setUserData] = useState({});
     const { id } = useParams();
 
-  
-    useEffect(() => {
-      fetch(`${process.env.REACT_APP_API_URL}organisations/${id}`)
-        .then((results) => {
-          return results.json();
-        })
-        .then((data) => {
-          setUserData(data);
-        });
-    }, [id]);
+
+useEffect(() => {
+    fetch(`${process.env.REACT_APP_API_URL}organisations/${id}`)
+    .then((results) => {
+        return results.json();
+    })
+    .then((data) => {
+        setUserData(data);
+    });
+}, [id]);
 
     
 
@@ -70,7 +69,7 @@ function LoginForm() {
          postData().then((response) => {
                 setStorage("token", response.token)
                 setStorage("user", credentials.username)
-                
+                setUsername(credentials.username)
 
                 getData().then(()=>{
                 setStorage("userId", UserData.id)

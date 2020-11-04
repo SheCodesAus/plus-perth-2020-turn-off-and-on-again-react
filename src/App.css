@@ -22,26 +22,27 @@
 
 /* 1. Configuration */
 /* Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@300;400;500;600;700&display=swap');
 /* Custom Properties */
 :root {
   /* Main colours */
   --dark: rgb(65, 60, 88);
   --medium: rgb(53,135,164);
-  --light: rgb(254, 215, 102);
-  --white: rgb(255,255,255) ;
+  --light: rgb(193,223,240);
+  --light-accent: rgb(254,215,102);
+  --white: rgb(255,255,255);
   --accent: rgb(255,88,87);
   /* Font Weight */
-  --fw-reg: 300;
-  --fw-bold: 700;
+  --fw-reg: 500;
+  --fw-bold: 600;
   /* Font Family */
-  --ff-body: 'Open Sans', sans-serif;
+  --ff-body: 'Nunito', sans-serif;
   --ff-title: 'Bebas Neue', cursive;
   /* Font size */
   --fs-h1: 2.3rem;
   --fs-h2: 2rem;
   --fs-h3: 1.3rem;
-  --fs-body: 1.05rem;
+  --fs-body: 1.0rem;
   /* box-shadow */
   --bs: 0.25em 0.25em 0.75em rgba(61,64,91,.25), 
         0.125em 0.125em 0.25em rgba(61,64,91,.15);
@@ -54,7 +55,7 @@
     --fs-h1: 2.5em;
     --fs-h2: 1.7em;
     --fs-h3: 1.2em;
-    --fs-body: 1.15rem;
+    --fs-body: 1.1rem;
   }
 }
 
@@ -69,6 +70,8 @@
 /* General Styles */
 html {
   scroll-behavior: smooth;
+  background-color: white!important;
+
 }
 
 body {
@@ -76,6 +79,7 @@ body {
   color: var(--dark);
   font-size: var(--fs-body);
   line-height: 1.6;
+  background-color: white!important;
 }
 
 img {
@@ -87,10 +91,10 @@ strong {
   font-weight: var(--fw-bold);
 }
 
-:focus {
+/* :focus {
   outline: 3px solid var(--medium);
   outline-offset: 3px;
-}
+} */
 
 .spinner{
   margin: 30px auto ;
@@ -140,6 +144,7 @@ a {
   font-family: var(--ff-body);
   text-decoration: none;
   color: var(--dark);
+  font-weight: var(--fw-bold);
 }
 
 a:hover {
@@ -153,12 +158,20 @@ a:hover {
   background-color: var(--dark);
   color: var(--light);
   padding: 3vh 10vw 0;
+  background-image: url(./images/ready-to-study.jpg);
 }
 
 .intro-text {
   padding: 2rem 0;
 }
 
+.project-header {
+  background-color: white;
+  background-image: url(./images/paint-top.png), url(./images/halftone.png);
+  background-size: 1800px 130px, 300px 300px;
+  background-repeat: repeat-x, repeat;
+  background-position: 0 0;
+}
 
 #opportunity-list {
   display: grid;
@@ -187,4 +200,5 @@ a:hover {
 
 /* 3. Pages */
 /* Homepage */
+
 
