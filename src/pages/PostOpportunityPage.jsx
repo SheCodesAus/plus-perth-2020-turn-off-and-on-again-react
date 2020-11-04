@@ -1,7 +1,9 @@
-import React from "react";
+import React from "react"
+import PostOpportunityForm from "../components/PostOpportunityForm/PostOpportunityForm"
 
 function PostOpportunityPage() {
-    return <h1>Post an Opportunity</h1>;
+  return <PostOpportunityForm />
+  //   <h1>Opportunity List Page</h1>
 }
 
-export default PostOpportunityPage;
+export default PostOpportunityPage
