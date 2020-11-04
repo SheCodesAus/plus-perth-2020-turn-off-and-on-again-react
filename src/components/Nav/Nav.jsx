@@ -60,10 +60,10 @@ return (
             {/* if loggedIn is true, pass the prop setUsername from App.js to the internal component*/}
             {loggedIn ? (
                 <>
-                <Link to="/profile/" className="navbar-link" onClick={() => setOpened(false)}>
-                    Profile
+                <Link to="/organisations/:id" className="navbar-link" onClick={() => setOpened(false)}>
+                    My Organisation
                 </Link>
-                <Link to="/opportunities/" className="navbar-link" onClick={() => setOpened(false)}>
+                <Link to="/opportunities/create" className="navbar-link" onClick={() => setOpened(false)}>
                     Create a new Opportunity
                 </Link>
                 <LogoutButton setUsername={setUsername} setOpened={setOpened}/>

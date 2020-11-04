@@ -6,7 +6,7 @@ function OpportunityCard({opportunityData, ...props}) {
 
     return (
         <div className="listing-card">
-            <Link to={`/case/${opportunityData.slug}`}>
+            <Link to={`/opportunities/${opportunityData.id}`}>
                 <img src={opportunityData.image} alt="opportunity"/>
                 <h3>{opportunityData.title}</h3>
                 <p>Created by {opportunityData.owner}</p>

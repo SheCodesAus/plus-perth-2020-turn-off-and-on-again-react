@@ -34,9 +34,7 @@ function HomePage() {
                 <h1> This is the HomePage </h1> 
                 <div id="opportunity-list" > 
                     {opportunityList.map((opportunityData, key) => {
-                    return <OpportunityCard key = {key}
-                    opportunityData = {opportunityData}
-                    />;
+                    return <OpportunityCard key={key} opportunityData={opportunityData}/>;
                     })
                 } 
                 </div> 
