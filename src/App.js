@@ -6,6 +6,7 @@ import AboutPage from "./pages/AboutPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import EditOrganisationPage from "./pages/EditOrganisationPage";
+import NewOrganisationPage from "./pages/NewOrganisationPage";
 import OrganisationListPage from "./pages/OrganisationListPage";
 import OpportunityListPage from "./pages/OpportunityListPage";
 import "./App.css"
@@ -41,9 +42,9 @@ function App() {
               <LoginPage setUsername={setUsername}/>
           }
           </Route>
-          <Route path="/profile">
-            {loggedIn ?  <EditOrganisationPage setUsername={setUsername}/> : <Redirect to="/" />   }
-          </Route>
+          {/* <Route path="/profile">
+            {loggedIn ?  <NewOrganisationPage setUsername={setUsername}/> : <Redirect to="/" />   }
+          </Route> */}
           <Route path="/">
             <HomePage />
           </Route>

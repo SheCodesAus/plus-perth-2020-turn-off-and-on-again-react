@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { useHistory, useParams } from "react-router-dom"
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom"
 import { getStorage, isAuthenticated } from "../Utilities/LocalStorage"
 
-function EditOrganisationForm(props) {
+function OrganisationForm() {
     //variables 
-    const {profileData} = props;
-
     const [profile, setProfile] = useState({
         organisation: "",
         description: "",
@@ -13,20 +11,7 @@ function EditOrganisationForm(props) {
         logo: ""
     });
     const history = useHistory();
-    const{id}=useParams();
-
-    useEffect(() => {
-        if (profileData.title == null) return
-        console.log({profileData})
-        setProfile(
-            {
-                organisation: profileData.organisation,
-                description: profileData.description,
-                website: profileData.website,
-                image: profileData.logo,
-            }
-        )
-    }, [profileData])
+  
 
     //method
     const handleChange = (e) => {
@@ -38,12 +23,12 @@ function EditOrganisationForm(props) {
     }
     const postData = async() => {
         const response = await fetch
-        (`${process.env.REACT_APP_API_URL}profile/${id}`, 
+        (`${process.env.REACT_APP_API_URL}profile/`, 
         {
-            method: "put",
+            method: "post",
             headers: {
                 "Content-Type": "application/json",
-                Authorization: `Token ${getStorage("token")}`
+                "Authorization": `Token ${getStorage("token")}`
             },
             body: JSON.stringify(profile),
         }
@@ -52,15 +37,22 @@ function EditOrganisationForm(props) {
     }
 
     const handleSubmit = (e) => {
- 
+        console.log(profile)
         e.preventDefault();
+        console.log("token");
 
+
+        if(profile.organisation && 
+            profile.description && 
+            profile.website && 
+            profile.logo) {
          postData().then((response) => {
             if (isAuthenticated()){
-                history.push(`/profile/${id}`);
+                history.push("/");
             } 
             });
         }
+    }
 
 
     //template
@@ -72,7 +64,7 @@ function EditOrganisationForm(props) {
                     <input 
                         type="text" 
                         id="organisation" 
-                        value={profile.organisation}
+                        placeholder="Enter organisation name" 
                         onChange={handleChange}
                     />
                 </div>
@@ -80,8 +72,7 @@ function EditOrganisationForm(props) {
                     <label htmlFor="description">Description:</label>
                     <textarea 
                         type="text" 
-                        id="description" 
-                        value={profile.description}
+                        id="description" placeholder="Enter short description" 
                         onChange={handleChange}
                     />
                 </div>
@@ -89,8 +80,7 @@ function EditOrganisationForm(props) {
                     <label htmlFor="website">Website:</label>
                     <input 
                         type="text" 
-                        id="website" 
-                        value={profile.website}
+                        id="website" placeholder="Enter a URL to the organisation homepage" 
                         onChange={handleChange}
                     />
                 </div>
@@ -98,15 +88,16 @@ function EditOrganisationForm(props) {
                     <label htmlFor="logo">Logo:</label>
                     <input 
                         type="text" 
-                        id="logo" 
-                        value={profile.logo}
+                        id="logo" placeholder="Enter a URL to an logo to use as thumbnail" 
                         onChange={handleChange}
                     />
                 </div>
-                <button type="submit" onClick={handleSubmit}>Update Profile</button>
+
+
+                <button type="submit" onClick={handleSubmit}>Create a Trip!</button>
             </form>
         </div>
     )
 }
 
-export default EditOrganisationForm;
+export default OrganisationForm;
