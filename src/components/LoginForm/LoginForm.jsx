@@ -86,7 +86,7 @@ useEffect(() => {
 
     //template
     return (
-        <div className="login-page">
+        <div className="small-form">
             <form className="login-form">
                 <div>
                     <label htmlFor="username">Username:</label>
