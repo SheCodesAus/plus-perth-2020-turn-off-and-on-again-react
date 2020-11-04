@@ -47,7 +47,7 @@ function RegisterForm() {
 
     //template
     return (
-        <div className="form-page">
+        <div className="medium-form">
             <form >
                 <p className="message">*This form is only for organisation wanting to post opportunities. You don't need an account to view listings.*</p>
                 <p></p>
