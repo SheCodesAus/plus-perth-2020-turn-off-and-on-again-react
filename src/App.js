@@ -19,14 +19,14 @@ const savedUsername = window.localStorage.getItem("username")
 
 function App() {
   const [username, setUsername] = useState(savedUsername)
-  //check with !== null whether username is strictly not null, 
+  //check with !== null whether username is strictly not null,
   //so if username is undefined or an empty string then it’ll be true
   const loggedIn = username !== null
   //console.log({ loggedIn })
   return (
     <Router>
       <div>
-        <Nav loggedIn={loggedIn} setUsername={setUsername}/>
+        <Nav loggedIn={loggedIn} setUsername={setUsername} />
         <Switch>
           <Route path="/about" exact>
             <AboutPage />
@@ -50,12 +50,18 @@ function App() {
             <OrganisationDetailPage />
           </Route>
           <Route path="/login">
-            {loggedIn ? <Redirect to="/" /> :
-              <LoginPage setUsername={setUsername}/>
-          }
+            {loggedIn ? (
+              <Redirect to="/" />
+            ) : (
+              <LoginPage setUsername={setUsername} />
+            )}
           </Route>
           <Route path="/profile">
-            {loggedIn ?  <EditOrganisationPage setUsername={setUsername}/> : <Redirect to="/" />   }
+            {loggedIn ? (
+              <EditOrganisationPage setUsername={setUsername} />
+            ) : (
+              <Redirect to="/" />
+            )}
           </Route>
           <Route path="/">
             <HomePage />
@@ -63,7 +69,7 @@ function App() {
         </Switch>
       </div>
     </Router>
-  );
+  )
 }
 
-export default App;
+export default App
