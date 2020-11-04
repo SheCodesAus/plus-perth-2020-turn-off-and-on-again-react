@@ -28,10 +28,10 @@ function AboutPage() {
     return (
     <div>
         <div className="project-header">
-            <h1> What is Tech for Me </h1>
+            <h1> About Tech For Me </h1>
             <p>A directory of incentivised learning opportunities to connect providers with women and diverse technology enthusiasts.</p>
-            <p>If you're here on behalf of an organisation, you can *LINK*post opportunities*LINK* to the directory to help enable diversity in tech.</p>
-            <h2> Recent Opportunities Posted </h2>
+            <p>If you're here on behalf of an organisation, you can post opportunities to the directory to help enable diversity in tech.</p>
+            <h2> Latest Opportunities </h2>
             <div id="opportunity-list" > 
                 {opportunityList.map((opportunityData, key) => {
                 return <OpportunityCard key = {key}
