@@ -1,18 +1,17 @@
-import React, { useState } from "react"
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from "react-router-dom"
-import Nav from "./components/Nav/Nav"
-import HomePage from "./pages/HomePage"
-import AboutPage from "./pages/AboutPage"
-import LoginPage from "./pages/LoginPage"
-import RegisterPage from "./pages/RegisterPage"
-import EditOrganisationPage from "./pages/EditOrganisationPage"
-import OrganisationListPage from "./pages/OrganisationListPage"
-import OpportunityListPage from "./pages/OpportunityListPage"
+import React, {useState} from 'react';
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
+import Nav from "./components/Nav/Nav";
+import HomePage from "./pages/HomePage";
+import AboutPage from "./pages/AboutPage";
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
+import EditOrganisationPage from "./pages/EditOrganisationPage";
+import OrganisationListPage from "./pages/OrganisationListPage";
+import PostOpportunityForm from "./components/PostOpportunityForm/PostOpportunityForm";
+import OpportunityListPage from "./pages/OpportunityListPage";
+import OpportunityDetailPage from "./pages/OpportunityDetailPage";
+import OrganisationDetailPage from "./pages/OrganisationDetailPage";
+
 import "./App.css"
 import "./AppForm.css"
 
@@ -35,11 +34,20 @@ function App() {
           <Route path="/register" exact>
             <RegisterPage />
           </Route>
-          <Route path="/opportunities" exact>
+          <Route path="/opportunities/create" exact>
             <OpportunityListPage />
+          </Route>
+          <Route path="/opportunities" exact>
+            <PostOpportunityForm/>
+          </Route>
+          <Route path="/opportunities/:id" exact>
+            <OpportunityDetailPage />
           </Route>
           <Route path="/organisations" exact>
             <OrganisationListPage />
+          </Route>
+          <Route path="/organisations/:id" exact>
+            <OrganisationDetailPage />
           </Route>
           <Route path="/login">
             {loggedIn ? (
