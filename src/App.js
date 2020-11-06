@@ -35,10 +35,10 @@ function App() {
             <RegisterPage />
           </Route>
           <Route path="/opportunities/create" exact>
-            <OpportunityListPage />
+            <PostOpportunityForm/>
           </Route>
           <Route path="/opportunities" exact>
-            <PostOpportunityForm/>
+            <OpportunityListPage />
           </Route>
           <Route path="/opportunities/:id" exact>
             <OpportunityDetailPage />
