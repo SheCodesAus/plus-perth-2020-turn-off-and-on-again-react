@@ -18,6 +18,8 @@ function PostOpportunityForm() {
     created_date: "2020-09-09T20:31:00Z",
   });
   const history = useHistory();
+  const token = window.localStorage.getItem("token")
+
   //   const token = window.localStorage.getItem("token");
 
   //methods
@@ -36,7 +38,7 @@ function PostOpportunityForm() {
         method: "post",
         headers: {
           "Content-Type": "application/json",
-          // Authorization: `token ${token}`,
+          Authorization: `token ${token}`,
         },
         body: JSON.stringify(credentials),
       }
