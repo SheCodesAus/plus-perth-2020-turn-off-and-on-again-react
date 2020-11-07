@@ -27,7 +27,7 @@ const LoggedOutNav = ({setOpened}) => {
             Login
         </Link>
         <Link to="/register" className={"navbar-link"} onClick={() => setOpened(false)}>
-            Register
+            Register your organisation
         </Link>
         </>
     )
