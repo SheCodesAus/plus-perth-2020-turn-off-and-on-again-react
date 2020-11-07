@@ -54,9 +54,9 @@ function App() {
           <Route path="/organisations/select" exact>
             <SelectOrganisationPage />
           </Route>
-          {/* <Route path="/organisations/:id" exact>
+          <Route path="/organisations/:id" exact>
             <OrganisationDetailPage />
-          </Route> */}
+          </Route>
           <Route path="/login">
             {loggedIn ? (
               <Redirect to="/" />
@@ -64,7 +64,7 @@ function App() {
               <LoginPage setUsername={setUsername} />
             )}
           </Route>
-          <Route path="/organisations/:id" exact>
+          <Route path="/organisations/:id/edit" exact>
             {loggedIn ? (
               <EditOrganisationPage setUsername={setUsername} />
             ) : (
