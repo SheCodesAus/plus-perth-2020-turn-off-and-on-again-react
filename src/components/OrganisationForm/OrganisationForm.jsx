@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom"
-import { getStorage, isAuthenticated } from "../Utilities/LocalStorage"
+import { getStorage, isAuthenticated } from "../../pages/LocalStorage"
 
 function OrganisationForm() {
     //variables 
@@ -57,7 +57,7 @@ function OrganisationForm() {
 
     //template
     return (
-        <div className="form-page">
+        <div className="medium-form">
             <form>
                 <div>
                     <label htmlFor="organisation">Organisation:</label>
@@ -94,7 +94,7 @@ function OrganisationForm() {
                 </div>
 
 
-                <button type="submit" onClick={handleSubmit}>Create a Trip!</button>
+                <button type="submit" onClick={handleSubmit}>Register New Organisation</button>
             </form>
         </div>
     )

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom"
-import { getStorage, isAuthenticated } from "../Utilities/LocalStorage"
+import { getStorage, isAuthenticated } from "../../pages/LocalStorage"
 
 function EditOrganisationForm(props) {
     //variables 
@@ -57,7 +57,7 @@ function EditOrganisationForm(props) {
 
          postData().then((response) => {
             if (isAuthenticated()){
-                history.push(`/profile/${id}`);
+                history.push(`/opportunities/${id}`);
             } 
             });
         }
@@ -65,7 +65,7 @@ function EditOrganisationForm(props) {
 
     //template
     return (
-        <div className="form-page">
+        <div className="medium-form">
             <form>
                 <div>
                     <label htmlFor="organisation">Organisation:</label>
