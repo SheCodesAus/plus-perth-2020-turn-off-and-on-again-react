@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 
 import {
     isAuthenticated,
-  } from "./LocalStorage";
+  } from "../components/Utilities/LocalStorage";
 
 function SelectOrganisationPage() {
 

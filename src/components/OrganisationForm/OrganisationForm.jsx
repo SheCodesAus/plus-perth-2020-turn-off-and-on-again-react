@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom"
-import { getStorage, isAuthenticated } from "../../pages/LocalStorage"
+import { getStorage, isAuthenticated } from "../Utilities/LocalStorage"
 
 function OrganisationForm() {
     //variables 
