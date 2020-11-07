@@ -70,7 +70,7 @@ function LoginForm({ setUsername }) {
     }
     //template
     return (
-        <div className="login-page">
+        <div className="small-form">
             <form className="login-form" onSubmit={handleLogin}>
                 <div>
                     <label htmlFor="username">Username:</label>

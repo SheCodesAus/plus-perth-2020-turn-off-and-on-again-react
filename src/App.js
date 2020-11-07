@@ -6,11 +6,13 @@ import AboutPage from "./pages/AboutPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import EditOrganisationPage from "./pages/EditOrganisationPage";
+import NewOrganisationPage from "./pages/NewOrganisationPage";
 import OrganisationListPage from "./pages/OrganisationListPage";
 import PostOpportunityForm from "./components/PostOpportunityForm/PostOpportunityForm";
 import OpportunityListPage from "./pages/OpportunityListPage";
 import OpportunityDetailPage from "./pages/OpportunityDetailPage";
 import OrganisationDetailPage from "./pages/OrganisationDetailPage";
+import SelectOrganisationPage from "./pages/SelectOrganisationPage";
 
 import "./App.css"
 import "./AppForm.css"
@@ -46,6 +48,12 @@ function App() {
           <Route path="/organisations" exact>
             <OrganisationListPage />
           </Route>
+          <Route path="/organisations/register" exact>
+            <NewOrganisationPage />
+          </Route>
+          <Route path="/organisations/select" exact>
+            <SelectOrganisationPage />
+          </Route>
           <Route path="/organisations/:id" exact>
             <OrganisationDetailPage />
           </Route>
@@ -56,7 +64,7 @@ function App() {
               <LoginPage setUsername={setUsername} />
             )}
           </Route>
-          <Route path="/profile">
+          <Route path="/organisations/:id/edit" exact>
             {loggedIn ? (
               <EditOrganisationPage setUsername={setUsername} />
             ) : (
