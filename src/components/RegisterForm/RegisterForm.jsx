@@ -39,7 +39,7 @@ function RegisterForm() {
         if(credentials.username && credentials.email) {
          postUser().then((request) => {
                 window.localStorage.setItem("username", request.username);
-                history.push("/organisations/register");
+                history.push("/login");
             });
         }
     }
