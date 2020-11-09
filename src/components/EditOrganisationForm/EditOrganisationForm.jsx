@@ -38,7 +38,7 @@ function EditOrganisationForm(props) {
     }
     const postData = async() => {
         const response = await fetch
-        (`${process.env.REACT_APP_API_URL}profile/${id}`, 
+        (`${process.env.REACT_APP_API_URL}organisations/${id}`, 
         {
             method: "put",
             headers: {
