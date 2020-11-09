@@ -4,7 +4,7 @@ import { getStorage, isAuthenticated } from "../Utilities/LocalStorage"
 
 function OrganisationForm() {
     //variables 
-    const [profile, setProfile] = useState({
+    const [organisation, setOrganisation] = useState({
         organisation: "",
         description: "",
         website: "",
@@ -16,40 +16,40 @@ function OrganisationForm() {
     //method
     const handleChange = (e) => {
         const {id, value} = e.target;
-        setProfile((prevProfile) => ({
-            ...prevProfile,
+        setOrganisation((prevOrganisation) => ({
+            ...prevOrganisation,
             [id]: value,
         }))
     }
     const postData = async() => {
         const response = await fetch
-        (`${process.env.REACT_APP_API_URL}profile/`, 
+        (`${process.env.REACT_APP_API_URL}organisations/`, 
         {
             method: "post",
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": `Token ${getStorage("token")}`
             },
-            body: JSON.stringify(profile),
+            body: JSON.stringify(organisation),
         }
         );
         return response.json();
     }
 
     const handleSubmit = (e) => {
-        console.log(profile)
+        console.log(organisation)
         e.preventDefault();
         console.log("token");
 
 
-        if(profile.organisation && 
-            profile.description && 
-            profile.website && 
-            profile.logo) {
+        if(organisation.organisation && 
+            organisation.description && 
+            organisation.website && 
+            organisation.logo) {
          postData().then((response) => {
             if (isAuthenticated()){
                 history.push("/");
-            } 
+            }
             });
         }
     }

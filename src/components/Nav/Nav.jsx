@@ -63,6 +63,9 @@ return (
                 <Link to="/organisations/:id" className="navbar-link" onClick={() => setOpened(false)}>
                     My Organisation
                 </Link>
+                <Link to="/organisations/register" className="navbar-link" onClick={() => setOpened(false)}>
+                    Register Organisation
+                </Link>
                 <Link to="/opportunities/create" className="navbar-link" onClick={() => setOpened(false)}>
                     Create a new Opportunity
                 </Link>
