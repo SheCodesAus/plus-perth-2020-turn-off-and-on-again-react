@@ -8,7 +8,7 @@ return (
 <div className="event-card">
     
     <Link to={`/opportunities?category=${opportunityData.slug}`}>
-        <img src={opportunityData.name} alt={`${opportunityData.name}`}/>
+        {opportunityData.image ? <img src={opportunityData.image} alt={`${opportunityData.name}`}/> :<></>}
         <h3>See all the {opportunityData.name} opportunities</h3>
     </Link>
 </div>

@@ -31,7 +31,6 @@ function App() {
   //so if username is undefined or an empty string then it’ll be true
   const loggedIn = username !== null
   //console.log({ loggedIn })
-  const [categorySlug, setCategorySlug] = useState('')
 
   return (
     <Router>

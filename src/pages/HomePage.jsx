@@ -87,29 +87,7 @@ function HomePage({loggedIn}) {
                 <h1> This is the HomePage </h1> 
                 <div className="categoryCards"> 
                     <div >
-                        <h2>Find an opportunity type:</h2>
-                        <div id="opportunity-list" > 
-                                {typeList.map((opportunityData, key) => {
-                                    return <CategoryCard 
-                                    key={key} 
-                                    opportunityData={opportunityData} 
-                                    />
-                                })}
-                        </div> 
-                    </div>
-                    <div >
-                        <h2>Find an opportunity type:</h2>
-                        <div id="opportunity-list" > 
-                                {locationList.map((opportunityData, key) => {
-                                    return <CategoryCard 
-                                    key={key} 
-                                    opportunityData={opportunityData} 
-                                    />
-                                })}
-                        </div> 
-                    </div>
-                    <div >
-                        <h2>Find an opportunity type:</h2>
+                        <h2>Find the opportunity just for you:</h2>
                         <div id="opportunity-list" > 
                                 {audienceList.map((opportunityData, key) => {
                                     return <CategoryCard 
@@ -120,7 +98,29 @@ function HomePage({loggedIn}) {
                         </div> 
                     </div>
                     <div >
-                        <h2>Find an opportunity type:</h2>
+                        <h2>Do you look for an event, a program or an internship?</h2>
+                        <div id="opportunity-list" > 
+                                {typeList.map((opportunityData, key) => {
+                                    return <CategoryCard 
+                                    key={key} 
+                                    opportunityData={opportunityData} 
+                                    />
+                                })}
+                        </div> 
+                    </div>
+                    <div >
+                        <h2>Where are you looking?</h2>
+                        <div id="opportunity-list" > 
+                                {locationList.map((opportunityData, key) => {
+                                    return <CategoryCard 
+                                    key={key} 
+                                    opportunityData={opportunityData} 
+                                    />
+                                })}
+                        </div> 
+                    </div>
+                    <div >
+                        <h2>Beginner or Tech Expert?</h2>
                         <div id="opportunity-list" > 
                                 {levelList.map((opportunityData, key) => {
                                     return <CategoryCard 
