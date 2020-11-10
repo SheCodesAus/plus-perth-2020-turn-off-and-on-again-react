@@ -62,17 +62,8 @@ function PostOpportunityForm() {
 
   //template
   return (
+    <div className="medium-form">
     <form>
-      <div>
-        <label htmlFor="image">Image:</label>
-        <input
-          type="text"
-          id="image"
-          placeholder="Image"
-          onChange={handleChange}
-          value={credentials.image}
-        />
-      </div>
       <div>
         <label htmlFor="title">Title:</label>
         <input
@@ -81,6 +72,26 @@ function PostOpportunityForm() {
           placeholder="Enter Opportunity Title"
           onChange={handleChange}
           value={credentials.title}
+        />
+      </div>
+      <div>
+        <label htmlFor="description">Description:</label>
+        <input
+          type="text"
+          id="description"
+          placeholder="Description"
+          onChange={handleChange}
+          value={credentials.description}
+        />
+      </div>
+      <div>
+        <label htmlFor="image">Image:</label>
+        <input
+          type="text"
+          id="image"
+          placeholder="Enter Thumbnail Image"
+          onChange={handleChange}
+          value={credentials.image}
         />
       </div>
       <div>
@@ -104,41 +115,41 @@ function PostOpportunityForm() {
         />
       </div>
       <div>
-        <label htmlFor="is_open">Audience:</label>
+        <label htmlFor="audience">Audience:</label>
         <input
-          type="checkbox"
-          id="is_open"
-          placeholder="is_open"
+          type="dropdown"
+          id="audience"
+          placeholder="Target Audience"
           onChange={handleChange}
-          value={credentials.is_open}
+          value={credentials.audience}
         />
       </div>
       <div>
-        <label htmlFor="is_open">Level:</label>
+        <label htmlFor="level">Level:</label>
         <input
-          type="checkbox"
-          id="is_open"
-          placeholder="is_open"
+          type="dropdown"
+          id="level"
+          placeholder="Skill level required to attend"
           onChange={handleChange}
-          value={credentials.is_open}
+          value={credentials.level}
         />
       </div>
       <div>
-        <label htmlFor="is_open">Type:</label>
+        <label htmlFor="type">Type:</label>
         <input
-          type="checkbox"
-          id="is_open"
-          placeholder="is_open"
+          type="dropdown"
+          id="type"
+          placeholder="Type of opportunity"
           onChange={handleChange}
-          value={credentials.is_open}
+          value={credentials.type}
         />
       </div>
       <div>
-        <label htmlFor="is_open">Location:</label>
+        <label htmlFor="location">Location:</label>
         <input
-          type="checkbox"
-          id="is_open"
-          placeholder="is_open"
+          type="dropdown"
+          id="location"
+          placeholder="Where is the opportunity based?"
           onChange={handleChange}
           value={credentials.location}
         />
@@ -153,16 +164,7 @@ function PostOpportunityForm() {
           value={credentials.website}
         />
       </div>
-      <div>
-        <label htmlFor="description">Description:</label>
-        <input
-          type="text"
-          id="description"
-          placeholder="Description"
-          onChange={handleChange}
-          value={credentials.description}
-        />
-      </div>
+
       <div>
         <label htmlFor="apply_by_date">Apply by Date:</label>
         <input
@@ -171,16 +173,6 @@ function PostOpportunityForm() {
           placeholder="Apply by Date"
           onChange={handleChange}
           value={credentials.apply_by_date}
-        />
-      </div>
-      <div>
-        <label htmlFor="is_open">Project Open:</label>
-        <input
-          type="checkbox"
-          id="is_open"
-          placeholder="is_open"
-          onChange={handleChange}
-          value={credentials.is_open}
         />
       </div>
       <div>
@@ -198,6 +190,7 @@ function PostOpportunityForm() {
         Create Opportunity
       </button>
     </form>
+    </div>
   );
 }
 
