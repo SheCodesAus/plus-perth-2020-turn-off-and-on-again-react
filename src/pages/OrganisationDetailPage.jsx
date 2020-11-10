@@ -11,7 +11,7 @@ function OrganisationDetailPage() {
   const history = useHistory()
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}organisation/${id}`)
+    fetch(`${process.env.REACT_APP_API_URL}organisations/${id}`)
       .then((results) => {
         return results.json()
       })

@@ -61,7 +61,7 @@ function OpportunityDetailPage() {
       {/* <PostOpportunityForm opportunityId={id} /> */}
       <hr />
       <button>
-        <Link to={`/opportunities/edit/${id}`}>Edit</Link>
+        <Link to={`/opportunity/edit/${id}`}>Edit</Link>
       </button>
       <button type="delete" onClick={deleteData}>
         Delete
