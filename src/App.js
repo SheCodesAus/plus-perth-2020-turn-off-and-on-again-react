@@ -1,18 +1,24 @@
-import React, {useState} from 'react';
-import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
-import Nav from "./components/Nav/Nav";
-import HomePage from "./pages/HomePage";
-import AboutPage from "./pages/AboutPage";
-import LoginPage from "./pages/LoginPage";
-import RegisterPage from "./pages/RegisterPage";
-import EditOrganisationPage from "./pages/EditOrganisationPage";
-import NewOrganisationPage from "./pages/NewOrganisationPage";
-import OrganisationListPage from "./pages/OrganisationListPage";
-import PostOpportunityForm from "./components/PostOpportunityForm/PostOpportunityForm";
-import OpportunityListPage from "./pages/OpportunityListPage";
-import OpportunityDetailPage from "./pages/OpportunityDetailPage";
-import OrganisationDetailPage from "./pages/OrganisationDetailPage";
-import SelectOrganisationPage from "./pages/SelectOrganisationPage";
+import React, { useState } from "react"
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom"
+import Nav from "./components/Nav/Nav"
+import HomePage from "./pages/HomePage"
+import AboutPage from "./pages/AboutPage"
+import LoginPage from "./pages/LoginPage"
+import RegisterPage from "./pages/RegisterPage"
+import EditOrganisationPage from "./pages/EditOrganisationPage"
+import NewOrganisationPage from "./pages/NewOrganisationPage"
+import OrganisationListPage from "./pages/OrganisationListPage"
+import PostOpportunityForm from "./components/PostOpportunityForm/PostOpportunityForm"
+import OpportunityListPage from "./pages/OpportunityListPage"
+import OpportunityDetailPage from "./pages/OpportunityDetailPage"
+import OrganisationDetailPage from "./pages/OrganisationDetailPage"
+import SelectOrganisationPage from "./pages/SelectOrganisationPage"
+import EditOpportunityPage from "./pages/EditOpportunityPage"
 
 import "./App.css"
 import "./AppForm.css"
@@ -39,7 +45,7 @@ function App() {
             <RegisterPage />
           </Route>
           <Route path="/opportunities/create" exact>
-            <PostOpportunityForm/>
+            <PostOpportunityForm />
           </Route>
           <Route path="/opportunities" exact>
             <OpportunityListPage />
@@ -48,7 +54,10 @@ function App() {
             <OpportunityDetailPage />
           </Route>
           <Route path="/opportunities/type/:slug" exact>
-            <OpportunityListPage slug={setCategorySlug}/>
+            <OpportunityListPage/>
+            </Route>
+          <Route path="/opportunities/edit/:id" exact>
+            <EditOpportunityPage />
           </Route>
           <Route path="/organisations" exact>
             <OrganisationListPage />
