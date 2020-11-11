@@ -19,6 +19,8 @@ import OpportunityDetailPage from "./pages/OpportunityDetailPage"
 import OrganisationDetailPage from "./pages/OrganisationDetailPage"
 import SelectOrganisationPage from "./pages/SelectOrganisationPage"
 import EditOpportunityPage from "./pages/EditOpportunityPage"
+import Footer from "./components/Footer/Footer"
+
 
 import "./App.css"
 import "./AppForm.css"
@@ -88,8 +90,10 @@ function App() {
             <HomePage loggedIn={loggedIn}/>
           </Route>
         </Switch>
+        <Footer />
       </div>
     </Router>
+    
   )
 }
 

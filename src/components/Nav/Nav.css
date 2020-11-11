@@ -37,7 +37,9 @@
     display: block;
   }
   
-  
+  #menu-button {
+    display:none;
+  }
   
   /**
   *
@@ -72,7 +74,8 @@
       text-decoration: underline var(--accent)!important;
     }
     a.navbar-link:focus {
-      border: var(--light-accent) solid 1px;
+      border: var(--light-accent) solid 2px;
+      border-radius:4px;
     }
     .toggle {
       display: none;
@@ -85,5 +88,71 @@
       align-items: center;
   
     }
+    #menu-button {
+      width: 10rem;
+      margin: 0px 10px -5px;
+      padding: 1rem 0;
+      background: none;
+      outline: none;
+      border: none;
+      font-size: 1rem;
+      font-family: var(--ff-body);
+      color: #000;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.2s ease 0.05s;
+      display: flex;
+      font-size: var(--fs-body);
+      color: var(--dark);
+      font-weight: var(--fw-bold);
+      min-width: 170px;
+    }
     
+    #menu-button:hover, #menu-button:focus {
+      text-decoration: underline var(--accent)!important;
+      color: var(--medium);
+    }
+    
+    #menu-button span {
+      flex-grow: 1;
+      text-align: center;
+    }
+    
+    #menu-button svg {
+      margin:0 0.4rem;
+      color:var(--accent);
+    }
+    
+    #menu {
+    background: #fff;
+    margin-top: 0.8rem;
+    border: 1px solid var(--medium);
+    border-radius: 0.25rem;
+    box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    transition: transform 0.2s ease, opacity 0.2s ease, visibility 0s linear 0.2s;
+    will-change: transform;
+    text-align: left;
+    position: absolute;
+    right: 0;
+    top: 60px;
+    z-index: 2;
+    }
+    
+    #menu.visible {
+      transform: translateY(-0.3rem);
+      transition: transform 0.2s ease, opacity 0.2s ease, visibility 0s linear 0s;
+      visibility: visible;
+      opacity: 1;
+    }
+    
+    #menu a {
+      display: block;
+      padding: 0.5rem;
+      cursor: pointer;
+      outline: none;
+      margin: 0.3rem;
+    }
+
   }
