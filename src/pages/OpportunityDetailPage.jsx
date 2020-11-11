@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react"
 import { useParams, useHistory, Link } from "react-router-dom"
-// import PostOpportunityForm from "../components/PostOpportunityForm/PostOpportunityForm"
 
 function OpportunityDetailPage() {
   const [opportunityData, setopportunityData] = useState({
@@ -19,7 +18,7 @@ function OpportunityDetailPage() {
       .then((data) => {
         setopportunityData(data)
       })
-  }, [])
+  }, [id])
 
   const deleteData = async () => {
     const response = await fetch(
@@ -41,7 +40,7 @@ function OpportunityDetailPage() {
 
   return (
     <div>
-      <img src={opportunityData.image} />
+      <img src={opportunityData.image} alt={opportunityData.title}/>
       <h3>{opportunityData.title}</h3>
       <h3>{opportunityData.start_date}</h3>
       <h3>{opportunityData.organisation}</h3>
@@ -58,20 +57,7 @@ function OpportunityDetailPage() {
           : ""}
       </h4>
       <h4>{`Status: ${opportunityData.is_open}`}</h4>
-      {/* {opportunityData.pledges.length > 0 ? <h3>Pledges:</h3> : null} */}
-      {/* <ul>
-        {projectData.pledges.map((pledgeData, key) => {
-          return (
-            <li>
-              ${pledgeData.amount} from {pledgeData.supporter}
-              <br />
-              {pledgeData.comment}
-            </li>
-          )
-        })}
-      </ul> */}
 
-      {/* <PostOpportunityForm opportunityId={id} /> */}
       <hr />
       <button>
         <Link to={`/opportunities/edit/${id}`}>Edit</Link>

@@ -20,8 +20,6 @@ function PostOpportunityForm() {
   const history = useHistory()
   const token = window.localStorage.getItem("token")
 
-  //   const token = window.localStorage.getItem("token");
-
   //methods
   const handleChange = (e) => {
     const { id, value } = e.target
@@ -64,14 +62,15 @@ function PostOpportunityForm() {
   return (
     <form>
       <div>
-        <label htmlFor="image">Image:</label>
+        <label htmlFor="image">Uplaod your image:</label>
         <input
-          type="text"
-          id="image"
-          placeholder="Image"
-          onChange={handleChange}
-          value={credentials.image}
-        />
+              type="file"
+              id="image"
+              placeholder="Image"
+              onChange={handleChange}
+              accept="image/*"
+              value={credentials.image}
+          />
       </div>
       <div>
         <label htmlFor="title">Title:</label>

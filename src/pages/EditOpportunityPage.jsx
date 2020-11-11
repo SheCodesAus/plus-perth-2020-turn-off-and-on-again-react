@@ -3,7 +3,6 @@ import EditOpportunityForm from "../components/EditOpportunityForm/EditOpportuni
 
 function EditOpportunityPage() {
   return <EditOpportunityForm />
-  // <h1>This is the login page.</h1>
 }
 
 export default EditOpportunityPage

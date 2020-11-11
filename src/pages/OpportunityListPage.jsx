@@ -31,9 +31,9 @@ function OpportunityListPage() {
                 <h1> This is the Opportunity Page </h1> 
                 <div id="opportunity-list" > 
                     {opportunityList.map((opportunityData, key) => {
-                    return <OpportunityCard key={key} opportunityData={opportunityData}/>;
-                    })
-                } 
+                        return <OpportunityCard key={key} opportunityData={opportunityData}/>;
+                        })
+                    } 
                 </div> 
             </div>
         </div>
