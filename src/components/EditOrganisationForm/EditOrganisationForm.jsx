@@ -26,31 +26,32 @@ function EditOrganisationForm(props) {
     })
   }, [profileData])
 
-  //method
-  const handleChange = (e) => {
-    const { id, value } = e.target
-    setProfile((prevProfile) => ({
-      ...prevProfile,
-      [id]: value,
-    }))
-  }
-  const postData = async () => {
-    const response = await fetch(
-      `${process.env.REACT_APP_API_URL}profile/${id}`,
-      {
-        method: "put",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Token ${getStorage("token")}`,
-        },
-        body: JSON.stringify(profile),
-      }
-    )
-    return response.json()
-  }
+    //method
+    const handleChange = (e) => {
+        const {id, value} = e.target;
+        setProfile((prevProfile) => ({
+            ...prevProfile,
+            [id]: value,
+        }))
+    }
+    const postData = async() => {
+        const response = await fetch
+        (`${process.env.REACT_APP_API_URL}organisations/${id}`, 
+        {
+            method: "put",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Token ${getStorage("token")}`
+            },
+            body: JSON.stringify(profile),
+        }
+        );
+        return response.json();
+    }
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
+    const handleSubmit = (e) => {
+ 
+        e.preventDefault();
 
     postData().then((response) => {
       if (isAuthenticated()) {

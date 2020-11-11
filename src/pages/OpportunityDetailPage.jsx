@@ -18,7 +18,7 @@ function OpportunityDetailPage() {
       .then((data) => {
         setopportunityData(data)
       })
-  }, [])
+  }, [id])
 
   const deleteData = async () => {
     const response = await fetch(
@@ -40,7 +40,7 @@ function OpportunityDetailPage() {
 
   return (
     <div>
-      <img src={opportunityData.image} alt="opportunity"/>
+      <img src={opportunityData.image} alt={opportunityData.title}/>
       <h3>{opportunityData.title}</h3>
       <h3>{opportunityData.start_date}</h3>
       <h3>{opportunityData.organisation}</h3>
@@ -58,10 +58,9 @@ function OpportunityDetailPage() {
       </h4>
       <h4>{`Status: ${opportunityData.is_open}`}</h4>
 
-      {/* <PostOpportunityForm opportunityId={id} /> */}
       <hr />
       <button>
-        <Link to={`/opportunity/edit/${id}`}>Edit</Link>
+        <Link to={`/opportunities/edit/${id}`}>Edit</Link>
       </button>
       <button type="delete" onClick={deleteData}>
         Delete
