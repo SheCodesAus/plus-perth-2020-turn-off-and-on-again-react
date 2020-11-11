@@ -1,7 +1,7 @@
 .logo {
     width: 230px;
     margin-top: 5px;  
-
+    min-width: 200px;
 }
   .navbar {
     display: flex;

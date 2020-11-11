@@ -7,7 +7,7 @@ function OpportunityCard({ opportunityData, ...props }) {
   return (
     <div className="listing-card">
       <Link to={`/opportunities/${opportunityData.id}`}>
-        <img src={opportunityData.image} />
+        <img src={opportunityData.image} alt={opportunityData.title}/>
         <h3>{opportunityData.title}</h3>
         <h3>{opportunityData.start_date}</h3>
         <h3>{opportunityData.organisation}</h3>
@@ -16,7 +16,7 @@ function OpportunityCard({ opportunityData, ...props }) {
         <h3>{opportunityData.description}</h3>
         <h3>{opportunityData.apply_by_date}</h3>
         <h3>{opportunityData.datecreated}</h3>
-        <p>Created by {opportunityData.owner}</p>
+        <p>Created by {opportunityData.user}</p>
       </Link>
     </div>
   )
