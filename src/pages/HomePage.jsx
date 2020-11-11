@@ -132,7 +132,6 @@ function HomePage({loggedIn}) {
                     </div>
                 </div> 
             </div>
-            <div className="footer">This is a footer</div>
         </div>
     );
 }
