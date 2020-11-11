@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react"
 import { useParams, useHistory, Link } from "react-router-dom"
-// import PostOpportunityForm from "../components/PostOpportunityForm/PostOpportunityForm"
 
 function OpportunityDetailPage() {
   const [opportunityData, setopportunityData] = useState({
@@ -58,20 +57,7 @@ function OpportunityDetailPage() {
           : ""}
       </h4>
       <h4>{`Status: ${opportunityData.is_open}`}</h4>
-      {/* {opportunityData.pledges.length > 0 ? <h3>Pledges:</h3> : null} */}
-      {/* <ul>
-        {projectData.pledges.map((pledgeData, key) => {
-          return (
-            <li>
-              ${pledgeData.amount} from {pledgeData.supporter}
-              <br />
-              {pledgeData.comment}
-            </li>
-          )
-        })}
-      </ul> */}
 
-      {/* <PostOpportunityForm opportunityId={id} /> */}
       <hr />
       <button>
         <Link to={`/opportunities/edit/${id}`}>Edit</Link>

@@ -1,32 +1,30 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react"
 import { useHistory, useParams } from "react-router-dom"
 import { getStorage, isAuthenticated } from "../Utilities/LocalStorage"
 
 function EditOrganisationForm(props) {
-    //variables 
-    const {profileData} = props;
+  //variables
+  const { profileData } = props
 
-    const [profile, setProfile] = useState({
-        organisation: "",
-        description: "",
-        website: "",
-        logo: ""
-    });
-    const history = useHistory();
-    const{id}=useParams();
+  const [profile, setProfile] = useState({
+    organisation: "",
+    description: "",
+    website: "",
+    logo: "",
+  })
+  const history = useHistory()
+  const { id } = useParams()
 
-    useEffect(() => {
-        if (profileData.title == null) return
-        console.log({profileData})
-        setProfile(
-            {
-                organisation: profileData.organisation,
-                description: profileData.description,
-                website: profileData.website,
-                image: profileData.logo,
-            }
-        )
-    }, [profileData])
+  useEffect(() => {
+    if (profileData.title == null) return
+    console.log({ profileData })
+    setProfile({
+      organisation: profileData.organisation,
+      description: profileData.description,
+      website: profileData.website,
+      image: profileData.logo,
+    })
+  }, [profileData])
 
     //method
     const handleChange = (e) => {
@@ -55,58 +53,59 @@ function EditOrganisationForm(props) {
  
         e.preventDefault();
 
-         postData().then((response) => {
-            if (isAuthenticated()){
-                history.push(`/opportunities/${id}`);
-            } 
-            });
-        }
+    postData().then((response) => {
+      if (isAuthenticated()) {
+        history.push(`/organisations/${id}`)
+      }
+    })
+  }
 
-
-    //template
-    return (
-        <div className="medium-form">
-            <form>
-                <div>
-                    <label htmlFor="organisation">Organisation:</label>
-                    <input 
-                        type="text" 
-                        id="organisation" 
-                        value={profile.organisation}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div className="textarea">
-                    <label htmlFor="description">Description:</label>
-                    <textarea 
-                        type="text" 
-                        id="description" 
-                        value={profile.description}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div>
-                    <label htmlFor="website">Website:</label>
-                    <input 
-                        type="text" 
-                        id="website" 
-                        value={profile.website}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div>
-                    <label htmlFor="logo">Logo:</label>
-                    <input 
-                        type="text" 
-                        id="logo" 
-                        value={profile.logo}
-                        onChange={handleChange}
-                    />
-                </div>
-                <button type="submit" onClick={handleSubmit}>Update Profile</button>
-            </form>
+  //template
+  return (
+    <div className="medium-form">
+      <form>
+        <div>
+          <label htmlFor="organisation">Organisation:</label>
+          <input
+            type="text"
+            id="organisation"
+            value={profile.organisation}
+            onChange={handleChange}
+          />
         </div>
-    )
+        <div className="textarea">
+          <label htmlFor="description">Description:</label>
+          <textarea
+            type="text"
+            id="description"
+            value={profile.description}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="website">Website:</label>
+          <input
+            type="text"
+            id="website"
+            value={profile.website}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="logo">Logo:</label>
+          <input
+            type="text"
+            id="logo"
+            value={profile.logo}
+            onChange={handleChange}
+          />
+        </div>
+        <button type="submit" onClick={handleSubmit}>
+          Update Profile
+        </button>
+      </form>
+    </div>
+  )
 }
 
-export default EditOrganisationForm;
+export default EditOrganisationForm
