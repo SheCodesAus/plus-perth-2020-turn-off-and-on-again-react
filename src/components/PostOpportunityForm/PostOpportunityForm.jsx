@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useState } from "react"
+import { useHistory } from "react-router-dom"
 
 function PostOpportunityForm() {
   //variables
@@ -16,20 +16,20 @@ function PostOpportunityForm() {
     apply_by_date: "",
     is_open: true,
     created_date: "2020-09-09T20:31:00Z",
-  });
-  const history = useHistory();
+  })
+  const history = useHistory()
   const token = window.localStorage.getItem("token")
 
   //   const token = window.localStorage.getItem("token");
 
   //methods
   const handleChange = (e) => {
-    const { id, value } = e.target;
+    const { id, value } = e.target
     setCredentials((prevCredentials) => ({
       ...prevCredentials,
       [id]: value,
-    }));
-  };
+    }))
+  }
 
   const postData = async () => {
     const response = await fetch(
@@ -42,23 +42,23 @@ function PostOpportunityForm() {
         },
         body: JSON.stringify(credentials),
       }
-    );
-    return response.json();
-  };
+    )
+    return response.json()
+  }
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     if (true) {
       postData()
         .then((response) => {
-          history.push("/");
+          history.push("/")
           // console.log(response);
         })
         .catch((error) => {
-          alert("you have not completed the form");
-        });
+          alert("you have not completed the form")
+        })
     }
-  };
+  }
 
   //template
   return (
@@ -84,11 +84,14 @@ function PostOpportunityForm() {
         />
       </div>
       <div>
-        <label htmlFor="start_date">Start Date:</label>
+        <label for="start_date">Start Date:</label>
         <input
-          type="start_date"
-          id="start_date"
-          placeholder="Start Date"
+          type="date"
+          id="start"
+          name="start-date"
+          value="2020-01-01"
+          min="2020-01-01"
+          max="2021-12-31"
           onChange={handleChange}
           value={credentials.start_date}
         />
@@ -166,9 +169,12 @@ function PostOpportunityForm() {
       <div>
         <label htmlFor="apply_by_date">Apply by Date:</label>
         <input
-          type="apply_by_date"
+          type="date"
           id="apply_by_date"
-          placeholder="Apply by Date"
+          name="apply_by_date"
+          value="2020-01-01"
+          min="2020-01-01"
+          max="2021-12-31"
           onChange={handleChange}
           value={credentials.apply_by_date}
         />
@@ -198,7 +204,7 @@ function PostOpportunityForm() {
         Create Opportunity
       </button>
     </form>
-  );
+  )
 }
 
-export default PostOpportunityForm;
+export default PostOpportunityForm

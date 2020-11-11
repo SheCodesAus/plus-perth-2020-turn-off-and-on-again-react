@@ -105,11 +105,14 @@ function EditOpportunityForm() {
         />
       </div>
       <div>
-        <label htmlFor="start_date">Start Date:</label>
+        <label for="start_date">Start Date:</label>
         <input
-          type="start_date"
-          id="start_date"
-          placeholder="Start Date"
+          type="date"
+          id="start"
+          name="start-date"
+          value="2020-01-01"
+          min="2020-01-01"
+          max="2021-12-31"
           onChange={handleChange}
           value={opportunityData.start_date}
         />
@@ -175,11 +178,14 @@ function EditOpportunityForm() {
         />
       </div>
       <div>
-        <label htmlFor="apply_by_date">Apply by Date:</label>
+        <label for="apply_by_date">Apply by Date:</label>
         <input
-          type="apply_by_date"
+          type="date"
           id="apply_by_date"
-          placeholder="Apply by Date"
+          name="apply_by_date"
+          value="2020-01-01"
+          min="2020-01-01"
+          max="2021-12-31"
           onChange={handleChange}
           value={opportunityData.apply_by_date}
         />
