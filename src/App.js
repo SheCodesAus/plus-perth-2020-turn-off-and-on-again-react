@@ -19,6 +19,8 @@ import OpportunityDetailPage from "./pages/OpportunityDetailPage"
 import OrganisationDetailPage from "./pages/OrganisationDetailPage"
 import SelectOrganisationPage from "./pages/SelectOrganisationPage"
 import EditOpportunityPage from "./pages/EditOpportunityPage"
+import Footer from "./components/Footer/Footer"
+
 
 import "./App.css"
 import "./AppForm.css"
@@ -31,6 +33,7 @@ function App() {
   //so if username is undefined or an empty string then it’ll be true
   const loggedIn = username !== null
   //console.log({ loggedIn })
+
   return (
     <Router>
       <div>
@@ -51,6 +54,9 @@ function App() {
           <Route path="/opportunities/:id" exact>
             <OpportunityDetailPage />
           </Route>
+          <Route path="/opportunities/type/:slug" exact>
+            <OpportunityListPage/>
+            </Route>
           <Route path="/opportunities/edit/:id" exact>
             <EditOpportunityPage />
           </Route>
@@ -81,11 +87,13 @@ function App() {
             )}
           </Route>
           <Route path="/">
-            <HomePage />
+            <HomePage loggedIn={loggedIn}/>
           </Route>
         </Switch>
+        <Footer />
       </div>
     </Router>
+    
   )
 }
 

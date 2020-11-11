@@ -1,9 +1,11 @@
 import React,{useState} from "react";
 import {Link} from "react-router-dom";
 import PropTypes from "prop-types"
-import { ArrowDownCircle, ArrowUpCircle } from "react-feather"
+import { ArrowDownCircle, ArrowUpCircle, ChevronDown } from "react-feather"
+import useDropdownMenu from 'react-accessible-dropdown-menu-hook';
 
 import "./Nav.css"
+
 
 //internal components used in the main component Nav= cleaner  
 //Uses the props setUsername passed in Nav by App
@@ -23,12 +25,12 @@ const LogoutButton = ({ setUsername, setOpened }) => (
 const LoggedOutNav = ({setOpened}) => {
     return (
         <>
-        <Link to="/login" className={"navbar-link"} onClick={() => setOpened(false)}>
-            Login
-        </Link>
-        <Link to="/register" className={"navbar-link"} onClick={() => setOpened(false)}>
-            Register
-        </Link>
+            <Link to="/register" className={"navbar-link"} onClick={() => setOpened(false)}>
+                Register your organisation
+            </Link>
+            <Link to="/login" className={"navbar-link"} onClick={() => setOpened(false)}>
+                Login
+            </Link>
         </>
     )
 }
@@ -38,6 +40,8 @@ function Nav({ loggedIn, setUsername }) {
     const toggle = () => {
     setOpened(!opened)
 }
+const { buttonProps, itemProps, isOpen } = useDropdownMenu(3);
+
 return (
     <nav className="navbar">
         <div className="navbar-home">
@@ -53,23 +57,27 @@ return (
             </div>
         </div>
         <div className={ `navbar-links ${opened ? `opened` : `closed`}`}>
-            <Link to="/" className="navbar-link" onClick={() => {setOpened(false)}}>Home</Link>
             <Link to="/opportunities" className="navbar-link" onClick={() => {setOpened(false)}}>Opportunities</Link>
             <Link to="/organisations" className="navbar-link" onClick={() => {setOpened(false)}}>Organisations</Link>
-            <Link to="/about" className="navbar-link" onClick={() => {setOpened(false)}}>About</Link>
             {/* if loggedIn is true, pass the prop setUsername from App.js to the internal component*/}
             {loggedIn ? (
                 <>
-                <Link to="/organisations/:id" className="navbar-link" onClick={() => setOpened(false)}>
-                    My Organisation
-                </Link>
-                <Link to="/organisations/register" className="navbar-link" onClick={() => setOpened(false)}>
-                    Register Organisation
-                </Link>
-                <Link to="/opportunities/create" className="navbar-link" onClick={() => setOpened(false)}>
-                    Create a new Opportunity
-                </Link>
-                <LogoutButton setUsername={setUsername} setOpened={setOpened}/>
+                <button {...buttonProps}type='button' id='menu-button' className="navbar-link">
+				<span>My Organisation</span>
+				<ChevronDown/></button>
+                <div className={isOpen ? 'visible' : ''} role='menu' id='menu'>
+                    <Link {...itemProps[0]} to="/organisations/:id" className="navbar-link" onClick={() => setOpened(false)}>
+                        My Organisation Profile
+                    </Link>
+                    <Link {...itemProps[1]} to="/organisations/register" className="navbar-link" onClick={() => setOpened(false)}>
+                        Register an Organisation
+                    </Link>
+                    <Link {...itemProps[1]} to="/opportunities/create" className="navbar-link" onClick={() => setOpened(false)}>
+                        Create a new Opportunity
+                    </Link>
+                    <LogoutButton setUsername={setUsername} setOpened={setOpened}/>
+
+                </div>
                 </>
             ) : (
                 <LoggedOutNav setUsername={setUsername} setOpened={setOpened}/>

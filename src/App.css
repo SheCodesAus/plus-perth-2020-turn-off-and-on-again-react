@@ -200,5 +200,15 @@ a:hover {
 
 /* 3. Pages */
 /* Homepage */
-
-
+.banner{
+  position:relative;
+}
+.bannerText {
+  position: absolute;
+  background: white;
+  width: 25%;
+  right: 0;
+  top: 51px;
+  margin: 2rem;
+  padding: 2rem;
+}
