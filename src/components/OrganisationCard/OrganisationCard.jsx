@@ -5,7 +5,7 @@ import "./OrganisationCard.css"
 
 function OrganisationCard({ organisationData, ...props }) {
   return (
-    <div className="listing-card">
+    <div className="opportunity-card">
       <Link to={`/organisations/${organisationData.id}`}>
         <img src={organisationData.logo} alt="organisation-overview"/>
         <h3>{organisationData.organisation}</h3>
