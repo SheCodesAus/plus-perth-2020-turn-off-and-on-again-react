@@ -40,7 +40,7 @@ function OpportunityDetailPage() {
 
   return (
     <div>
-      <img src={opportunityData.image} />
+      <img src={opportunityData.image} alt="opportunity"/>
       <h3>{opportunityData.title}</h3>
       <h3>{opportunityData.start_date}</h3>
       <h3>{opportunityData.organisation}</h3>
