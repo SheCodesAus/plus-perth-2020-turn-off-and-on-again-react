@@ -1,5 +1,90 @@
-.App {
-  text-align: center;
+/* CSS FILES CONFIGURATION
+1. Configuration
+- Fonts
+- Custom Properties
+  - Main Colours
+  - Font Weight
+  - Font Family
+  - Font Size
+  - box-shadow
+  - padding container
+- Reset
+- General Styles
+- Typography
+2. Layout-related sections
+- Header
+3. Pages
+- Homepage
+4. Forms
+5. Buttons
+*/
+
+
+/* 1. Configuration */
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@300;400;500;600;700&display=swap');
+/* Custom Properties */
+:root {
+  /* Main colours */
+  --dark: rgb(65, 60, 88);/* #413C58 */
+  --medium: rgb(53,135,164);/* #3587A4  */
+  --light: rgb(193,223,240);/* #C1DFF0 */
+  --light-accent: rgb(254,215,102);/* #FED766 */
+  --white: rgb(255,255,255);
+  --accent: rgb(255,88,87);/* #FE4A49 */
+  /* Font Weight */
+  --fw-reg: 500;
+  --fw-bold: 600;
+  /* Font Family */
+  --ff-body: 'Nunito', sans-serif;
+  --ff-title: 'Bebas Neue', cursive;
+  /* Font size */
+  --fs-h1: 2.3rem;
+  --fs-h2: 2rem;
+  --fs-h3: 1.3rem;
+  --fs-body: 1.0rem;
+  /* box-shadow */
+  --bs: 0.25em 0.25em 0.75em rgba(61,64,91,.25), 
+        0.125em 0.125em 0.25em rgba(61,64,91,.15);
+  /* padding container */
+  --bloc: 5vh 10vw;
+}
+
+@media (min-width: 900px) {
+  :root {
+    --fs-h1: 2.5em;
+    --fs-h2: 1.7em;
+    --fs-h3: 1.2em;
+    --fs-body: 1.1rem;
+  }
+}
+
+/* Reset */
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+/* General Styles */
+html {
+  scroll-behavior: smooth;
+  background-color: white!important;
+
+}
+
+body {
+  font-family: var(--ff-body);
+  color: var(--dark);
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  background-color: white!important;
+}
+
+img {
+  display: block;
+  max-width: 100%;
 }
 
 .App-logo {
