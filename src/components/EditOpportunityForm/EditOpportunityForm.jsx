@@ -92,7 +92,7 @@ function EditOpportunityForm() {
           placeholder="Image"
           onChange={handleChange}
           accept="image/*"
-          value={credentials.image}
+          value={opportunityData.image}
         />
       </div>
       <div>
@@ -175,7 +175,7 @@ function EditOpportunityForm() {
           id="eligibility"
           placeholder="Enter eligibility requirements"
           onChange={handleChange}
-          value={credentials.eligibility}
+          value={opportunityData.eligibility}
         />
       </div>
       <div>
