@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom"
 
 
-function LoginForm({ setUsername }) {
+function LoginForm({ setUsername, setOrganisation }) {
     const [credentials, setCredentials] = useState({
         username: "",
         password: "",
@@ -27,6 +27,7 @@ function LoginForm({ setUsername }) {
         })
         const data = await res.json()
         window.localStorage.setItem("username", data.username)
+        window.localStorage.setItem("organisation", data.organisation)
         setUsername(data.username)
     }
     // getting the token is related to login so good practice to associate it to the login component

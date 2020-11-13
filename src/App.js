@@ -26,9 +26,12 @@ import "./App.css"
 import "./AppForm.css"
 
 const savedUsername = window.localStorage.getItem("username")
+const savedOrganisation = window.localStorage.getItem("organisation")
+
 
 function App() {
   const [username, setUsername] = useState(savedUsername)
+  const [organisation, setOrganisation] = useState(savedOrganisation)
   //check with !== null whether username is strictly not null,
   //so if username is undefined or an empty string then it’ll be true
   const loggedIn = username !== null
@@ -37,7 +40,7 @@ function App() {
   return (
     <Router>
       <div>
-        <Nav loggedIn={loggedIn} setUsername={setUsername} />
+        <Nav loggedIn={loggedIn} setUsername={setUsername} setOrganisation={setOrganisation} />
         <Switch>
           <Route path="/about" exact>
             <AboutPage />
@@ -76,12 +79,12 @@ function App() {
             {loggedIn ? (
               <Redirect to="/" />
             ) : (
-              <LoginPage setUsername={setUsername} />
+              <LoginPage setUsername={setUsername} setOrganisation={setOrganisation}/>
             )}
           </Route>
-          <Route path="/organisations/:id/edit" exact>
+          <Route path="/organisations/:slug/edit" exact>
             {loggedIn ? (
-              <EditOrganisationPage setUsername={setUsername} />
+              <EditOrganisationPage setUsername={setUsername}/>
             ) : (
               <Redirect to="/" />
             )}

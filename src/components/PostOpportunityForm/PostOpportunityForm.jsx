@@ -63,7 +63,7 @@ function PostOpportunityForm() {
   return (
     <form>
       <div>
-        <label htmlFor="image">Uplaod your image:</label>
+        <label htmlFor="image">Upload your image:</label>
         <input
           type="file"
           id="image"

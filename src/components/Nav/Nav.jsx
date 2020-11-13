@@ -9,12 +9,13 @@ import "./Nav.css"
 
 //internal components used in the main component Nav= cleaner  
 //Uses the props setUsername passed in Nav by App
-const LogoutButton = ({ setUsername, setOpened }) => (
+const LogoutButton = ({ setUsername, setOpened, setOrganisation }) => (
     <Link className={"navbar-link"} to="/"
     onClick={() => {
         localStorage.removeItem("token")
         localStorage.removeItem("username")
         setUsername(null)
+        setOrganisation(null)
         setOpened(false)
     }}
     >
@@ -35,12 +36,13 @@ const LoggedOutNav = ({setOpened}) => {
     )
 }
 
-function Nav({ loggedIn, setUsername }) {
+function Nav({ loggedIn, setUsername, setOrganisation }) {
     const [opened,setOpened] = useState(false)
     const toggle = () => {
     setOpened(!opened)
 }
 const { buttonProps, itemProps, isOpen } = useDropdownMenu(3);
+const slug = window.localStorage.getItem("organisation")
 
 return (
     <nav className="navbar">
@@ -57,6 +59,7 @@ return (
             </div>
         </div>
         <div className={ `navbar-links ${opened ? `opened` : `closed`}`}>
+            <Link to="/" className="navbar-link" onClick={() => {setOpened(false)}}>Home</Link>
             <Link to="/opportunities" className="navbar-link" onClick={() => {setOpened(false)}}>Opportunities</Link>
             <Link to="/organisations" className="navbar-link" onClick={() => {setOpened(false)}}>Organisations</Link>
             {/* if loggedIn is true, pass the prop setUsername from App.js to the internal component*/}
@@ -66,7 +69,7 @@ return (
 				<span>My Organisation</span>
 				<ChevronDown/></button>
                 <div className={isOpen ? 'visible' : ''} role='menu' id='menu'>
-                    <Link {...itemProps[0]} to="/organisations/:id" className="navbar-link" onClick={() => setOpened(false)}>
+                    <Link {...itemProps[0]} to={`/organisations/${slug}`} className="navbar-link" onClick={() => setOpened(false)}>
                         My Organisation Profile
                     </Link>
                     <Link {...itemProps[1]} to="/organisations/register" className="navbar-link" onClick={() => setOpened(false)}>
@@ -75,12 +78,12 @@ return (
                     <Link {...itemProps[1]} to="/opportunities/create" className="navbar-link" onClick={() => setOpened(false)}>
                         Create a new Opportunity
                     </Link>
-                    <LogoutButton setUsername={setUsername} setOpened={setOpened}/>
+                    <LogoutButton setUsername={setUsername} setOpened={setOpened} setOrganisation={setOrganisation}/>
 
                 </div>
                 </>
             ) : (
-                <LoggedOutNav setUsername={setUsername} setOpened={setOpened}/>
+                <LoggedOutNav setOpened={setOpened} />
             )}
 
 

@@ -4,17 +4,21 @@ import { useParams, useHistory } from "react-router-dom"
 function EditOpportunityForm() {
   //variables
   const [opportunityData, setopportunityData] = useState({
-    title: "",
-    start_date: "",
-    audience: "",
-    level: "",
-    type: "",
-    location: "",
-    website: "",
-    description: "",
-    apply_by_date: "",
-    is_open: true,
-    //   date_created: "2020-09-09T20:31:00Z",
+    "id": 0,
+    "title": "",
+    "description": "",
+    "date_created": "",
+    "start_date": "",
+    "apply_by_date": "",
+    "image": "",
+    "link": "",
+    "eligibility": "",
+    "owner": "",
+    "typeList": [],
+    "location": [],
+    "level": [],
+    "audience": [],
+    "organisation": ""
   })
   const { id } = useParams()
 
@@ -23,7 +27,7 @@ function EditOpportunityForm() {
 
   //methods
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}PostOpportunityPage/${id}`)
+    fetch(`${process.env.REACT_APP_API_URL}listing/${id}`)
       .then((results) => {
         return results.json()
       })
@@ -42,12 +46,13 @@ function EditOpportunityForm() {
 
   const postData = async () => {
     const response = await fetch(
-      `${process.env.REACT_APP_API_URL}OpportunityListPage/${id}/`,
+      `${process.env.REACT_APP_API_URL}listing/${id}/`,
       {
         method: "put",
         headers: {
           "Content-Type": "application/json",
           Authorization: `token ${token}`,
+          "Content-Disposition": `attachment; filename="${opportunityData.image}"`,
         },
         body: JSON.stringify({
           title: opportunityData.title,
@@ -72,7 +77,7 @@ function EditOpportunityForm() {
     if (true) {
       postData()
         .then((response) => {
-          history.push(`/PostOpportunityPage/${id}`)
+          history.push(`/opportunities/${id}`)
           // console.log(response);
         })
         .catch((error) => {
@@ -85,14 +90,14 @@ function EditOpportunityForm() {
   return (
     <form>
       <div>
-        <label htmlFor="image">Uplaod your image:</label>
+        <label htmlFor="image">Upload your image:</label>
+        <img src={opportunityData.image} alt={`${opportunityData.title}`}/>
         <input
           type="file"
           id="image"
           placeholder="Image"
           onChange={handleChange}
           accept="image/*"
-          value={opportunityData.image}
         />
       </div>
       <div>
