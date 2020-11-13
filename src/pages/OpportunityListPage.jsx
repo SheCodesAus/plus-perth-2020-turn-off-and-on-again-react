@@ -1,4 +1,5 @@
 import React,{useEffect,useState} from "react"
+import {useParams} from "react-router-dom"
 import ReactLoading from "react-loading";
 
 import OpportunityCard from "../components/OpportunityCard/OpportunityCard";
@@ -8,6 +9,7 @@ function OpportunityListPage() {
     const [opportunityList, setOpportunityList] = useState({
         loading: true
     });
+    const { typeList } = useParams()
 
     // methods: useEffect render when the app render, the bracket while have the condition for the useEffect to rerender when app change
     useEffect(() => {
