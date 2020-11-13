@@ -7,7 +7,7 @@ function OrganisationCard({ organisationData, ...props }) {
   return (
     <div className="listing-card">
       <Link to={`/organisations/${organisationData.id}`}>
-        <img src={organisationData.logo} />
+        <img src={organisationData.logo} alt="organisation-overview"/>
         <h3>{organisationData.organisation}</h3>
         <h3>{organisationData.is_open}</h3>
         <h3>{organisationData.website}</h3>

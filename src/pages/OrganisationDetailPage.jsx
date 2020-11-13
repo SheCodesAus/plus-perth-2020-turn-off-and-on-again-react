@@ -40,7 +40,7 @@ function OrganisationDetailPage() {
 
   return (
     <div>
-      <img src={organisationData.logo} />
+      <img src={organisationData.logo} alt="organisation"/>
       <h3>{organisationData.organisation}</h3>
       <h3>{organisationData.website}</h3>
       <h3>{organisationData.description}</h3>

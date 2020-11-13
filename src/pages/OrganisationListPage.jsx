@@ -31,7 +31,7 @@ function OrganisationListPage() {
   return (
     <div>
       <div className="project-header">
-        <h1> This is the Organisation Page </h1>
+        <h1> Organisations </h1>
         <div id="organisation-list">
           {organisationList.map((organisationData, key) => {
             return (

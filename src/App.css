@@ -173,7 +173,7 @@ a:hover {
   background-position: 0 0;
 }
 
-#opportunity-list {
+#opportunity-list, #organisation-list {
   display: grid;
   column-gap: 10px;
   row-gap: 10px;
@@ -184,7 +184,7 @@ a:hover {
 }
 
 @media screen and (min-width: 600px) {
-  #opportunity-list {
+  #opportunity-list, #organisation-list  {
   grid-template-columns: 1fr 1fr;
   margin: 20px 100px;
   }
