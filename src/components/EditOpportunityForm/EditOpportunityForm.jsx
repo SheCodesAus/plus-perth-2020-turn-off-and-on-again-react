@@ -1,25 +1,27 @@
 import React, { useState, useEffect } from "react"
-import { useParams, useHistory } from "react-router-dom"
+import { useParams, useHistory, Link } from "react-router-dom"
 
 function EditOpportunityForm() {
   //variables
   const [opportunityData, setopportunityData] = useState({
-    "id": 0,
-    "title": "",
-    "description": "",
-    "date_created": "",
-    "start_date": "",
-    "apply_by_date": "",
-    "image": "",
-    "link": "",
-    "eligibility": "",
-    "owner": "",
-    "typeList": [],
-    "location": [],
-    "level": [],
-    "audience": [],
-    "organisation": ""
+    id: "",
+    title: "",
+    description: "",
+    date_created: "",
+    start_date: "",
+    apply_by_date: "",
+    image: "",
+    link: "",
+    eligibility: "",
+    owner: "",
+    typeList: [],
+    location: [],
+    level: [],
+    audience: [],
+    organisation: "",
+    // is_open: true,
   })
+
   const { id } = useParams()
 
   const history = useHistory()
@@ -34,7 +36,7 @@ function EditOpportunityForm() {
       .then((data) => {
         setopportunityData(data)
       })
-  }, [id])
+  }, [])
 
   const handleChange = (e) => {
     const { id, value } = e.target
@@ -91,7 +93,7 @@ function EditOpportunityForm() {
     <form>
       <div>
         <label htmlFor="image">Upload your image:</label>
-        <img src={opportunityData.image} alt={`${opportunityData.title}`}/>
+        <img src={opportunityData.image} alt={`${opportunityData.title}`} />
         <input
           type="file"
           id="image"
@@ -105,7 +107,7 @@ function EditOpportunityForm() {
         <input
           type="text"
           id="title"
-          placeholder="Enter Opportunity Title"
+          placeholder="Opportunity Title"
           onChange={handleChange}
           value={opportunityData.title}
         />
@@ -124,7 +126,9 @@ function EditOpportunityForm() {
         />
       </div>
       <div>
-        <label htmlFor="is_open">Audience:</label>
+        <label htmlFor="is_open">
+          Audience: Women, Indigenous, With a Disability, Mature, Financial Aid
+        </label>
         <input
           type="checkbox"
           id="is_open"
@@ -134,7 +138,7 @@ function EditOpportunityForm() {
         />
       </div>
       <div>
-        <label htmlFor="is_open">Level:</label>
+        <label htmlFor="is_open">Level: Beginner, Intermediate, Advanced</label>
         <input
           type="checkbox"
           id="is_open"
@@ -144,7 +148,9 @@ function EditOpportunityForm() {
         />
       </div>
       <div>
-        <label htmlFor="is_open">Type:</label>
+        <label htmlFor="is_open">
+          Type:Free, Discount, Scholarship, Internship
+        </label>
         <input
           type="checkbox"
           id="is_open"
@@ -154,7 +160,7 @@ function EditOpportunityForm() {
         />
       </div>
       <div>
-        <label htmlFor="is_open">Location:</label>
+        <label htmlFor="is_open">Location: Perth, Regional, Online</label>
         <input
           type="checkbox"
           id="is_open"
@@ -178,7 +184,7 @@ function EditOpportunityForm() {
         <input
           type="text"
           id="eligibility"
-          placeholder="Enter eligibility requirements"
+          placeholder="Eligibility requirements"
           onChange={handleChange}
           value={opportunityData.eligibility}
         />
