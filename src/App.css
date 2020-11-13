@@ -26,12 +26,12 @@
 /* Custom Properties */
 :root {
   /* Main colours */
-  --dark: rgb(65, 60, 88);/* #413C58 */
-  --medium: rgb(53,135,164);/* #3587A4  */
-  --light: rgb(193,223,240);/* #C1DFF0 */
-  --light-accent: rgb(254,215,102);/* #FED766 */
+  --dark: rgb(65, 60, 88);
+  --medium: rgb(53,135,164);
+  --light: rgb(193,223,240);
+  --light-accent: rgb(254,215,102);
   --white: rgb(255,255,255);
-  --accent: rgb(255,88,87);/* #FE4A49 */
+  --accent: rgb(255,88,87);
   /* Font Weight */
   --fw-reg: 500;
   --fw-bold: 600;
@@ -87,37 +87,128 @@ img {
   max-width: 100%;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+strong {
+  font-weight: var(--fw-bold);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+/* :focus {
+  outline: 3px solid var(--medium);
+  outline-offset: 3px;
+} */
+
+.spinner{
+  margin: 30px auto ;
+  width:20px;
+}
+
+/* Typography */
+h1,
+h2,
+h3 {
+  font-family: var(--ff-title);
+  font-weight: var(--fw-bold);
+  line-height: 1.1;
+  margin: 0;
+  padding: 0.5em 0;
+}
+
+h1 {
+  font-size: var(--fs-h1);
+  color: var(--dark);
+}
+
+h2 {
+  font-size: var(--fs-h2);
+  color: var(--accent)
+}
+
+h3 {
+  font-size: var(--fs-h3);
+  color: var(--medium)
+}
+
+.section__title {
+  font-size: var(--fs-h2);
+  color: var(--medium);
+}
+
+.section_subtitle {
+  margin: 0;
+  font-size: var(--fs-h3);
+  color: var(--accent);
+  font-family: var(--ff-title);
+}
+
+a {
+  font-size: inherit;
+  font-family: var(--ff-body);
+  text-decoration: none;
+  color: var(--dark);
+  font-weight: var(--fw-bold);
+}
+
+a:hover {
+  color: var(--medium);
+  text-decoration: underline;
+}
+
+/* 2. Layout-related sections */
+/* Header */
+.header {
+  background-color: var(--dark);
+  color: var(--light);
+  padding: 3vh 10vw 0;
+  background-image: url(./images/ready-to-study.jpg);
+}
+
+.intro-text {
+  padding: 2rem 0;
+}
+
+.project-header {
+  background-color: white;
+  background-image: url(./images/paint-top.png), url(./images/halftone.png);
+  background-size: 1800px 130px, 300px 300px;
+  background-repeat: repeat-x, repeat;
+  background-position: 0 0;
+}
+
+#opportunity-list, #organisation-list {
+  display: grid;
+  column-gap: 10px;
+  row-gap: 10px;
+  justify-items: center;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  margin: 20px;
+}
+
+@media screen and (min-width: 600px) {
+  #opportunity-list, #organisation-list  {
+  grid-template-columns: 1fr 1fr;
+  margin: 20px 100px;
   }
+
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@media screen and (min-width: 900px) {
+  #project-list {
+  grid-template-columns: 1fr 1fr 1fr;
   }
-  to {
-    transform: rotate(360deg);
-  }
+
+}
+
+/* 3. Pages */
+/* Homepage */
+.banner{
+  position:relative;
+}
+.bannerText {
+  position: absolute;
+  background: white;
+  width: 25%;
+  right: 0;
+  top: 51px;
+  margin: 2rem;
+  padding: 2rem;
 }

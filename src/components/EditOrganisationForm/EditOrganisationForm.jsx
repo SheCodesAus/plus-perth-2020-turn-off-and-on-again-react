@@ -93,10 +93,10 @@ function EditOrganisationForm(props) {
         </div>
         <div>
           <label htmlFor="logo">Logo:</label>
+          <img src={profile.logo} alt={`${profile.organisation}`}/>
           <input
             type="text"
             id="logo"
-            value={profile.logo}
             onChange={handleChange}
           />
         </div>

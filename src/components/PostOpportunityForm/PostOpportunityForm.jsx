@@ -12,6 +12,7 @@ function PostOpportunityForm() {
     type: "",
     location: "",
     website: "",
+    eligibility: "",
     description: "",
     apply_by_date: "",
     is_open: true,
@@ -62,15 +63,15 @@ function PostOpportunityForm() {
   return (
     <form>
       <div>
-        <label htmlFor="image">Uplaod your image:</label>
+        <label htmlFor="image">Upload your image:</label>
         <input
-              type="file"
-              id="image"
-              placeholder="Image"
-              onChange={handleChange}
-              accept="image/*"
-              value={credentials.image}
-          />
+          type="file"
+          id="image"
+          placeholder="Image"
+          onChange={handleChange}
+          accept="image/*"
+          value={credentials.image}
+        />
       </div>
       <div>
         <label htmlFor="title">Title:</label>
@@ -153,6 +154,16 @@ function PostOpportunityForm() {
           placeholder="Enter website link"
           onChange={handleChange}
           value={credentials.website}
+        />
+      </div>
+      <div>
+        <label htmlFor="eligibility">Eligibility:</label>
+        <input
+          type="text"
+          id="eligibility"
+          placeholder="Enter eligibility requirements"
+          onChange={handleChange}
+          value={credentials.eligibility}
         />
       </div>
       <div>
