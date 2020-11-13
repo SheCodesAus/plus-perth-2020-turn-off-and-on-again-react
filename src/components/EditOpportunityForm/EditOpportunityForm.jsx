@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { useParams, useHistory} from "react-router-dom"
+import { useParams, useHistory } from "react-router-dom"
 
 function EditOpportunityForm() {
   //variables
@@ -85,12 +85,13 @@ function EditOpportunityForm() {
   return (
     <form>
       <div>
-        <label htmlFor="image">Image:</label>
+        <label htmlFor="image">Uplaod your image:</label>
         <input
-          type="text"
+          type="file"
           id="image"
           placeholder="Image"
           onChange={handleChange}
+          accept="image/*"
           value={opportunityData.image}
         />
       </div>
@@ -168,6 +169,16 @@ function EditOpportunityForm() {
         />
       </div>
       <div>
+        <label htmlFor="eligibility">Eligibility:</label>
+        <input
+          type="text"
+          id="eligibility"
+          placeholder="Enter eligibility requirements"
+          onChange={handleChange}
+          value={opportunityData.eligibility}
+        />
+      </div>
+      <div>
         <label htmlFor="description">Description:</label>
         <input
           type="text"
@@ -188,16 +199,6 @@ function EditOpportunityForm() {
           max="2021-12-31"
           onChange={handleChange}
           value={opportunityData.apply_by_date}
-        />
-      </div>
-      <div>
-        <label htmlFor="is_open">Project Open:</label>
-        <input
-          type="checkbox"
-          id="is_open"
-          placeholder="is_open"
-          onChange={handleChange}
-          value={opportunityData.is_open}
         />
       </div>
       <div>
