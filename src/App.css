@@ -71,6 +71,7 @@
 html {
   scroll-behavior: smooth;
   background-color: white!important;
+  height:100%;
 
 }
 
@@ -80,6 +81,7 @@ body {
   font-size: var(--fs-body);
   line-height: 1.6;
   background-color: white!important;
+  min-height: 100%;
 }
 
 img {
@@ -115,6 +117,7 @@ h3 {
 h1 {
   font-size: var(--fs-h1);
   color: var(--dark);
+  text-align:center;
 }
 
 h2 {
@@ -149,7 +152,8 @@ a {
 
 a:hover {
   color: var(--medium);
-  text-decoration: underline;
+  text-decoration: underline var(--accent)!important;
+
 }
 
 /* 2. Layout-related sections */
@@ -165,12 +169,14 @@ a:hover {
   padding: 2rem 0;
 }
 
-.project-header {
+.category-list {
   background-color: white;
   background-image: url(./images/paint-top.png), url(./images/halftone.png);
   background-size: 1800px 130px, 300px 300px;
   background-repeat: repeat-x, repeat;
   background-position: 0 0;
+  padding: 0 10% 5%;
+  margin: 0 0 -20px 0;
 }
 
 #opportunity-list, #organisation-list {
@@ -192,10 +198,21 @@ a:hover {
 }
 
 @media screen and (min-width: 900px) {
-  #project-list {
+  #opportunity-list, #organisation-list {
   grid-template-columns: 1fr 1fr 1fr;
   }
 
+}
+
+/*Footer*/
+footer{
+  text-align: center;
+  background-color: var(--light);
+  display:flex;
+  justify-content: center;
+}
+footer p{
+  font-size:0.9rem;
 }
 
 /* 3. Pages */
@@ -205,10 +222,38 @@ a:hover {
 }
 .bannerText {
   position: absolute;
-  background: white;
+  background: rgba(255,255,255, 0.8);
   width: 25%;
   right: 0;
-  top: 51px;
-  margin: 2rem;
+  top: 20%;
+  margin: auto 2rem;
   padding: 2rem;
+  border-radius: 0.3rem;
+  box-shadow:  2px 2px 6px rgba(65, 60, 88,0.3);
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
+button{
+  border-radius: 0.3rem;
+  color:var(--accent);
+  background-color: var(--light);
+  font-family: var(--ff-body);
+  border:none;
+  padding:0.5rem;
+  margin:auto;
+  font-size:var(--fs-body);
+  cursor: pointer;
+  font-weight:var(--fw-bold)
+
+}
+button:hover{
+  border-radius: 0.3rem;
+  color:var(--light-accent);
+  background-color: var(--dark);
+  font-family: var(--ff-body);
+  border:none;
+  padding:0.5rem;
+  margin:auto;
+  font-size:var(--fs-body);
 }
