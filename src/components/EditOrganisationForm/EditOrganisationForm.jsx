@@ -4,58 +4,57 @@ import { getStorage, isAuthenticated } from "../Utilities/LocalStorage"
 
 function EditOrganisationForm(props) {
   //variables
-  const { profileData } = props
+  const { organisationsData } = props
 
-  const [profile, setProfile] = useState({
+  const [organisations, setOrganisations] = useState({
     organisation: "",
     description: "",
     website: "",
     logo: "",
   })
   const history = useHistory()
-  const { id } = useParams()
+  const { slug } = useParams()
 
   useEffect(() => {
-    if (profileData.title == null) return
-    console.log({ profileData })
-    setProfile({
-      organisation: profileData.organisation,
-      description: profileData.description,
-      website: profileData.website,
-      image: profileData.logo,
+    if (organisationsData.organisation == null) return
+    console.log({ organisationsData })
+    setOrganisations({
+      organisation: organisationsData.organisation,
+      description: organisationsData.description,
+      website: organisationsData.website,
+      image: organisationsData.logo,
     })
-  }, [profileData])
+  }, [organisationsData])
 
-    //method
-    const handleChange = (e) => {
-        const {id, value} = e.target;
-        setProfile((prevProfile) => ({
-            ...prevProfile,
-            [id]: value,
-        }))
-    }
-    const postData = async() => {
-        const response = await fetch
-        (`${process.env.REACT_APP_API_URL}organisations/${id}`, 
-        {
-            method: "put",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Token ${getStorage("token")}`
-            },
-            body: JSON.stringify(profile),
-        }
-        );
-        return response.json();
-    }
+  //method
+  const handleChange = (e) => {
+    const { id, value } = e.target
+    setOrganisations((prevOrganisations) => ({
+      ...prevOrganisations,
+      [id]: value,
+    }))
+  }
+  const postData = async () => {
+    const response = await fetch(
+      `${process.env.REACT_APP_API_URL}organisations/${slug}`,
+      {
+        method: "put",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${getStorage("token")}`,
+        },
+        body: JSON.stringify(organisations),
+      }
+    )
+    return response.json()
+  }
 
-    const handleSubmit = (e) => {
- 
-        e.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault()
 
     postData().then((response) => {
       if (isAuthenticated()) {
-        history.push(`/organisations/${id}`)
+        history.push(`/organisations/${slug}`)
       }
     })
   }
@@ -69,7 +68,7 @@ function EditOrganisationForm(props) {
           <input
             type="text"
             id="organisation"
-            value={profile.organisation}
+            value={organisations.organisation}
             onChange={handleChange}
           />
         </div>
@@ -78,7 +77,7 @@ function EditOrganisationForm(props) {
           <textarea
             type="text"
             id="description"
-            value={profile.description}
+            value={organisations.description}
             onChange={handleChange}
           />
         </div>
@@ -87,21 +86,17 @@ function EditOrganisationForm(props) {
           <input
             type="text"
             id="website"
-            value={profile.website}
+            value={organisations.website}
             onChange={handleChange}
           />
         </div>
         <div>
           <label htmlFor="logo">Logo:</label>
-          <img src={profile.logo} alt={`${profile.organisation}`}/>
-          <input
-            type="text"
-            id="logo"
-            onChange={handleChange}
-          />
+          <img src={organisations.logo} alt={`${organisations.organisation}`} />
+          <input type="text" id="logo" onChange={handleChange} />
         </div>
         <button type="submit" onClick={handleSubmit}>
-          Update Profile
+          Update organisations
         </button>
       </form>
     </div>
