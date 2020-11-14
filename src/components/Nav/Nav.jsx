@@ -59,7 +59,6 @@ return (
             </div>
         </div>
         <div className={ `navbar-links ${opened ? `opened` : `closed`}`}>
-            <Link to="/" className="navbar-link" onClick={() => {setOpened(false)}}>Home</Link>
             <Link to="/opportunities" className="navbar-link" onClick={() => {setOpened(false)}}>Opportunities</Link>
             <Link to="/organisations" className="navbar-link" onClick={() => {setOpened(false)}}>Organisations</Link>
             {/* if loggedIn is true, pass the prop setUsername from App.js to the internal component*/}
