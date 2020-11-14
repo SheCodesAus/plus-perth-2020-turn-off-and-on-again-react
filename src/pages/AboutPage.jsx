@@ -27,7 +27,7 @@ function AboutPage() {
         // templates 
     return (
     <div>
-        <div className="project-header">
+        <div className="mainContent">
             <h1> About Tech For Me </h1>
             <p>A directory of incentivised learning opportunities to connect providers with women and diverse technology enthusiasts.</p>
             <p>If you're here on behalf of an organisation, you can post opportunities to the directory to help enable diversity in tech.</p>

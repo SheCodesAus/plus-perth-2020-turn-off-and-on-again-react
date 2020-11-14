@@ -33,8 +33,8 @@ function OpportunityListPage() {
 
     return ( 
         <div>
-            <div className="project-header">
-                <h1>Latest {opportunityName} opportunities</h1>
+            <div className="mainContent">
+            <h1>Latest {opportunityName} opportunities</h1>
                 <div id="opportunity-list" > 
                     {opportunityList.map((opportunityData, key) => {
                         return <OpportunityCard key={key} opportunityData={opportunityData}/>;
