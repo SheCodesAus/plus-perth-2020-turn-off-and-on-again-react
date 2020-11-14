@@ -23,7 +23,7 @@ function RegisterForm() {
         const r = await fetch(`${process.env.REACT_APP_API_URL}organisations/`);
         const organisations = await r.json()
         let setOrganisationsList = organisations.map((org) => {
-            return {name: org.organisation, id: org.id}
+            return {name: org.slug, id: org.id}
         })
 
     
@@ -43,7 +43,7 @@ function RegisterForm() {
 
     const handleDropDownOrganisation = (dataValue) => {
         setCredentials({...credentials,
-          region: dataValue})
+          organisation: dataValue})
       }
     const handleChange = (e) => {
         const {id, value} = e.target;
@@ -56,6 +56,7 @@ function RegisterForm() {
 
 
     const postUser = async() => {
+
         const response = await fetch
         (`${process.env.REACT_APP_API_URL}users/`, 
         {
@@ -71,6 +72,7 @@ function RegisterForm() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        // console.log(credentials)
         if(credentials.username && credentials.email) {
          postUser().then((request) => {
                 window.localStorage.setItem("username", request.username);
@@ -84,7 +86,7 @@ function RegisterForm() {
     return (
         <div className="medium-form">
             <form >
-                <p className="message">*This form is only for organisation wanting to post opportunities. You don't need an account to view listings.*</p>
+                <p className="message">*This form is only for organisations' representatives wanting to post opportunities. You don't need an account to view listings.*</p>
                 <p></p>
                 <div>
                     <label htmlFor="username">Username:</label>

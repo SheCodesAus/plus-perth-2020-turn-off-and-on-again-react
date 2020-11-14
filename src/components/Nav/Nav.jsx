@@ -72,7 +72,7 @@ return (
                         My Organisation Profile
                     </Link>
                     <Link {...itemProps[1]} to="/organisations/register" className="navbar-link" onClick={() => setOpened(false)}>
-                        Register an Organisation
+                        Register
                     </Link>
                     <Link {...itemProps[1]} to="/opportunities/create" className="navbar-link" onClick={() => setOpened(false)}>
                         Create a new Opportunity
