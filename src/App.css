@@ -257,3 +257,9 @@ button:hover{
   margin:auto;
   font-size:var(--fs-body);
 }
+
+/* Page Formatting */
+
+#page-blurb{
+  text-align: center;
+}
