@@ -7,13 +7,10 @@ function OrganisationCard({ organisationData, ...props }) {
   return (
     <div className="listing-card">
       <Link to={`/organisations/${organisationData.id}`}>
-        <img src={organisationData.logo} alt="organisation-overview"/>
-        <h3>{organisationData.organisation}</h3>
-        <h3>{organisationData.is_open}</h3>
-        <h3>{organisationData.website}</h3>
-        <h3>{organisationData.description}</h3>
-        <h3>{organisationData.date_created}</h3>
-        <p>Created by {organisationData.user}</p>
+        <img src={organisationData.logo} alt={organisationData.title} />
+        <h2>{organisationData.organisation}</h2>
+        <p>{organisationData.website}</p>
+        <p>{ organisationData.description.split(" ").splice(0,20).join(" ")}...</p>
       </Link>
     </div>
   )
