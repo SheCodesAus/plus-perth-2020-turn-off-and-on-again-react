@@ -46,14 +46,7 @@ function OrganisationDetailPage() {
       <h3>{organisationData.organisation}</h3>
       <h3>{organisationData.website}</h3>
       <h3>{organisationData.description}</h3>
-      <h3>{organisationData.date_created}</h3>
-      <p>Created by {organisationData.user}</p>
-      <h4>
-        Created at:{" "}
-        {organisationData.date_created
-          ? organisationData.date_created.substr(0, 10)
-          : ""}
-      </h4>
+      <p>Created by {organisationData.owner}</p>
 
       {/* <PostOpportunityForm opportunityId={id} /> */}
       <hr />

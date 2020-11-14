@@ -11,8 +11,7 @@ function OrganisationCard({ organisationData, ...props }) {
         <h3>{organisationData.organisation}</h3>
         <h3>{organisationData.website}</h3>
         <h3>{organisationData.description}</h3>
-        <h3>{organisationData.date_created}</h3>
-        <p>Created by {organisationData.user}</p>
+        <p>Created by {organisationData.owner}</p>
       </Link>
     </div>
   )
