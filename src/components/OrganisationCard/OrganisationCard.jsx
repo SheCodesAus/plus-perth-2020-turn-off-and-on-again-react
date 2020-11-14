@@ -6,12 +6,13 @@ import "./OrganisationCard.css"
 function OrganisationCard({ organisationData, ...props }) {
   return (
     <div className="listing-card">
-      <Link to={`/organisations/${organisationData.slug}`}>
-        <img src={organisationData.logo} alt="organisation-overview" />
-        <h3>{organisationData.organisation}</h3>
-        <h3>{organisationData.website}</h3>
-        <h3>{organisationData.description}</h3>
-        <p>Created by {organisationData.owner}</p>
+      <Link to={`/organisations/${organisationData.id}`}>
+        <img src={organisationData.logo} alt={organisationData.title} />
+        <h2>{organisationData.organisation}</h2>
+        <p>{organisationData.website}</p>
+        <p>
+          {organisationData.description.split(" ").splice(0, 20).join(" ")}...
+        </p>
       </Link>
     </div>
   )

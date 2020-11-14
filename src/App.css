@@ -26,12 +26,12 @@
 /* Custom Properties */
 :root {
   /* Main colours */
-  --dark: rgb(65, 60, 88);
-  --medium: rgb(53,135,164);
-  --light: rgb(193,223,240);
-  --light-accent: rgb(254,215,102);
+  --dark: rgb(65, 60, 88);/* #413C58 */
+  --medium: rgb(53,135,164);/* #3587A4  */
+  --light: rgb(193,223,240);/* #C1DFF0 */
+  --light-accent: rgb(254,215,102);/* #FED766 */
   --white: rgb(255,255,255);
-  --accent: rgb(255,88,87);
+  --accent: rgb(255,88,87);/* #FE4A49 */
   /* Font Weight */
   --fw-reg: 500;
   --fw-bold: 600;
@@ -206,14 +206,32 @@ a:hover {
 }
 
 /*Footer*/
+#footer-p {
+  font-size: 12px;
+  margin-left: 20px;
+}
 footer{
   text-align: center;
   background-color: var(--light);
   display:flex;
   justify-content: center;
+  flex-direction: column;
+  padding: 0 10px;
+}
+footer .navbar-link{
+  border:none;
 }
 footer p{
   font-size:0.9rem;
+  margin:0;
+}
+@media screen and (min-width: 600px) {
+  footer{
+    flex-direction: row;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 20px;
+  }
 }
 
 /* 3. Pages */
@@ -265,4 +283,10 @@ button:hover{
   padding:0.5rem;
   margin:auto;
   font-size:var(--fs-body);
+}
+
+/* Page Formatting */
+
+#page-blurb{
+  text-align: center;
 }
