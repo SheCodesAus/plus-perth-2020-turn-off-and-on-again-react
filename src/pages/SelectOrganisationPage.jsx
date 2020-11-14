@@ -14,7 +14,7 @@ function SelectOrganisationPage() {
   // template
   return (
     <div>
-      <div className="project-header">
+      <div className="mainContent">
         <h1> Select Organisation </h1>
         <div id="react-search"></div>
       </div>

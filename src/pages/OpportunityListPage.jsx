@@ -29,7 +29,7 @@ function OpportunityListPage() {
     // template
     return ( 
         <div>
-            <div className="project-header">
+            <div className="mainContent">
                 <h1> This is the Opportunity Page </h1> 
                 <div id="opportunity-list" > 
                     {opportunityList.map((opportunityData, key) => {

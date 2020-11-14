@@ -79,7 +79,7 @@ function HomePage({loggedIn}) {
             <div className="bannerText">
                 {loggedIn?
                 <>
-                    <h2>Your organisation has an opportunity to share?</h2>
+                    <h2>Do you have an opportunity to share?</h2>
                     <p>You can share a new listing, select an audience, set your requirement and choose your location.</p>
                     <Link to="/opportunities/create">
                         <button>Create a new opportunity</button>
@@ -91,7 +91,7 @@ function HomePage({loggedIn}) {
                 </>}
             </div>
             </div>
-            <div className="category-list">
+            <div className="mainContent">
                 <h1 id="opportunities"> Welcome to TechForMe listing </h1> 
                 <div className="categoryCards" > 
                     <div >
