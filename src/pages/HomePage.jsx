@@ -3,6 +3,8 @@ import ReactLoading from "react-loading"
 
 import CategoryCard from "../components/CategoryCard/CategoryCard"
 import {Link} from "react-router-dom"
+import { ArrowDownCircle } from "react-feather"
+
 
 import banner from '../images/ready-to-study.jpg'
 
@@ -76,23 +78,30 @@ function HomePage({loggedIn}) {
             <img src={banner} alt="Banner"/>
             <div className="bannerText">
                 {loggedIn?
-                <Link to="/opportunities/create">
-                    <button>Create a new opportunity</button>
-                </Link>
-                : <><h2>Looking for opportunity to start your journey in Tech?</h2>
-                <p>TechForMe is a place where you can find a sponsorship, an internship, a discount, an event in Tech related to your criterias and needs.</p></>}
+                <>
+                    <h2>Your organisation has an opportunity to share?</h2>
+                    <p>You can share a new listing, select an audience, set your requirement and choose your location.</p>
+                    <Link to="/opportunities/create">
+                        <button>Create a new opportunity</button>
+                    </Link>
+                </>
+                : <><h2>Looking for an opportunity to start your journey in Tech?</h2>
+                <p>TechForMe is a place where you can find a sponsorship, an internship, a discount, an event in Tech related to your criterias and needs.</p>
+                <a href="#opportunities"><ArrowDownCircle/></a>
+                </>}
             </div>
             </div>
-            <div className="project-header">
-                <h1> This is the HomePage </h1> 
-                <div className="categoryCards"> 
+            <div className="category-list">
+                <h1 id="opportunities"> Welcome to TechForMe listing </h1> 
+                <div className="categoryCards" > 
                     <div >
-                        <h2>Find the opportunity just for you:</h2>
+                        <h2>Find the opportunity just for you</h2>
                         <div id="opportunity-list" > 
                                 {audienceList.map((opportunityData, key) => {
                                     return <CategoryCard 
                                     key={key} 
                                     opportunityData={opportunityData} 
+                                    category="audience"
                                     />
                                 })}
                         </div> 
@@ -104,6 +113,7 @@ function HomePage({loggedIn}) {
                                     return <CategoryCard 
                                     key={key} 
                                     opportunityData={opportunityData} 
+                                    category="typeList"
                                     />
                                 })}
                         </div> 
@@ -115,6 +125,7 @@ function HomePage({loggedIn}) {
                                     return <CategoryCard 
                                     key={key} 
                                     opportunityData={opportunityData} 
+                                    category="location"
                                     />
                                 })}
                         </div> 
@@ -126,6 +137,7 @@ function HomePage({loggedIn}) {
                                     return <CategoryCard 
                                     key={key} 
                                     opportunityData={opportunityData} 
+                                    category="level"
                                     />
                                 })}
                         </div> 
