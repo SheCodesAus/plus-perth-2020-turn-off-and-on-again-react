@@ -31,7 +31,6 @@ function OpportunityListPage() {
 
     const opportunityName = location.search.substr(1).split('=')[1].replace(/\-/g, ' ')
 
-
     return ( 
         <div>
             <div className="project-header">
