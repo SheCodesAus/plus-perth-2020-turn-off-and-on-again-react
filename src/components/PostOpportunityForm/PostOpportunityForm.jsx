@@ -1,81 +1,83 @@
 import React, { useState, useEffect } from "react"
 import { useHistory } from "react-router-dom"
+import ReactLoading from "react-loading"
+
 
 function PostOpportunityForm() {
   //variables
   const [credentials, setCredentials] = useState({
-    title: "",
-    image: "",
-    start_date: "",
-    organisation: "",
-    audience: "",
-    level: "",
-    typeList: "",
-    location: "",
-    website: "",
-    eligibility: "",
-    description: "",
-    apply_by_date: "",
+    title: "test",
+    image: "test",
+    start_date: "test",
+    organisation: "shecodes",
+    audience: ["women"],
+    level: ["beginner"],
+    typeList: ["free"],
+    location: ["perth"],
+    website: "https://shecodes.com",
+    eligibility: "none",
+    description: "none",
+    apply_by_date: "2020-09-09T20:31:00Z",
     date_created: "2020-09-09T20:31:00Z",
-    owner: "",
+    owner: "aws",
   })
-
-  const [audienceData, setaudienceData] = useState([])
-  const [levelData, setlevelData] = useState([])
-  const [typeListData, settypeListData] = useState([])
-  const [locationData, setlocationData] = useState([])
 
   const history = useHistory()
   const token = window.localStorage.getItem("token")
 
-  //methods
-  const handleChange = (e) => {
-    const { id, value } = e.target
-    setCredentials((prevCredentials) => ({
-      ...prevCredentials,
-      [id]: value,
-    }))
-  }
+  const [typeList, setTypeList] = useState([])
+  const [locationList, setLocationList] = useState([])
+  const [audienceList, setAudienceList] = useState([])
+  const [levelList, setLevelList] = useState([])
+  const [isLoading, setIsLoading] = useState (true)
+  const [hasError, setErrors] = useState(false)
 
+  
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}audiences/`)
-      .then((results) => {
-        return results.json()
-      })
-      .then((data) => {
-        setaudienceData(data)
-      })
-  }, [])
-
-  useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}levels/`)
-      .then((results) => {
-        return results.json()
-      })
-      .then((data) => {
-        setlevelData(data)
-      })
-  }, [])
-
-  useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}types/`)
-      .then((results) => {
-        return results.json()
-      })
-      .then((data) => {
-        settypeListData(data)
-      })
-  }, [])
-
-  useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}locations/`)
-      .then((results) => {
-        return results.json()
-      })
-      .then((data) => {
-        setlocationData(data)
-      })
-  }, [])
+      async function fetchTypes() {
+          try {
+              const r = await fetch(`${process.env.REACT_APP_API_URL}types/`);
+              const type = await r.json()
+              setTypeList(type)
+          } catch (error) {
+              setErrors(error)
+          }
+      }
+      async function fetchLocations() {
+          try {
+              const r = await fetch(`${process.env.REACT_APP_API_URL}locations/`);
+              const locations = await r.json()
+              setLocationList(locations)
+          } catch (error) {
+              setErrors(error)
+          }
+      }
+      async function fetchAudiences() {
+          try {
+              const r = await fetch(`${process.env.REACT_APP_API_URL}audiences/`);
+              const audiences = await r.json()
+              setAudienceList(audiences)
+          } catch (error) {
+              setErrors(error)
+          }
+      }
+      async function fetchLevels() {
+      try {
+          const r = await fetch(`${process.env.REACT_APP_API_URL}levels/`);
+          const levels = await r.json()
+          setLevelList(levels)
+      } catch (error) {
+          setErrors(error)
+      }
+      }
+      // Promise allows to run multiple functions in parallel
+      Promise.all([
+          fetchTypes(),
+          fetchLocations(),
+          fetchAudiences(),
+          fetchLevels()
+      ]).then(() => setIsLoading(false))
+  },[]);
 
   const postData = async () => {
     const response = await fetch(
@@ -91,7 +93,14 @@ function PostOpportunityForm() {
     )
     return response.json()
   }
-
+  //methods
+  const handleChange = (e) => {
+    const { id, value } = e.target
+    setCredentials((prevCredentials) => ({
+      ...prevCredentials,
+      [id]: value,
+    }))
+  }
   const handleSubmit = (e) => {
     e.preventDefault()
     if (true) {
@@ -105,10 +114,14 @@ function PostOpportunityForm() {
         })
     }
   }
-
+        
+  if ( isLoading) {
+    return  <ReactLoading className = "bubbles" type = { "Bubbles" } color = { "#FE4A49" }/>
+} 
   //template
   return (
     <form>
+    {hasError? <span>Has error: {JSON.stringify(hasError)}</span> : null }
       <div>
         <label htmlFor="image">Upload your image:</label>
         <input
@@ -117,7 +130,6 @@ function PostOpportunityForm() {
           placeholder="Image"
           onChange={handleChange}
           accept="image/*"
-          value={credentials.image}
         />
       </div>
       <div>
@@ -153,6 +165,9 @@ function PostOpportunityForm() {
         />
       </div>
       <div>
+      {audienceList.map((audienceData, key) => {
+              return <button>Test</button>
+                                })}
         <label htmlFor="audience">Audience:</label>
         <input
           type="checkbox"
