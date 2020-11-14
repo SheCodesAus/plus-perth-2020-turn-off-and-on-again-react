@@ -19,7 +19,7 @@ function OrganisationListPage() {
       .then((data) => {
         setOrganisationList(data)
       })
-  }, [organisationList])
+  }, [])
 
   if (organisationList.loading) {
     return (
