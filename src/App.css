@@ -206,14 +206,32 @@ a:hover {
 }
 
 /*Footer*/
+#footer-p {
+  font-size: 12px;
+  margin-left: 20px;
+}
 footer{
   text-align: center;
   background-color: var(--light);
   display:flex;
   justify-content: center;
+  flex-direction: column;
+  padding: 0 10px;
+}
+footer .navbar-link{
+  border:none;
 }
 footer p{
   font-size:0.9rem;
+  margin:0;
+}
+@media screen and (min-width: 600px) {
+  footer{
+    flex-direction: row;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 20px;
+  }
 }
 
 /* 3. Pages */

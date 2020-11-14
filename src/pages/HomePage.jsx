@@ -64,12 +64,9 @@ function HomePage({loggedIn}) {
         ]).then(() => setIsLoading(false))
     },[]);
     
-
-        
     if ( isLoading) {
         return  <ReactLoading className = "bubbles" type = { "Bubbles" } color = { "#FE4A49" }/>
     } 
-    console.log(typeList)
 
     return ( 
         <div>

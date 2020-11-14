@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { useHistory, useParams } from "react-router-dom"
+import { useHistory, useParams, Link } from "react-router-dom"
 import { getStorage, isAuthenticated } from "../Utilities/LocalStorage"
 
 function EditOrganisationForm(props) {
@@ -26,32 +26,31 @@ function EditOrganisationForm(props) {
     })
   }, [profileData])
 
-    //method
-    const handleChange = (e) => {
-        const {id, value} = e.target;
-        setProfile((prevProfile) => ({
-            ...prevProfile,
-            [id]: value,
-        }))
-    }
-    const postData = async() => {
-        const response = await fetch
-        (`${process.env.REACT_APP_API_URL}organisations/${id}`, 
-        {
-            method: "put",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Token ${getStorage("token")}`
-            },
-            body: JSON.stringify(profile),
-        }
-        );
-        return response.json();
-    }
+  //method
+  const handleChange = (e) => {
+    const { id, value } = e.target
+    setProfile((prevProfile) => ({
+      ...prevProfile,
+      [id]: value,
+    }))
+  }
+  const postData = async () => {
+    const response = await fetch(
+      `${process.env.REACT_APP_API_URL}organisations/${id}`,
+      {
+        method: "put",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${getStorage("token")}`,
+        },
+        body: JSON.stringify(profile),
+      }
+    )
+    return response.json()
+  }
 
-    const handleSubmit = (e) => {
- 
-        e.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault()
 
     postData().then((response) => {
       if (isAuthenticated()) {
@@ -93,12 +92,8 @@ function EditOrganisationForm(props) {
         </div>
         <div>
           <label htmlFor="logo">Logo:</label>
-          <img src={profile.logo} alt={`${profile.organisation}`}/>
-          <input
-            type="text"
-            id="logo"
-            onChange={handleChange}
-          />
+          <img src={profile.logo} alt={`${profile.organisation}`} />
+          <input type="text" id="logo" onChange={handleChange} />
         </div>
         <button type="submit" onClick={handleSubmit}>
           Update Profile
