@@ -1,20 +1,21 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import "./ListingCard.css";
+import React from "react"
+import { Link } from "react-router-dom"
 
-function ListingCard(props) {
-    //variables
-    const { listingData } = props;
+import "./OpportunityCard.css"
 
-    //template
-    return (
-        <div className="listing-card">
-            <Link to={`/case/${listingData.id}`}>
-                <img src={listingData.image} />
-                <h3>{listingData.title}</h3>
-            </Link>
-        </div>
-    );
+function OpportunityCard({ opportunityData, ...props }) {
+  return (
+    <div className="listing-card">
+      <Link to={`/opportunities/${opportunityData.id}`}>
+        <img src={opportunityData.image} alt={opportunityData.title} />
+        <h2>{opportunityData.title}</h2>
+        <h2>{opportunityData.website}</h2>
+        <p>{ opportunityData.description.split(" ").splice(0,20).join(" ")}...</p>
+      </Link>
+    </div>
+  )
 }
 
-export default ListingCard;
+export default OpportunityCard
+
+// Still need to limit listings to the related category and that the listing is open. 

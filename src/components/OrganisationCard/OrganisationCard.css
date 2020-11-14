@@ -1,0 +1,10 @@
+.listing-card {
+    width: 100%;
+    border: 1px solid black;
+    box-shadow: var(--bs);
+  }
+  .listing-card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+  }

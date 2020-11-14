@@ -1,14 +1,14 @@
-.listing-card{
+.category-card{
     background-color: rgba(255,255,255, 0.8);
     border-radius: 0.3rem;
     text-align:center;
     padding:0.3rem
 }
-.listing-card img{
+.category-card img{
     border-bottom-right-radius: 2rem;
     height:170px;
     object-fit:cover;
 }
-.listing-card p{
+.category-card p{
     margin:.3rem;
 }

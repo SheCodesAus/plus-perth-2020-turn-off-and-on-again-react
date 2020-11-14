@@ -39,8 +39,8 @@
   --ff-body: 'Nunito', sans-serif;
   --ff-title: 'Bebas Neue', cursive;
   /* Font size */
-  --fs-h1: 2.3rem;
-  --fs-h2: 2rem;
+  --fs-h1: 2.2rem;
+  --fs-h2: 1.8rem;
   --fs-h3: 1.3rem;
   --fs-body: 1.0rem;
   /* box-shadow */
@@ -71,6 +71,7 @@
 html {
   scroll-behavior: smooth;
   background-color: white!important;
+  height:100%;
 
 }
 
@@ -80,6 +81,7 @@ body {
   font-size: var(--fs-body);
   line-height: 1.6;
   background-color: white!important;
+  min-height: 100%;
 }
 
 img {
@@ -87,37 +89,204 @@ img {
   max-width: 100%;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+strong {
+  font-weight: var(--fw-bold);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+/* :focus {
+  outline: 3px solid var(--medium);
+  outline-offset: 3px;
+} */
+
+.spinner{
+  margin: 30px auto ;
+  width:20px;
+}
+
+/* Typography */
+h1,
+h2,
+h3 {
+  font-family: var(--ff-title);
+  font-weight: var(--fw-bold);
+  line-height: 1.1;
+  margin: 0;
+  padding: 0.5em 0;
+}
+
+h1 {
+  font-size: var(--fs-h1);
+  color: var(--dark);
+  text-align:center;
+}
+
+h2 {
+  font-size: var(--fs-h2);
+  color: var(--accent)
+}
+
+h3 {
+  font-size: var(--fs-h3);
+  color: var(--medium)
+}
+
+.section__title {
+  font-size: var(--fs-h2);
+  color: var(--medium);
+}
+
+.section_subtitle {
+  margin: 0;
+  font-size: var(--fs-h3);
+  color: var(--accent);
+  font-family: var(--ff-title);
+}
+
+a {
+  font-size: inherit;
+  font-family: var(--ff-body);
+  text-decoration: none;
+  color: var(--dark);
+  font-weight: var(--fw-bold);
+}
+
+a:hover {
+  color: var(--medium);
+  text-decoration: underline var(--accent)!important;
+
+}
+
+/* 2. Layout-related sections */
+/* Header */
+.header {
+  background-color: var(--dark);
+  color: var(--light);
+  padding: 3vh 10vw 0;
+  background-image: url(./images/ready-to-study.jpg);
+}
+
+.intro-text {
+  padding: 2rem 0;
+}
+
+.mainContent {
+  background-color: white;
+  background-image: url(./images/paint-top.png), url(./images/halftone.png);
+  background-size: 1800px 130px, 300px 300px;
+  background-repeat: repeat-x, repeat;
+  background-position: 0 0;
+  padding: 0 10% 5%;
+  margin: 0 0 -20px 0;
+}
+
+#opportunity-list, #organisation-list {
+  display: grid;
+  column-gap: 10px;
+  row-gap: 10px;
+  justify-items: center;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  margin: 20px 0;
+}
+
+@media screen and (min-width: 600px) {
+  #opportunity-list, #organisation-list  {
+  grid-template-columns: 1fr 1fr;
+  margin: 20px 100px;
+  margin: 20px;
+  }
+
+}
+
+@media screen and (min-width: 900px) {
+  #opportunity-list, #organisation-list {
+  grid-template-columns: 1fr 1fr 1fr;
+  }
+
+}
+
+/*Footer*/
+#footer-p {
+  font-size: 12px;
+  margin-left: 20px;
+}
+footer{
+  text-align: center;
+  background-color: var(--light);
+  display:flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 10px;
+}
+footer .navbar-link{
+  border:none;
+}
+footer p{
+  font-size:0.9rem;
+  margin:0;
+}
+@media screen and (min-width: 600px) {
+  footer{
+    flex-direction: row;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 20px;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
+/* 3. Pages */
+/* Homepage */
+.banner{
+  position:relative;
+}
+.bannerText {
+  width:80%;
+  border-radius: 0.3rem;
+  box-shadow: var(--bs);
+  display:flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin: 1rem auto;
+  padding: 1rem;
+}
+@media screen and (min-width: 600px) {
+  .bannerText {
+    position: absolute;
+    background: rgba(255,255,255, 0.8);
+    width: 25%;
+    right: 0;
+    top: 20%;
+    margin: auto 2rem;
+    padding: 2rem;
+  }
+
+}
+button{
+  border-radius: 0.3rem;
+  color:var(--dark);
+  background-color: var(--light);
+  font-family: var(--ff-body);
+  border:none;
+  padding:0.5rem;
+  margin:auto;
+  font-size:var(--fs-body);
+  cursor: pointer;
+  font-weight:800;
+
+}
+button:hover{
+  border-radius: 0.3rem;
+  color:var(--light-accent);
+  background-color: var(--dark);
+  font-family: var(--ff-body);
+  border:none;
+  padding:0.5rem;
+  margin:auto;
+  font-size:var(--fs-body);
 }
 
-.App-link {
-  color: #61dafb;
-}
+/* Page Formatting */
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#page-blurb{
+  text-align: center;
 }

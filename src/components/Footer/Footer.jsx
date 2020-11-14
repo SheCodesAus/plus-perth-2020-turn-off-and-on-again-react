@@ -1,10 +1,11 @@
 import React from "react";
-import "./Footer.css";
+import {Link} from "react-router-dom";
 
 function Footer() {
     return (
         <footer>
-            <p id="footer-p">Have you tried turning it off and back on again?.</p>
+            <Link to="/about" className="navbar-link" >About TechForMe</Link>
+            <p className="navbar-link">@ Copyright SheCodes 2020 TechForMe team</p>
         </footer>
     );
 }
