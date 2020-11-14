@@ -48,7 +48,7 @@ function OrganisationForm() {
             organisation.logo) {
          postData().then((response) => {
             if (isAuthenticated()){
-                history.push("/register");
+                history.push("/");
             }
             });
         }
