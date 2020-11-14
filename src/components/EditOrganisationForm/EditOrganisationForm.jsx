@@ -4,9 +4,8 @@ import { getStorage, isAuthenticated } from "../Utilities/LocalStorage"
 
 function EditOrganisationForm(props) {
   //variables
-  const { organisationsData } = props
 
-  const [organisations, setOrganisations] = useState({
+  const [organisationData, setOrganisationData] = useState({
     organisation: "",
     description: "",
     website: "",
@@ -16,24 +15,23 @@ function EditOrganisationForm(props) {
   const { slug } = useParams()
 
   useEffect(() => {
-    if (organisationsData.organisation == null) return
-    console.log({ organisationsData })
-    setOrganisations({
-      organisation: organisationsData.organisation,
-      description: organisationsData.description,
-      website: organisationsData.website,
-      image: organisationsData.logo,
-    })
-  }, [organisationsData])
+    fetch(`${process.env.REACT_APP_API_URL}organisations/${slug}`)
+      .then((results) => {
+        return results.json()
+      })
+      .then((data) => {
+        setOrganisationData(data)
+      })
+  }, [slug])
 
-  //method
   const handleChange = (e) => {
     const { id, value } = e.target
-    setOrganisations((prevOrganisations) => ({
-      ...prevOrganisations,
+    setOrganisationData((data) => ({
+      ...data,
       [id]: value,
     }))
   }
+
   const postData = async () => {
     const response = await fetch(
       `${process.env.REACT_APP_API_URL}organisations/${slug}`,
@@ -43,7 +41,12 @@ function EditOrganisationForm(props) {
           "Content-Type": "application/json",
           Authorization: `Token ${getStorage("token")}`,
         },
-        body: JSON.stringify(organisations),
+        body: JSON.stringify({
+          organisation: organisationData.organisation,
+          description: organisationData.description,
+          website: organisationData.website,
+          logo: organisationData.logo,
+        }),
       }
     )
     return response.json()
@@ -68,7 +71,7 @@ function EditOrganisationForm(props) {
           <input
             type="text"
             id="organisation"
-            value={organisations.organisation}
+            value={organisationData.organisation}
             onChange={handleChange}
           />
         </div>
@@ -77,7 +80,7 @@ function EditOrganisationForm(props) {
           <textarea
             type="text"
             id="description"
-            value={organisations.description}
+            value={organisationData.description}
             onChange={handleChange}
           />
         </div>
@@ -86,14 +89,20 @@ function EditOrganisationForm(props) {
           <input
             type="text"
             id="website"
-            value={organisations.website}
+            value={organisationData.website}
             onChange={handleChange}
           />
         </div>
         <div>
-          <label htmlFor="logo">Logo:</label>
-          <img src={organisations.logo} alt={`${organisations.organisation}`} />
-          <input type="text" id="logo" onChange={handleChange} />
+          <label htmlFor="logo">Upload your logo:</label>
+          <img src={organisationData.logo} alt={`${organisationData.title}`}/>
+          <input
+            type="file"
+            id="logo"
+            placeholder="logo"
+            onChange={handleChange}
+            accept="logo/*"
+          />
         </div>
         <button type="submit" onClick={handleSubmit}>
           Update organisations
