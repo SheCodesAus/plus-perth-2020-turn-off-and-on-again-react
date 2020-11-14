@@ -19,7 +19,7 @@ function OrganisationListPage() {
       .then((data) => {
         setOrganisationList(data)
       })
-  }, [organisationList])
+  }, [])
 
   if (organisationList.loading) {
     return (
@@ -30,7 +30,7 @@ function OrganisationListPage() {
   // template
   return (
     <div>
-      <div className="project-header">
+      <div className="mainContent">
         <h1> Organisations </h1>
         <div id="organisation-list">
           {organisationList.map((organisationData, key) => {
