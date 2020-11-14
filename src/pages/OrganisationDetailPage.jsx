@@ -46,15 +46,11 @@ function OrganisationDetailPage() {
       <h3>{organisationData.organisation}</h3>
       <h3>{organisationData.website}</h3>
       <h3>{organisationData.description}</h3>
-      <p>Created by {organisationData.owner}</p>
 
       {/* <PostOpportunityForm opportunityId={id} /> */}
       <hr />
       <button>
         <Link to={`/organisations/${slug}/edit`}>Edit</Link>
-      </button>
-      <button type="delete" onClick={deleteData}>
-        Delete
       </button>
     </div>
   )
