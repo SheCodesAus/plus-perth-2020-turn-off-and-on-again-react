@@ -1,52 +1,49 @@
 import React, { useState, useEffect } from "react"
-import { useHistory, useParams } from "react-router-dom"
+import { useHistory, useParams, Link } from "react-router-dom"
 import { getStorage, isAuthenticated } from "../Utilities/LocalStorage"
 
 function EditOrganisationForm(props) {
   //variables
+  const { profileData } = props
 
-  const [organisationData, setOrganisationData] = useState({
+  const [profile, setProfile] = useState({
     organisation: "",
     description: "",
     website: "",
     logo: "",
   })
   const history = useHistory()
-  const { slug } = useParams()
+  const { id } = useParams()
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}organisations/${slug}`)
-      .then((results) => {
-        return results.json()
-      })
-      .then((data) => {
-        setOrganisationData(data)
-      })
-  }, [slug])
+    if (profileData.title == null) return
+    console.log({ profileData })
+    setProfile({
+      organisation: profileData.organisation,
+      description: profileData.description,
+      website: profileData.website,
+      image: profileData.logo,
+    })
+  }, [profileData])
 
+  //method
   const handleChange = (e) => {
     const { id, value } = e.target
-    setOrganisationData((data) => ({
-      ...data,
+    setProfile((prevProfile) => ({
+      ...prevProfile,
       [id]: value,
     }))
   }
-
   const postData = async () => {
     const response = await fetch(
-      `${process.env.REACT_APP_API_URL}organisations/${slug}`,
+      `${process.env.REACT_APP_API_URL}organisations/${id}`,
       {
         method: "put",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Token ${getStorage("token")}`,
         },
-        body: JSON.stringify({
-          organisation: organisationData.organisation,
-          description: organisationData.description,
-          website: organisationData.website,
-          logo: organisationData.logo,
-        }),
+        body: JSON.stringify(profile),
       }
     )
     return response.json()
@@ -57,7 +54,7 @@ function EditOrganisationForm(props) {
 
     postData().then((response) => {
       if (isAuthenticated()) {
-        history.push(`/organisations/${slug}`)
+        history.push(`/organisations/${id}`)
       }
     })
   }
@@ -71,7 +68,7 @@ function EditOrganisationForm(props) {
           <input
             type="text"
             id="organisation"
-            value={organisationData.organisation}
+            value={profile.organisation}
             onChange={handleChange}
           />
         </div>
@@ -80,7 +77,7 @@ function EditOrganisationForm(props) {
           <textarea
             type="text"
             id="description"
-            value={organisationData.description}
+            value={profile.description}
             onChange={handleChange}
           />
         </div>
@@ -89,23 +86,17 @@ function EditOrganisationForm(props) {
           <input
             type="text"
             id="website"
-            value={organisationData.website}
+            value={profile.website}
             onChange={handleChange}
           />
         </div>
         <div>
-          <label htmlFor="logo">Upload your logo:</label>
-          <img src={organisationData.logo} alt={`${organisationData.title}`}/>
-          <input
-            type="file"
-            id="logo"
-            placeholder="logo"
-            onChange={handleChange}
-            accept="logo/*"
-          />
+          <label htmlFor="logo">Logo:</label>
+          <img src={profile.logo} alt={`${profile.organisation}`} />
+          <input type="text" id="logo" onChange={handleChange} />
         </div>
         <button type="submit" onClick={handleSubmit}>
-          Update organisations
+          Update Profile
         </button>
       </form>
     </div>
