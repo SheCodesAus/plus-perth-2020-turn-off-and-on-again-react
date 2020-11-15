@@ -49,9 +49,10 @@ function OpportunityDetailPage() {
 
 
   return (
+
     <div className="detail-box">
-      <h2>{opportunityData.title}</h2>
-      <h3>{opportunityData.organisation}</h3>
+      <h1>{opportunityData.title}</h1>
+      <h2>{opportunityData.organisation}</h2>
       <a href={opportunityData.website}>{opportunityData.website}</a>
       <p>{opportunityData.description}</p>
       <h4>Apply by: {opportunityData.apply_by_date.substr(0, 10)}</h4>
