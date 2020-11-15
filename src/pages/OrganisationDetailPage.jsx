@@ -7,8 +7,9 @@ function OrganisationDetailPage() {
   })
   const { slug } = useParams()
 
-  const token = window.localStorage.getItem("token")
-  const history = useHistory()
+  // const token = window.localStorage.getItem("token")
+  // const history = useHistory()
+  
 
   useEffect(() => {
     console.log("slug", slug)
@@ -21,6 +22,17 @@ function OrganisationDetailPage() {
         setorganisationData(data)
       })
   }, [])
+    
+  //show edit button if the logged in user organisation is the same as the page loaded 
+  //or if admin is logged in
+    let canEdit = false
+    if (window.localStorage.getItem("organisation") === organisationData.organisation 
+    || window.localStorage.getItem("username") === "admin") {
+      canEdit = true
+    } 
+    // console.log("can edit is", canEdit)
+
+  
 
   // const deleteData = async () => {
   //   const response = await fetch(
@@ -46,8 +58,8 @@ function OrganisationDetailPage() {
       <h2>{organisationData.organisation}</h2>
       <a href={organisationData.website}>{organisationData.website}</a>
       <p>{organisationData.description}</p>
-      
-        <Link className="button-link" to={`/organisations/${slug}/edit`}>Edit</Link>
+      {canEdit ? <Link className="button-link" to={`/organisations/${slug}/edit`}>Edit</Link> : ""}
+        
     </div>
   )
 }

@@ -38,6 +38,16 @@ function OpportunityDetailPage() {
     return "Loading ..."
   }
 
+  //show edit and delete buttons if the logged in user organisation is the same as the page loaded 
+  //or if admin is logged in
+  let canEdit = false
+  if (window.localStorage.getItem("organisation") === opportunityData.organisation 
+  || window.localStorage.getItem("username") === "admin") {
+    canEdit = true
+  } 
+  // console.log("can edit is", canEdit)
+
+
   return (
     <div className="detail-box">
       <h2>{opportunityData.title}</h2>
@@ -53,10 +63,9 @@ function OpportunityDetailPage() {
           : ""}
       </p>
 
-      <Link className="button-link" to={`/opportunities/edit/${id}`}>Edit</Link>
-      <button type="delete" onClick={deleteData}>
-        Delete
-      </button>
+      {canEdit ? <Link className="button-link" to={`/opportunities/edit/${id}`}>Edit</Link>: ""}
+      {canEdit ? <button type="delete" onClick={deleteData}>Delete</button>: ""}
+      
     </div>
   )
 }
