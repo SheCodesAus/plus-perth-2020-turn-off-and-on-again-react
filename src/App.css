@@ -262,7 +262,7 @@ footer p{
   }
 
 }
-button{
+button, .button-link{
   border-radius: 0.3rem;
   color:var(--dark);
   background-color: var(--light);
@@ -275,7 +275,7 @@ button{
   font-weight:800;
 
 }
-button:hover{
+button:hover, .button-link:hover{
   border-radius: 0.3rem;
   color:var(--light-accent);
   background-color: var(--dark);
@@ -284,6 +284,28 @@ button:hover{
   padding:0.5rem;
   margin:auto;
   font-size:var(--fs-body);
+}
+
+.button-link:hover, .button-link:active,.button-link:focus {
+  background: var(--dark);
+  text-decoration: none;
+}
+
+/* 4. Pages */
+/* Organisation detail page */
+
+.detail-box {
+  align-self: center;
+  width: 550px;
+  padding: 4% 0 2%;
+  margin: 35px;
+  overflow: hidden;
+}
+
+.detail-box > img {
+  height: 200px;
+  width: 100%;
+  object-fit: contain;
 }
 
 /* Page Formatting */

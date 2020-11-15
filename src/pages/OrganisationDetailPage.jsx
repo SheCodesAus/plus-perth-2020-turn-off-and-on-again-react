@@ -41,17 +41,13 @@ function OrganisationDetailPage() {
   }
 
   return (
-    <div>
+    <div className="detail-box">
       <img src={organisationData.logo} alt="organisation" />
-      <h3>{organisationData.organisation}</h3>
-      <h3>{organisationData.website}</h3>
-      <h3>{organisationData.description}</h3>
-
-      {/* <PostOpportunityForm opportunityId={id} /> */}
-      <hr />
-      <button>
-        <Link to={`/organisations/${slug}/edit`}>Edit</Link>
-      </button>
+      <h2>{organisationData.organisation}</h2>
+      <a href={organisationData.website}>{organisationData.website}</a>
+      <p>{organisationData.description}</p>
+      
+        <Link className="button-link" to={`/organisations/${slug}/edit`}>Edit</Link>
     </div>
   )
 }
