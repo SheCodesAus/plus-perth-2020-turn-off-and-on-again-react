@@ -21,13 +21,11 @@ import SelectOrganisationPage from "./pages/SelectOrganisationPage"
 import EditOpportunityPage from "./pages/EditOpportunityPage"
 import Footer from "./components/Footer/Footer"
 
-
 import "./App.css"
 import "./AppForm.css"
 
 const savedUsername = window.localStorage.getItem("username")
 const savedOrganisation = window.localStorage.getItem("organisation")
-
 
 function App() {
   const [username, setUsername] = useState(savedUsername)
@@ -40,7 +38,11 @@ function App() {
   return (
     <Router>
       <div>
-        <Nav loggedIn={loggedIn} setUsername={setUsername} setOrganisation={setOrganisation} />
+        <Nav
+          loggedIn={loggedIn}
+          setUsername={setUsername}
+          setOrganisation={setOrganisation}
+        />
         <Switch>
           <Route path="/about" exact>
             <AboutPage />
@@ -58,8 +60,8 @@ function App() {
             <OpportunityDetailPage />
           </Route>
           <Route path="/opportunities/type/:slug" exact>
-            <OpportunityListPage/>
-            </Route>
+            <OpportunityListPage />
+          </Route>
           <Route path="/opportunities/edit/:id" exact>
             <EditOpportunityPage />
           </Route>
@@ -67,36 +69,38 @@ function App() {
             <OrganisationListPage />
           </Route>
           <Route path="/organisations/register" exact>
-            <NewOrganisationPage />
+            <NewOrganisationPage />1
           </Route>
           <Route path="/organisations/select" exact>
             <SelectOrganisationPage />
           </Route>
-          <Route path="/organisations/:id" exact>
+          <Route path="/organisations/:slug" exact>
             <OrganisationDetailPage />
           </Route>
           <Route path="/login">
             {loggedIn ? (
               <Redirect to="/" />
             ) : (
-              <LoginPage setUsername={setUsername} setOrganisation={setOrganisation}/>
+              <LoginPage
+                setUsername={setUsername}
+                setOrganisation={setOrganisation}
+              />
             )}
           </Route>
           <Route path="/organisations/:slug/edit" exact>
             {loggedIn ? (
-              <EditOrganisationPage setUsername={setUsername}/>
+              <EditOrganisationPage setUsername={setUsername} />
             ) : (
               <Redirect to="/" />
             )}
           </Route>
           <Route path="/">
-            <HomePage loggedIn={loggedIn}/>
+            <HomePage loggedIn={loggedIn} />
           </Route>
         </Switch>
         <Footer />
       </div>
     </Router>
-    
   )
 }
 

@@ -1,83 +1,34 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import { useHistory } from "react-router-dom"
-import ReactLoading from "react-loading"
-
 
 function PostOpportunityForm() {
   //variables
   const [credentials, setCredentials] = useState({
-    title: "test",
-    image: "test",
-    start_date: "test",
-    organisation: "shecodes",
-    audience: ["women"],
-    level: ["beginner"],
-    typeList: ["free"],
-    location: ["perth"],
-    website: "https://shecodes.com",
-    eligibility: "none",
-    description: "none",
-    apply_by_date: "2020-09-09T20:31:00Z",
-    date_created: "2020-09-09T20:31:00Z",
-    owner: "aws",
+    title: "",
+    start_date: "",
+    organisation: "",
+    audience: "",
+    level: "",
+    type: "",
+    location: "",
+    website: "",
+    eligibility: "",
+    description: "",
+    apply_by_date: "",
+    is_open: true,
+    created_date: "2020-09-09T20:31:00Z",
   })
-
   const history = useHistory()
   const token = window.localStorage.getItem("token")
 
-  const [typeList, setTypeList] = useState([])
-  const [locationList, setLocationList] = useState([])
-  const [audienceList, setAudienceList] = useState([])
-  const [levelList, setLevelList] = useState([])
-  const [isLoading, setIsLoading] = useState (true)
-  const [hasError, setErrors] = useState(false)
-
-  
-  useEffect(() => {
-      async function fetchTypes() {
-          try {
-              const r = await fetch(`${process.env.REACT_APP_API_URL}types/`);
-              const type = await r.json()
-              setTypeList(type)
-          } catch (error) {
-              setErrors(error)
-          }
-      }
-      async function fetchLocations() {
-          try {
-              const r = await fetch(`${process.env.REACT_APP_API_URL}locations/`);
-              const locations = await r.json()
-              setLocationList(locations)
-          } catch (error) {
-              setErrors(error)
-          }
-      }
-      async function fetchAudiences() {
-          try {
-              const r = await fetch(`${process.env.REACT_APP_API_URL}audiences/`);
-              const audiences = await r.json()
-              setAudienceList(audiences)
-          } catch (error) {
-              setErrors(error)
-          }
-      }
-      async function fetchLevels() {
-      try {
-          const r = await fetch(`${process.env.REACT_APP_API_URL}levels/`);
-          const levels = await r.json()
-          setLevelList(levels)
-      } catch (error) {
-          setErrors(error)
-      }
-      }
-      // Promise allows to run multiple functions in parallel
-      Promise.all([
-          fetchTypes(),
-          fetchLocations(),
-          fetchAudiences(),
-          fetchLevels()
-      ]).then(() => setIsLoading(false))
-  },[]);
+  //methods
+  const handleChange = (e) => {
+    const { id, value } = e.target
+    setCredentials((prevCredentials) => ({
+      ...prevCredentials,
+      [id]: value,
+    }))
+  }
 
   const postData = async () => {
     const response = await fetch(
@@ -93,14 +44,7 @@ function PostOpportunityForm() {
     )
     return response.json()
   }
-  //methods
-  const handleChange = (e) => {
-    const { id, value } = e.target
-    setCredentials((prevCredentials) => ({
-      ...prevCredentials,
-      [id]: value,
-    }))
-  }
+
   const handleSubmit = (e) => {
     e.preventDefault()
     if (true) {
@@ -114,14 +58,10 @@ function PostOpportunityForm() {
         })
     }
   }
-        
-  if ( isLoading) {
-    return  <ReactLoading className = "bubbles" type = { "Bubbles" } color = { "#FE4A49" }/>
-} 
+
   //template
   return (
     <form>
-    {hasError? <span>Has error: {JSON.stringify(hasError)}</span> : null }
       <div>
         <label htmlFor="image">Upload your image:</label>
         <input
@@ -130,6 +70,7 @@ function PostOpportunityForm() {
           placeholder="Image"
           onChange={handleChange}
           accept="image/*"
+          value={credentials.image}
         />
       </div>
       <div>
@@ -143,11 +84,12 @@ function PostOpportunityForm() {
         />
       </div>
       <div>
-        <label htmlFor="start_date">Start Date:</label>
+        <label for="start_date">Start Date:</label>
         <input
           type="date"
-          id="start_date"
-          name="start_date"
+          id="start"
+          name="start-date"
+          value="2020-01-01"
           min="2020-01-01"
           max="2021-12-31"
           onChange={handleChange}
@@ -159,49 +101,46 @@ function PostOpportunityForm() {
         <input
           type="text"
           id="organisation"
-          placeholder="Enter Organisation Name"
+          placeholder="Organisation Name"
           onChange={handleChange}
           value={credentials.organisation}
         />
       </div>
       <div>
-      {audienceList.map((audienceData, key) => {
-              return <button>Test</button>
-                                })}
-        <label htmlFor="audience">Audience:</label>
+        <label htmlFor="is_open">Audience:</label>
         <input
           type="checkbox"
-          id="audience"
+          id="is_open"
           placeholder="is_open"
           onChange={handleChange}
           value={credentials.is_open}
         />
       </div>
       <div>
-        <label htmlFor="level">Level:</label>
+        <label htmlFor="is_open">Level:</label>
         <input
           type="checkbox"
-          id="level"
+          id="is_open"
           placeholder="is_open"
           onChange={handleChange}
           value={credentials.is_open}
         />
       </div>
       <div>
-        <label htmlFor="typeList">Type:</label>
+        <label htmlFor="is_open">Type:</label>
         <input
           type="checkbox"
-          id="typeList"
+          id="is_open"
           placeholder="is_open"
           onChange={handleChange}
           value={credentials.is_open}
         />
       </div>
       <div>
-        <label htmlFor="location">Location:</label>
+        <label htmlFor="is_open">Location:</label>
         <input
           type="checkbox"
-          id="location"
+          id="is_open"
           placeholder="is_open"
           onChange={handleChange}
           value={credentials.location}
@@ -243,10 +182,31 @@ function PostOpportunityForm() {
           type="date"
           id="apply_by_date"
           name="apply_by_date"
+          value="2020-01-01"
           min="2020-01-01"
           max="2021-12-31"
           onChange={handleChange}
           value={credentials.apply_by_date}
+        />
+      </div>
+      <div>
+        <label htmlFor="is_open">Project Open:</label>
+        <input
+          type="checkbox"
+          id="is_open"
+          placeholder="is_open"
+          onChange={handleChange}
+          value={credentials.is_open}
+        />
+      </div>
+      <div>
+        <label htmlFor="date_created">Date Created:</label>
+        <input
+          type="date_created"
+          id="date_created"
+          placeholder="date_created"
+          onChange={handleChange}
+          value={credentials.date_created}
         />
       </div>
 
