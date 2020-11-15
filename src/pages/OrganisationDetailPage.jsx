@@ -22,19 +22,19 @@ function OrganisationDetailPage() {
       })
   }, [])
 
-  const deleteData = async () => {
-    const response = await fetch(
-      `${process.env.REACT_APP_API_URL}organisations/${slug}`,
-      {
-        method: "delete",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Token ${token}`,
-        },
-      }
-    )
-    history.push("/")
-  }
+  // const deleteData = async () => {
+  //   const response = await fetch(
+  //     `${process.env.REACT_APP_API_URL}organisations/${slug}`,
+  //     {
+  //       method: "delete",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         Authorization: `Token ${token}`,
+  //       },
+  //     }
+  //   )
+  //   history.push("/")
+  // }
 
   if (organisationData.loading) {
     return "Loading ..."
