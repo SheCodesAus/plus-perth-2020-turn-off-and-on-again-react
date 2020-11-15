@@ -133,7 +133,7 @@ function EditOpportunityForm() {
 
   //template
   return (
-    <form>
+    <form className="medium-form">
       <div>
         <label htmlFor="image">Upload your image:</label>
         <img src={opportunityData.image} alt={`${opportunityData.title}`} />
