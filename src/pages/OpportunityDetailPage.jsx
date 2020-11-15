@@ -38,33 +38,34 @@ function OpportunityDetailPage() {
     return "Loading ..."
   }
 
+  //show edit and delete buttons if the logged in user organisation is the same as the page loaded 
+  //or if admin is logged in
+  let canEdit = false
+  if (window.localStorage.getItem("organisation") === opportunityData.organisation 
+  || window.localStorage.getItem("username") === "admin") {
+    canEdit = true
+  } 
+  // console.log("can edit is", canEdit)
+
+
   return (
-    <div>
-      <img src={opportunityData.image} alt={opportunityData.title}/>
-      <h3>{opportunityData.title}</h3>
-      <h3>{opportunityData.start_date}</h3>
+    <div className="detail-box">
+      <h2>{opportunityData.title}</h2>
       <h3>{opportunityData.organisation}</h3>
-      <h3>{opportunityData.website}</h3>
-      <h3>{opportunityData.description}</h3>
-      <h3>{opportunityData.apply_by_date}</h3>
-      <h3>{opportunityData.datecreated}</h3>
-      <h3>{opportunityData.is_open}</h3>
-      <p>Created by {opportunityData.user}</p>
-      <h4>
-        Created at:{" "}
-        {opportunityData.date_created
+      <a href={opportunityData.website}>{opportunityData.website}</a>
+      <p>{opportunityData.description}</p>
+      <h4>Apply by: {opportunityData.apply_by_date.substr(0, 10)}</h4>
+      <h4>Start date: {opportunityData.start_date.substr(0, 10)}</h4>
+      <img src={opportunityData.image} alt={opportunityData.title}/>
+      <p>Created by {opportunityData.owner}</p>
+      <p>Created on:{" "}{opportunityData.date_created
           ? opportunityData.date_created.substr(0, 10)
           : ""}
-      </h4>
-      <h4>{`Status: ${opportunityData.is_open}`}</h4>
+      </p>
 
-      <hr />
-      <button>
-        <Link to={`/opportunities/edit/${id}`}>Edit</Link>
-      </button>
-      <button type="delete" onClick={deleteData}>
-        Delete
-      </button>
+      {canEdit ? <Link className="button-link" to={`/opportunities/edit/${id}`}>Edit</Link>: ""}
+      {canEdit ? <button type="delete" onClick={deleteData}>Delete</button>: ""}
+      
     </div>
   )
 }
