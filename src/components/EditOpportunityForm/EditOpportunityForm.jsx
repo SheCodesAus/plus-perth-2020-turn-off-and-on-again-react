@@ -1,31 +1,26 @@
 import React, { useState, useEffect } from "react"
-import { useParams, useHistory, Link } from "react-router-dom"
+import { useParams, useHistory } from "react-router-dom"
 
 function EditOpportunityForm() {
   //variables
   const [opportunityData, setopportunityData] = useState({
-    id: "",
-    title: "",
-    image: "",
-    start_date: "",
-    organisation: "",
-    audience: "",
-    level: "",
-    typeList: "",
-    location: "",
-    website: "",
-    eligibility: "",
-    description: "",
-    apply_by_date: "",
-    date_created: "2020-09-09T20:31:00Z",
-    owner: "",
+    "id": 0,
+    "title": "",
+    "description": "",
+    "date_created": "",
+    "start_date": "",
+    "apply_by_date": "",
+    "image": "",
+    "link": "",
+    "eligibility": "",
+    "owner": "",
+    "typeList": [],
+    "location": [],
+    "level": [],
+    "audience": [],
+    "organisation": ""
   })
-
   const { id } = useParams()
-  const [audienceData, setaudienceData] = useState([])
-  const [levelData, setlevelData] = useState([])
-  const [typeListData, settypeListData] = useState([])
-  const [locationData, setlocationData] = useState([])
 
   const history = useHistory()
   const token = window.localStorage.getItem("token")
@@ -39,7 +34,7 @@ function EditOpportunityForm() {
       .then((data) => {
         setopportunityData(data)
       })
-  }, [])
+  }, [id])
 
   const handleChange = (e) => {
     const { id, value } = e.target
@@ -48,46 +43,6 @@ function EditOpportunityForm() {
       [id]: value,
     }))
   }
-
-  useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}audiences/`)
-      .then((results) => {
-        return results.json()
-      })
-      .then((data) => {
-        setaudienceData(data)
-      })
-  }, [])
-
-  useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}levels/`)
-      .then((results) => {
-        return results.json()
-      })
-      .then((data) => {
-        setlevelData(data)
-      })
-  }, [])
-
-  useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}types/`)
-      .then((results) => {
-        return results.json()
-      })
-      .then((data) => {
-        settypeListData(data)
-      })
-  }, [])
-
-  useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}locations/`)
-      .then((results) => {
-        return results.json()
-      })
-      .then((data) => {
-        setlocationData(data)
-      })
-  }, [])
 
   const postData = async () => {
     const response = await fetch(
@@ -104,7 +59,7 @@ function EditOpportunityForm() {
           start_date: opportunityData.start_date,
           audience: opportunityData.audience,
           level: opportunityData.level,
-          typeList: opportunityData.type,
+          type: opportunityData.type,
           location: opportunityData.location,
           website: opportunityData.website,
           description: opportunityData.description,
@@ -136,7 +91,7 @@ function EditOpportunityForm() {
     <form>
       <div>
         <label htmlFor="image">Upload your image:</label>
-        <img src={opportunityData.image} alt={`${opportunityData.title}`} />
+        <img src={opportunityData.image} alt={`${opportunityData.title}`}/>
         <input
           type="file"
           id="image"
@@ -150,7 +105,7 @@ function EditOpportunityForm() {
         <input
           type="text"
           id="title"
-          placeholder="Edit Opportunity Title"
+          placeholder="Enter Opportunity Title"
           onChange={handleChange}
           value={opportunityData.title}
         />
@@ -159,8 +114,9 @@ function EditOpportunityForm() {
         <label for="start_date">Start Date:</label>
         <input
           type="date"
-          id="start_date"
-          name="start_date"
+          id="start"
+          name="start-date"
+          value="2020-01-01"
           min="2020-01-01"
           max="2021-12-31"
           onChange={handleChange}
@@ -168,40 +124,40 @@ function EditOpportunityForm() {
         />
       </div>
       <div>
-        <label htmlFor="audience">Audience:</label>
+        <label htmlFor="is_open">Audience:</label>
         <input
           type="checkbox"
-          id="audience"
+          id="is_open"
           placeholder="is_open"
           onChange={handleChange}
           value={opportunityData.is_open}
         />
       </div>
       <div>
-        <label htmlFor="level">Level:</label>
+        <label htmlFor="is_open">Level:</label>
         <input
           type="checkbox"
-          id="level"
+          id="is_open"
           placeholder="is_open"
           onChange={handleChange}
           value={opportunityData.is_open}
         />
       </div>
       <div>
-        <label htmlFor="typeList">Type:</label>
+        <label htmlFor="is_open">Type:</label>
         <input
           type="checkbox"
-          id="typeList"
+          id="is_open"
           placeholder="is_open"
           onChange={handleChange}
           value={opportunityData.is_open}
         />
       </div>
       <div>
-        <label htmlFor="location">Location:</label>
+        <label htmlFor="is_open">Location:</label>
         <input
           type="checkbox"
-          id="location"
+          id="is_open"
           placeholder="is_open"
           onChange={handleChange}
           value={opportunityData.location}
@@ -212,7 +168,7 @@ function EditOpportunityForm() {
         <input
           type="text"
           id="website"
-          placeholder="Edit website link"
+          placeholder="Enter website link"
           onChange={handleChange}
           value={opportunityData.website}
         />
@@ -222,7 +178,7 @@ function EditOpportunityForm() {
         <input
           type="text"
           id="eligibility"
-          placeholder="Edit eligibility requirements"
+          placeholder="Enter eligibility requirements"
           onChange={handleChange}
           value={opportunityData.eligibility}
         />
@@ -232,7 +188,7 @@ function EditOpportunityForm() {
         <input
           type="text"
           id="description"
-          placeholder="Edit description"
+          placeholder="Description"
           onChange={handleChange}
           value={opportunityData.description}
         />
@@ -243,13 +199,23 @@ function EditOpportunityForm() {
           type="date"
           id="apply_by_date"
           name="apply_by_date"
+          value="2020-01-01"
           min="2020-01-01"
           max="2021-12-31"
           onChange={handleChange}
           value={opportunityData.apply_by_date}
         />
       </div>
-
+      <div>
+        <label htmlFor="is_open">Project Open:</label>
+        <input
+          type="checkbox"
+          id="is_open"
+          placeholder="is_open"
+          onChange={handleChange}
+          value={opportunityData.is_open}
+        />
+      </div>
       <button type="submit" onClick={handleSubmit}>
         Save
       </button>

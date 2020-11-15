@@ -5,7 +5,6 @@ import ReactLoading from "react-loading";
 import OpportunityCard from "../components/OpportunityCard/OpportunityCard";
 
 function OpportunityListPage() {
-
     // variables
     const [opportunityList, setOpportunityList] = useState({
         loading: true
@@ -28,13 +27,10 @@ function OpportunityListPage() {
     }
 
     // template
-
-    const opportunityName = location.search.substr(1).split('=')[1].replace(/\-/g, ' ')
-
     return ( 
         <div>
             <div className="mainContent">
-            <h1>Latest {opportunityName} opportunities</h1>
+                <h1> This is the Opportunity Page </h1> 
                 <div id="opportunity-list" > 
                     {opportunityList.map((opportunityData, key) => {
                         return <OpportunityCard key={key} opportunityData={opportunityData}/>;
