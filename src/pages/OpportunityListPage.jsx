@@ -5,12 +5,12 @@ import ReactLoading from "react-loading";
 import OpportunityCard from "../components/OpportunityCard/OpportunityCard";
 
 function OpportunityListPage() {
-
     // variables
     const [opportunityList, setOpportunityList] = useState({
         loading: true
     });
     const location = useLocation()
+    const opportunityName = location.search.substr(1).split('=')[1]
 
     // methods: useEffect render when the app render, the bracket while have the condition for the useEffect to rerender when app change
     useEffect(() => {
@@ -27,24 +27,10 @@ function OpportunityListPage() {
         return  <ReactLoading className = "bubbles" type = { "Bubbles" } color = { "#FE4A49" }/>
     }
 
-    // template
-
-    const opportunityName = location.search.substr(1).split('=')[1]
-
-    // .replace(/\-/g, ' ')
-    
-    // function opportunityListH1() {
-    //     let opportunityName = location.search.substr(1).split('=')[1].replace(/\-/g, ' ')
-    //     if location.search =~ /audience/ { 
-    //         return opportunityName
-    //     } else {
-    //         return ''
-    // }
-
     return ( 
         <div>
             <div className="mainContent">
-            <h1>Latest {opportunityName} opportunities</h1>
+                <h1> This is the Opportunity Page </h1> 
                 <div id="opportunity-list" > 
                     {opportunityList.map((opportunityData, key) => {
                         return <OpportunityCard key={key} opportunityData={opportunityData}/>;

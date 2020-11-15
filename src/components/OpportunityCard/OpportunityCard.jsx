@@ -8,14 +8,18 @@ function OpportunityCard({ opportunityData, ...props }) {
     <div className="listing-card">
       <Link to={`/opportunities/${opportunityData.id}`}>
         <img src={opportunityData.image} alt={opportunityData.title} />
-        <h2>{opportunityData.title}</h2>
+        <h3>{opportunityData.title}</h3>
+        <h3>{opportunityData.start_date}</h3>
+        <h2>{opportunityData.organisation}</h2>
+        <h3>{opportunityData.is_open}</h3>
         <h2>{opportunityData.website}</h2>
-        <p>{ opportunityData.description.split(" ").splice(0,20).join(" ")}...</p>
+        <h4>{opportunityData.description}</h4>
+        <h4>{opportunityData.apply_by_date}</h4>
+        <h5>{opportunityData.datecreated}</h5>
+        <p>Created by {opportunityData.user}</p>
       </Link>
     </div>
   )
 }
 
 export default OpportunityCard
-
-// Still need to limit listings to the related category and that the listing is open. 

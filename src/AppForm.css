@@ -53,32 +53,21 @@ form input, textarea, #link {
 }
 form button, #link {
   font-family: var(--ff-body);
-  font-weight:var(--fw-bold);
+  text-transform: uppercase;
   outline: 0;
   background: var(--medium);
   width: 100%;
   border: 0;
-  padding:0.6rem;
+  padding: 15px;
   color: white;
-  font-size:var(--fs-body);
+  font-size: 14px;
   -webkit-transition: all 0.3 ease;
   transition: all 0.3 ease;
   cursor: pointer;
-  border-radius: none;
+  border-radius: 10px;
 }
-form button:hover, form button:active, form button:focus {
+form button:hover,.form button:active,.form button:focus {
   background: var(--dark);
-  font-family: var(--ff-body);
-  font-weight:var(--fw-bold);
-  outline: 0;
-  width: 100%;
-  border: 0;
-  padding:0.6rem;
-  color: white;
-  -webkit-transition: all 0.3 ease;
-  transition: all 0.3 ease;
-  cursor: pointer;
-  border-radius: none;
 }
 
 #link:hover, #link:active,#link:focus {
@@ -117,4 +106,3 @@ form a:hover {
     text-decoration: underline;
     
 }
-

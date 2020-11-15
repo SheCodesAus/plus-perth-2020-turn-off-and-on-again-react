@@ -64,9 +64,12 @@ function HomePage({loggedIn}) {
         ]).then(() => setIsLoading(false))
     },[]);
     
+
+        
     if ( isLoading) {
         return  <ReactLoading className = "bubbles" type = { "Bubbles" } color = { "#FE4A49" }/>
     } 
+    console.log(typeList)
 
     return ( 
         <div>
@@ -76,7 +79,7 @@ function HomePage({loggedIn}) {
             <div className="bannerText">
                 {loggedIn?
                 <>
-                    <h2>Does your organisation have an opportunity to share?</h2>
+                    <h2>Do you have an opportunity to share?</h2>
                     <p>You can share a new listing, select an audience, set your requirement and choose your location.</p>
                     <Link to="/opportunities/create">
                         <button>Create a new opportunity</button>
@@ -88,9 +91,8 @@ function HomePage({loggedIn}) {
                 </>}
             </div>
             </div>
-            <div className="category-list">
-                <h1 id="opportunities"> Welcome to TechForMe listings </h1> 
-                <p id="page-blurb">Incentivised learning opportunities to connect providers with women and diverse technology enthusiasts.</p>
+            <div className="mainContent">
+                <h1 id="opportunities"> Welcome to TechForMe listing </h1> 
                 <div className="categoryCards" > 
                     <div >
                         <h2>Find the opportunity just for you</h2>
@@ -105,7 +107,7 @@ function HomePage({loggedIn}) {
                         </div> 
                     </div>
                     <div >
-                        <h2>Are you looking for an an event, a program or an internship?</h2>
+                        <h2>Do you look for an event, a program or an internship?</h2>
                         <div id="opportunity-list" > 
                                 {typeList.map((opportunityData, key) => {
                                     return <CategoryCard 
