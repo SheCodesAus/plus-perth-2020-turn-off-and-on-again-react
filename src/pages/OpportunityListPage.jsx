@@ -10,6 +10,7 @@ function OpportunityListPage() {
         loading: true
     });
     const location = useLocation()
+    const opportunityName = location.search.substr(1).split('=')[1]
 
     // methods: useEffect render when the app render, the bracket while have the condition for the useEffect to rerender when app change
     useEffect(() => {
@@ -26,7 +27,6 @@ function OpportunityListPage() {
         return  <ReactLoading className = "bubbles" type = { "Bubbles" } color = { "#FE4A49" }/>
     }
 
-    // template
     return ( 
         <div>
             <div className="mainContent">
