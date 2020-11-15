@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { useHistory, useParams, Link } from "react-router-dom"
+import { useHistory, useParams } from "react-router-dom"
 import { getStorage, isAuthenticated } from "../Utilities/LocalStorage"
 
 function EditOrganisationForm(props) {
@@ -32,25 +32,21 @@ function EditOrganisationForm(props) {
     }))
   }
 
-  //method
-  const handleChange = (e) => {
-    const { id, value } = e.target
-    setProfile((prevProfile) => ({
-      ...prevProfile,
-      [id]: value,
-    }))
-  }
   const postData = async () => {
     const response = await fetch(
-      `${process.env.REACT_APP_API_URL}organisations/${id}`,
+      `${process.env.REACT_APP_API_URL}organisations/${slug}`,
       {
         method: "put",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Token ${getStorage("token")}`,
         },
-
-        body: JSON.stringify(profile),
+        body: JSON.stringify({
+          organisation: organisationData.organisation,
+          description: organisationData.description,
+          website: organisationData.website,
+          logo: organisationData.logo,
+        }),
       }
     )
     return response.json()
@@ -98,9 +94,15 @@ function EditOrganisationForm(props) {
           />
         </div>
         <div>
-          <label htmlFor="logo">Logo:</label>
-          <img src={profile.logo} alt={`${profile.organisation}`} />
-          <input type="text" id="logo" onChange={handleChange} />
+          <label htmlFor="logo">Upload your logo:</label>
+          <img src={organisationData.logo} alt={`${organisationData.title}`}/>
+          <input
+            type="file"
+            id="logo"
+            placeholder="logo"
+            onChange={handleChange}
+            accept="logo/*"
+          />
         </div>
         <button type="submit" onClick={handleSubmit}>
           Update organisations

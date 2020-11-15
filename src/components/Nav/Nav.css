@@ -61,8 +61,6 @@
     .navbar-links {
       flex-direction: row;
       margin-top:-15px 10px 0;
-      background-color: transparent;
-
     }
     .navbar-home,
     .navbar-link {
