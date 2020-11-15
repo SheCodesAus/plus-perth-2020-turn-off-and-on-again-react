@@ -269,7 +269,7 @@ button, .button-link{
   font-family: var(--ff-body);
   border:none;
   padding:0.5rem;
-  margin:auto;
+  margin:0.1rem;
   font-size:var(--fs-body);
   cursor: pointer;
   font-weight:800;
@@ -282,7 +282,6 @@ button:hover, .button-link:hover{
   font-family: var(--ff-body);
   border:none;
   padding:0.5rem;
-  margin:auto;
   font-size:var(--fs-body);
 }
 
@@ -296,9 +295,10 @@ button:hover, .button-link:hover{
 
 .detail-box {
   align-self: center;
-  width: 550px;
+  max-width: 550px;
+  width: 70vw;
   padding: 4% 0 2%;
-  margin: 35px;
+  margin: 3rem;
   overflow: hidden;
 }
 
