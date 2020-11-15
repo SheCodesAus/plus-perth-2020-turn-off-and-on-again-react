@@ -40,31 +40,41 @@ function OpportunityDetailPage() {
 
   return (
     <div>
-      <img src={opportunityData.image} alt={opportunityData.title}/>
-      <h3>{opportunityData.title}</h3>
-      <h3>{opportunityData.start_date}</h3>
-      <h3>{opportunityData.organisation}</h3>
-      <h3>{opportunityData.website}</h3>
-      <h3>{opportunityData.description}</h3>
-      <h3>{opportunityData.apply_by_date}</h3>
+      <img src={opportunityData.image} alt={opportunityData.title} />
+      <h1>{opportunityData.title}</h1>
+      <h1>{opportunityData.organisation}</h1>
+      <h2>
+        Start Date:{" "}
+        {opportunityData.start_date
+          ? opportunityData.start_date.substr(0, 10)
+          : ""}
+      </h2>
+      <h4>{opportunityData.website}</h4>
+      <h5>{opportunityData.description}</h5>
+      <h3>
+        {" "}
+        Applications close:{" "}
+        {opportunityData.apply_by_date
+          ? opportunityData.apply_by_date.substr(0, 10)
+          : ""}
+      </h3>
       <h3>{opportunityData.datecreated}</h3>
-      <h3>{opportunityData.is_open}</h3>
-      <p>Created by {opportunityData.user}</p>
-      <h4>
+      <h5>Created by {opportunityData.owner}</h5>
+      {/* <h6>
         Created at:{" "}
         {opportunityData.date_created
           ? opportunityData.date_created.substr(0, 10)
           : ""}
-      </h4>
-      <h4>{`Status: ${opportunityData.is_open}`}</h4>
+      </h6> */}
+      {/* <h4>{`Status: ${opportunityData.is_open}`}</h4> */}
 
       <hr />
       <button>
         <Link to={`/opportunities/edit/${id}`}>Edit</Link>
       </button>
-      <button type="delete" onClick={deleteData}>
+      {/* <button type="delete" onClick={deleteData}>
         Delete
-      </button>
+      </button> */}
     </div>
   )
 }
