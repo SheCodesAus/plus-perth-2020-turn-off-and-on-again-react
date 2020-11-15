@@ -29,7 +29,17 @@ function OpportunityListPage() {
 
     // template
 
-    const opportunityName = location.search.substr(1).split('=')[1].replace(/\-/g, ' ')
+    const opportunityName = location.search.substr(1).split('=')[1]
+
+    // .replace(/\-/g, ' ')
+    
+    // function opportunityListH1() {
+    //     let opportunityName = location.search.substr(1).split('=')[1].replace(/\-/g, ' ')
+    //     if location.search =~ /audience/ { 
+    //         return opportunityName
+    //     } else {
+    //         return ''
+    // }
 
     return ( 
         <div>
