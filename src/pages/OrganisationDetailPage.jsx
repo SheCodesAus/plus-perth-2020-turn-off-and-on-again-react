@@ -21,7 +21,7 @@ function OrganisationDetailPage() {
         console.log("hello", data)
         setorganisationData(data)
       })
-  }, [])
+  }, [slug])
     
   //show edit button if the logged in user organisation is the same as the page loaded 
   //or if admin is logged in

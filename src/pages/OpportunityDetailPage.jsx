@@ -6,9 +6,9 @@ function OpportunityDetailPage() {
     loading: true,
   })
   const { id } = useParams()
-
-  const token = window.localStorage.getItem("token")
   const history = useHistory()
+  const token = window.localStorage.getItem("token")
+  
 
   useEffect(() => {
     fetch(`${process.env.REACT_APP_API_URL}listing/${id}`)
@@ -21,7 +21,7 @@ function OpportunityDetailPage() {
   }, [id])
 
   const deleteData = async () => {
-    const response = await fetch(
+    await fetch(
       `${process.env.REACT_APP_API_URL}listing/${id}`,
       {
         method: "delete",

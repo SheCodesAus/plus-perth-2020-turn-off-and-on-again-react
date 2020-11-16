@@ -105,8 +105,11 @@ function PostOpportunityForm() {
     form_data.append('level', credentials.level);
     form_data.append('audience', credentials.audience);
     form_data.append('organisation', credentials.organisation);
+
+    var proxyUrl = 'https://cors-anywhere.herokuapp.com/',
+        targetUrl = `${process.env.REACT_APP_API_URL}listing/`
     const response = await fetch(
-      `${process.env.REACT_APP_API_URL}listing/`,
+      proxyUrl + targetUrl,
       {
         method: "post",
         headers: {
@@ -116,14 +119,15 @@ function PostOpportunityForm() {
       }
     )
     return response.json()
+    
   }
   //methods
 const  handleSubmit = (e) => {
     e.preventDefault();
     postData()
       .then((response) => {
-        // history.push("/")
-        // console.log(response);
+        history.push("/")
+         console.log(response);
     })
     .catch((error) => {
       alert("you have not completed the form")
@@ -151,7 +155,7 @@ const handleCheckbox = (e) => {
   // e.g. name is "paid"
   setCredentials((prevCredentials) => {
     // get the current list - e.g. ["free"]
-    const prevArray = prevCredentials[name] || []
+    let prevArray = prevCredentials[name] || []
     if (checked) {
       // add to the list - e.g. ["free", "paid"]
       prevArray.concat(name)
