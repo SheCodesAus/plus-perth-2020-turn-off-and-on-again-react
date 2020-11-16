@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { useHistory } from "react-router-dom"
 import ReactLoading from "react-loading"
+import Checkbox from "../Checkbox/Checkbox"
 
 
 function PostOpportunityForm() {
@@ -138,7 +139,7 @@ const handleChange = (e) => {
       ...prevCredentials,
       [id]: value,
     }))
-    console.log(e.target)
+    // console.log(e.target)
   }
 const handleChangeImage = (e) => {
   e.persist();
@@ -147,6 +148,26 @@ const handleChangeImage = (e) => {
     image: e.target.files[0],
   }));
 };
+
+const handleCheckbox = (e) => {
+  const { name, checked } = e.target;
+  // e.g. name is "paid"
+  setCredentials((prevCredentials) => {
+    // get the current list - e.g. ["free"]
+    const prevArray = prevCredentials[name] || []
+    if (checked) {
+        // add to the list - e.g. ["free", "paid"]
+        prevArray.concat(name)
+    } else {
+        // remove from the list - e.g. ["free"]
+       prevArray = prevArray.filter(item => item !== name)
+    }
+    return { 
+      ...prevCredentials,
+      [name]: prevArray,
+    }
+  })
+}
         
   if ( isLoading) {
     return  <ReactLoading className = "bubbles" type = { "Bubbles" } color = { "#FE4A49" }/>
@@ -177,13 +198,14 @@ const handleChangeImage = (e) => {
         />
       </div>
       <div>
-        <label htmlFor="start_date">Start Date:</label>
+        <label htmlFor="start_date">This opportunity starts on:</label>
         <input
           type="date"
           id="start_date"
           name="start_date"
           onChange={handleChange}
           value={credentials.start_date}
+          placeholder="Choose a date"
         />
       </div>
       <div>
@@ -199,73 +221,37 @@ const handleChangeImage = (e) => {
       <div>
         <label htmlFor="audiences">Choose an audience:</label>
         <br/>    
-        <div class="checkList">
+        <div className="checkList">
         {audienceList.map((listData, key) => {
-              return (
-                <>
-                <input
-                type="checkbox"
-                key={key} 
-                id={listData.slug}
-                label={listData.slug}
-                value={listData.slug}/>
-                <label htmlFor={listData.slug}>{listData.name}</label>
-              </>)})}
+              return <Checkbox formData={credentials} listData={listData} key={key} handleCheckbox={handleCheckbox}/>})}
         </div>
       </div>
       <div>
         <label htmlFor="locations">Choose a location:</label>
         <br/>    
-        <div class="checkList">
+        <div className="checkList">
         {locationList.map((listData, key) => {
-              return (
-                <>
-                <input
-                type="checkbox"
-                key={key} 
-                id={listData.slug}
-                label={listData.slug}
-                value={listData.slug}/>
-                <label htmlFor={listData.slug}>{listData.name}</label>
-              </>)})}
+          return <Checkbox formData={credentials} listData={listData} key={key} handleCheckbox={handleCheckbox}/>})}
         </div>
       </div>
       <div>
         <label htmlFor="types">Choose a type:</label>
         <br/>    
-        <div class="checkList">
+        <div className="checkList">
         {typeList.map((listData, key) => {
-              return (
-                <>
-                <input
-                type="checkbox"
-                key={key} 
-                id={listData.slug}
-                label={listData.slug}
-                value={listData.slug}/>
-                <label htmlFor={listData.slug}>{listData.name}</label>
-              </>)})}
+          return <Checkbox formData={credentials} listData={listData} key={key} handleCheckbox={handleCheckbox}/>})}
         </div>
       </div>
       <div>
         <label htmlFor="levels">Choose a level:</label>
         <br/>    
-        <div class="checkList">
+        <div className="checkList">
         {levelList.map((listData, key) => {
-              return (
-                <>
-                <input
-                type="checkbox"
-                key={key} 
-                id={listData.slug}
-                label={listData.slug}
-                value={listData.slug}/>
-                <label htmlFor={listData.slug}>{listData.name}</label>
-              </>)})}
+          return <Checkbox formData={credentials} listData={listData} key={key} handleCheckbox={handleCheckbox}/>})}
         </div>
       </div>
       <div>
-        <label htmlFor="website">Website:</label>
+        <label htmlFor="website">Register to this opportunity online:</label>
         <input
           type="text"
           id="website"
@@ -286,22 +272,24 @@ const handleChangeImage = (e) => {
       </div>
       <div>
         <label htmlFor="description">Description:</label>
-        <input
+        <textarea
           type="text"
           id="description"
           placeholder="Description"
           onChange={handleChange}
           value={credentials.description}
+          rows="10"
         />
       </div>
       <div>
-        <label htmlFor="apply_by_date">Apply by Date:</label>
+        <label htmlFor="apply_by_date">Application to validate before:</label>
         <input
           type="date"
           id="apply_by_date"
           name="apply_by_date"
           min="2020-01-01"
           max="2021-12-31"
+          placeholder="Choose a date"
           onChange={handleChange}
           value={credentials.apply_by_date}
         />
