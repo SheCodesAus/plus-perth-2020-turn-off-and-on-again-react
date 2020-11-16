@@ -119,13 +119,11 @@ function PostOpportunityForm() {
   }
   //methods
 const  handleSubmit = (e) => {
-  
     e.preventDefault();
     postData()
       .then((response) => {
         // history.push("/")
         // console.log(response);
-  
     })
     .catch((error) => {
       alert("you have not completed the form")
@@ -139,7 +137,6 @@ const handleChange = (e) => {
       ...prevCredentials,
       [id]: value,
     }))
-    // console.log(e.target)
   }
 const handleChangeImage = (e) => {
   e.persist();
@@ -156,11 +153,11 @@ const handleCheckbox = (e) => {
     // get the current list - e.g. ["free"]
     const prevArray = prevCredentials[name] || []
     if (checked) {
-        // add to the list - e.g. ["free", "paid"]
-        prevArray.concat(name)
+      // add to the list - e.g. ["free", "paid"]
+      prevArray.concat(name)
     } else {
-        // remove from the list - e.g. ["free"]
-       prevArray = prevArray.filter(item => item !== name)
+      // remove from the list - e.g. ["free"]
+      prevArray = prevArray.filter(item => item !== name)
     }
     return { 
       ...prevCredentials,

@@ -1,6 +1,9 @@
 import React from "react"
 
 const Checkbox = ({formData, listData, handleCheckbox}) => {
+    debugger
+    const checked= formData[listData.id].includes(listData.slug)
+
     return(
         <>
         <input
@@ -8,7 +11,7 @@ const Checkbox = ({formData, listData, handleCheckbox}) => {
             key={listData.id} 
             id={listData.slug}
             label={listData.slug}
-            checked={formData[listData.id].includes(listData.slug)}
+            checked={checked}
             onChange={handleCheckbox}/>
         <label htmlFor={listData.slug}>{listData.name}</label>
         </>
