@@ -4,20 +4,20 @@ import { useParams} from "react-router-dom";
 
 
 function EditOrganisationPage() {
-    const [profileData, setProfileData] = useState({ });
-    const { id } = useParams();
+    const [organisationData, setProfileData] = useState({ });
+    const { slug } = useParams();
 
     useEffect(() => {
-        fetch(`${process.env.REACT_APP_API_URL}profile/${id}`)
+        fetch(`${process.env.REACT_APP_API_URL}organisations/${slug}`)
         .then((results) => {
         return results.json();
         })
         .then((data) => {
         setProfileData(data);
         });
-    }, [id]);
+    }, [slug]);
 
-    return <EditOrganisationForm profileData={profileData} />;
+    return <EditOrganisationForm organisationData={organisationData} />;
 }
 
 export default EditOrganisationPage;

@@ -14,6 +14,7 @@ const LogoutButton = ({ setUsername, setOpened, setOrganisation }) => (
     onClick={() => {
         localStorage.removeItem("token")
         localStorage.removeItem("username")
+        localStorage.removeItem("user")
         setUsername(null)
         setOrganisation(null)
         setOpened(false)

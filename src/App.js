@@ -72,7 +72,7 @@ function App() {
           <Route path="/organisations/select" exact>
             <SelectOrganisationPage />
           </Route>
-          <Route path="/organisations/:id" exact>
+          <Route path="/organisations/:slug" exact>
             <OrganisationDetailPage />
           </Route>
           <Route path="/login">
