@@ -41,7 +41,7 @@ function Nav({ loggedIn, setUsername, setOrganisation }) {
     const toggle = () => {
     setOpened(!opened)
 }
-const { buttonProps, itemProps, isOpen } = useDropdownMenu(3);
+const { buttonProps, itemProps, isOpen, setIsOpen } = useDropdownMenu(3);
 const slug = window.localStorage.getItem("organisation")
 
 return (
@@ -69,13 +69,13 @@ return (
 				<span>My Organisation</span>
 				<ChevronDown/></button>
                 <div className={isOpen ? 'visible' : ''} role='menu' id='menu'>
-                    <Link {...itemProps[0]} to={`/organisations/${slug}`} className="navbar-link" onClick={() => setOpened(false)}>
+                    <Link {...itemProps[0]} to={`/organisations/${slug}`} className="navbar-link" onClick={() => {setOpened(false); setIsOpen(false)}}>
                         My Organisation Profile
                     </Link>
-                    <Link {...itemProps[1]} to="/organisations/register" className="navbar-link" onClick={() => setOpened(false)}>
+                    <Link {...itemProps[1]} to="/organisations/register" className="navbar-link" onClick={() => {setOpened(false); setIsOpen(false)}}>
                         Register Organisation
                     </Link>
-                    <Link {...itemProps[1]} to="/opportunities/create" className="navbar-link" onClick={() => setOpened(false)}>
+                    <Link {...itemProps[1]} to="/opportunities/create" className="navbar-link" onClick={() => {setOpened(false); setIsOpen(false)}}>
                         Create a new Opportunity
                     </Link>
                     <LogoutButton setUsername={setUsername} setOpened={setOpened} setOrganisation={setOrganisation}/>

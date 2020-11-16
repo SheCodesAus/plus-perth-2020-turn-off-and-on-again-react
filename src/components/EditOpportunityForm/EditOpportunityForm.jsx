@@ -4,21 +4,27 @@ import { useParams, useHistory, Link } from "react-router-dom"
 function EditOpportunityForm() {
   //variables
   const [opportunityData, setopportunityData] = useState({
-    id: "",
-    title: "",
-    image: "",
-    start_date: "",
-    organisation: "",
-    audience: "",
-    level: "",
-    typeList: "",
-    location: "",
-    website: "",
-    eligibility: "",
-    description: "",
-    apply_by_date: "",
-    date_created: "2020-09-09T20:31:00Z",
-    owner: "",
+    "title": "Test",
+    "description": "Learn the fundamentals of coding while creating a web page with this easy to follow, step by step online course. This course will help you understand the introductory concepts of web development and give some insight into work involved in creating a website.\r\n\r\nYou will work on building your basic page at the end of the course.\r\n\r\nThe videos are short, explaining one concept at a time, making it easy to follow along.\r\n\r\nSo jump right in and get started!",
+    "date_created": "2020-11-04T07:44:53Z",
+    "start_date": "2020-11-04T07:45:53Z",
+    "apply_by_date": "2021-06-30T00:00:00Z",
+    "link": "https://learn.codemasterinstitute.com/course/coding-101-website-development/",
+    "eligibility": "none",
+    "owner": "CodemasterInstitute",
+    "typeList": [
+        "free"
+    ],
+    "location": [
+        "online"
+    ],
+    "level": [
+        "beginner"
+    ],
+    "audience": [
+        "financial-aid"
+    ],
+    "organisation": "Codemaster Institute"
   })
 
   const { id } = useParams()
@@ -39,15 +45,23 @@ function EditOpportunityForm() {
       .then((data) => {
         setopportunityData(data)
       })
-  }, [])
+  }, [id])
 
   const handleChange = (e) => {
+    e.preventDefault()
     const { id, value } = e.target
-    setopportunityData((data) => ({
-      ...data,
+    setopportunityData((prevCredentials) => ({
+      ...prevCredentials,
       [id]: value,
     }))
   }
+const handleChangeImage = (e) => {
+  e.persist();
+  setopportunityData((prevCredentials) => ({
+    ...prevCredentials,
+    image: e.target.files[0],
+  }));
+};
 
   useEffect(() => {
     fetch(`${process.env.REACT_APP_API_URL}audiences/`)
@@ -90,28 +104,29 @@ function EditOpportunityForm() {
   }, [])
 
   const postData = async () => {
+    let form_data = new FormData();
+    form_data.append('image', opportunityData.image);
+    form_data.append('title', opportunityData.title);
+    form_data.append('description', opportunityData.description);
+    form_data.append('date_created', opportunityData.date_created);
+    form_data.append('start_date', opportunityData.start_date);
+    form_data.append('apply_by_date', opportunityData.apply_by_date);
+    form_data.append('link', opportunityData.link);
+    form_data.append('eligibility', opportunityData.eligibility);
+    form_data.append('owner', opportunityData.owner);
+    form_data.append('typeList', opportunityData.typeList);
+    form_data.append('location', opportunityData.location);
+    form_data.append('level', opportunityData.level);
+    form_data.append('audience', opportunityData.audience);
+    form_data.append('organisation', opportunityData.organisation);
     const response = await fetch(
       `${process.env.REACT_APP_API_URL}listing/${id}/`,
       {
         method: "put",
         headers: {
-          "Content-Type": "application/json",
           Authorization: `token ${token}`,
-          "Content-Disposition": `attachment; filename="${opportunityData.image}"`,
         },
-        body: JSON.stringify({
-          title: opportunityData.title,
-          start_date: opportunityData.start_date,
-          audience: opportunityData.audience,
-          level: opportunityData.level,
-          typeList: opportunityData.type,
-          location: opportunityData.location,
-          website: opportunityData.website,
-          description: opportunityData.description,
-          apply_by_date: opportunityData.apply_by_date,
-          image: opportunityData.image,
-          is_open: opportunityData.is_open,
-        }),
+        body: form_data,
       }
     )
     return response.json()
@@ -141,7 +156,7 @@ function EditOpportunityForm() {
           type="file"
           id="image"
           placeholder="Image"
-          onChange={handleChange}
+          onChange={handleChangeImage}
           accept="image/*"
         />
       </div>
@@ -156,7 +171,7 @@ function EditOpportunityForm() {
         />
       </div>
       <div>
-        <label for="start_date">Start Date:</label>
+        <label htmlFor="start_date">Start Date:</label>
         <input
           type="date"
           id="start_date"
@@ -238,7 +253,7 @@ function EditOpportunityForm() {
         />
       </div>
       <div>
-        <label for="apply_by_date">Apply by Date:</label>
+        <label htmlFor="apply_by_date">Apply by Date:</label>
         <input
           type="date"
           id="apply_by_date"
