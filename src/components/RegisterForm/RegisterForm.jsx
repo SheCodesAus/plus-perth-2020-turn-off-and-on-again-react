@@ -56,9 +56,8 @@ function RegisterForm() {
 
 
     const postUser = async() => {
-
-        const response = await fetch
-        (`${process.env.REACT_APP_API_URL}users/`, 
+        try{
+        const response = await fetch(`${process.env.REACT_APP_API_URL}users/`, 
         {
             method: "post",
             headers: {
@@ -67,19 +66,24 @@ function RegisterForm() {
             body: JSON.stringify(credentials),
         }
         );
-        return response.json();
-    }
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // console.log(credentials)
-        if(credentials.username && credentials.email) {
-         postUser().then((request) => {
-                window.localStorage.setItem("username", request.username);
-                history.push("/login");
-            });
+        if ( credentials.username !== "" && credentials.email !== "" && credentials.password !== "" && credentials.organisation !== "" ) {
+            history.push("/login");
+            return response.json();
+        } else {
+            alert("Give us more details, all fields are required :)")
+        }
+        }catch (error) {
+            alert("Network error", error.message)
         }
     }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        // console.log(credentials)
+        await postUser()
+    }
+
 
 
     //template

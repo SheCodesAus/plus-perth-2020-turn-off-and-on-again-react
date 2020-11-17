@@ -10,9 +10,9 @@ function PostOpportunityForm() {
   const [credentials, setCredentials] = useState({
       title: "Test",
       description: "Learn the fundamentals of coding while creating a web page with this easy to follow, step by step online course. This course will help you understand the introductory concepts of web development and give some insight into work involved in creating a website.\r\n\r\nYou will work on building your basic page at the end of the course.\r\n\r\nThe videos are short, explaining one concept at a time, making it easy to follow along.\r\n\r\nSo jump right in and get started!",
-      date_created:(new Date()),
-      start_date: (new Date()),
-      apply_by_date: (new Date()),
+      date_created: "2020-11-04T07:56:43Z",
+      start_date: "2020-11-04T07:56:43Z",
+      apply_by_date: "2020-11-04T07:56:43Z",
       link: "https://learn.codemasterinstitute.com/course/coding-101-website-development/",
       eligibility: "",
       owner: "",
@@ -20,7 +20,7 @@ function PostOpportunityForm() {
           "free"
       ],
       location: [
-          "online", "perth"
+          "online"
       ],
       level: [
           "beginner"
@@ -121,7 +121,7 @@ function PostOpportunityForm() {
     return response.json()
   }
   //methods
-const  handleSubmit = (e) => {
+const handleSubmit = (e) => {
     e.preventDefault();
     postData()
       .then((response) => {

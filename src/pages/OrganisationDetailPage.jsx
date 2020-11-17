@@ -12,13 +12,13 @@ function OrganisationDetailPage() {
   
 
   useEffect(() => {
-    console.log("slug", slug)
+    // console.log("slug", slug)
     fetch(`${process.env.REACT_APP_API_URL}organisations/${slug}`)
       .then((results) => {
         return results.json()
       })
       .then((data) => {
-        console.log("hello", data)
+        // console.log("hello", data)
         setorganisationData(data)
       })
   }, [slug])

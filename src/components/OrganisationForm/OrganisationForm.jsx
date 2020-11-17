@@ -4,61 +4,64 @@ import { getStorage, isAuthenticated } from "../Utilities/LocalStorage"
 
 function OrganisationForm() {
     //variables 
-    const [organisation, setOrganisation] = useState({
-        organisation: "",
-        description: "",
-        website: "",
-        logo: ""
-    });
+    const [organisation, setOrganisation] = useState({});
     const history = useHistory();
-  
+    const token = window.localStorage.getItem("token")
 
-    //method
-    const handleChange = (e) => {
-        const {id, value} = e.target;
-        setOrganisation((prevOrganisation) => ({
-            ...prevOrganisation,
-            [id]: value,
-        }))
-    }
     const postData = async() => {
+        try{
+            let form_data = new FormData();
+            form_data.append('logo', organisation.logo);
+            form_data.append('description', organisation.description);
+            form_data.append('website', organisation.website);
+            form_data.append('organisation', organisation.organisation);
         const response = await fetch
-        (`${process.env.REACT_APP_API_URL}organisations/`, 
-        {
-            method: "post",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Token ${getStorage("token")}`
-            },
-            body: JSON.stringify(organisation),
-        }
-        );
-        return response.json();
-    }
-
-    const handleSubmit = (e) => {
-        console.log(organisation)
-        e.preventDefault();
-        console.log("token");
-
-
-        if(organisation.organisation && 
-            organisation.description && 
-            organisation.website && 
-            organisation.logo) {
-         postData().then((response) => {
-            if (isAuthenticated()){
-                history.push("/");
+            (`${process.env.REACT_APP_API_URL}organisations/`, 
+            {
+                method: "post",
+                headers: {
+                    Authorization: `token ${token}`,
+                },
+                body: form_data,
             }
-            });
+            );
+            const data = await response.json() 
+        if ( organisation.organisation && organisation.description  && organisation.website  && organisation.logo !== undefined ) {
+            history.push("/");
+            return data
+        } else {
+            alert("Give us more details, all fields are required :)")
         }
+    }catch (error) {
+        alert("Network error", error.message)
     }
+}
 
+const handleSubmit = async (e) => {
+    e.preventDefault()
+    // console.log(credentials)
+    await postData(token)
+}
+//method
+const handleChange = (e) => {
+    const {id, value} = e.target;
+    setOrganisation((prevOrganisation) => ({
+        ...prevOrganisation,
+        [id]: value,
+    }))
+}
+const handleChangeImage = (e) => {
+    e.persist();
+    setOrganisation((prevOrganisation) => ({
+        ...prevOrganisation,
+        logo: e.target.files[0],
+    }));
+};
 
     //template
     return (
         <div className="medium-form">
-            <form>
+            <form >
                 <div>
                     <label htmlFor="organisation">Organisation:</label>
                     <input 
@@ -74,6 +77,7 @@ function OrganisationForm() {
                         type="text" 
                         id="description" placeholder="Enter short description" 
                         onChange={handleChange}
+                        rows="4"
                     />
                 </div>
                 <div>
@@ -86,10 +90,12 @@ function OrganisationForm() {
                 </div>
                 <div>
                     <label htmlFor="logo">Logo:</label>
-                    <input 
-                        type="text" 
-                        id="logo" placeholder="Enter a URL to an logo to use as thumbnail" 
-                        onChange={handleChange}
+                    <input
+                        type="file"
+                        id="logo"
+                        placeholder="Logo"
+                        onChange={handleChangeImage}
+                        accept="image/*"
                     />
                 </div>
 
