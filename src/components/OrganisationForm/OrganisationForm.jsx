@@ -41,7 +41,7 @@ function OrganisationForm() {
             }
             );
             window.localStorage.setItem("organisation", data.organisation)
-        if ( organisation.organisation && organisation.description  && organisation.website  && organisation.logo !== undefined ) {
+        if ( organisation.organisation !== undefined && organisation.description !== undefined  && organisation.website !== undefined  && organisation.logo !== undefined ) {
             
             history.push("/");
             return data

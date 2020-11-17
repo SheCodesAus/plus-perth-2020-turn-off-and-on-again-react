@@ -1,33 +1,24 @@
 import React, { useState, useEffect } from "react"
 import { useParams, useHistory} from "react-router-dom"
+import ReactLoading from "react-loading"
+import Checkbox from "../Checkbox/Checkbox"
 
 function EditOpportunityForm() {
   //variables
 
-  const [opportunityData, setopportunityData] = useState({
-    title: "",
-    image: "",
-    description: "",
-    start_date: "",
-    apply_by_date: "",
-    link: "",
-    eligibility: "",
-    owner: "",
-    typeList: [],
-    location: [],
-    level: [],
-    audience: [],
-    organisation: ""
-  })
-
-  const { id } = useParams()
-  const [ , setaudienceData] = useState([])
-  const [ , setlevelData] = useState([])
-  const [ , settypeListData] = useState([])
-  const [ , setlocationData] = useState([])
+  const today = new Date()
+  const todayDate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+  const [opportunityData, setopportunityData] = useState({date_created: todayDate})
 
   const history = useHistory()
   const token = window.localStorage.getItem("token")
+  const { id } = useParams()
+  const [typeList, setTypeList] = useState([])
+  const [locationList, setLocationList] = useState([])
+  const [audienceList, setAudienceList] = useState([])
+  const [levelList, setLevelList] = useState([])
+  const [isLoading, setIsLoading] = useState (true)
+  const [hasError, setErrors] = useState(false)
 
   //methods
   useEffect(() => {
@@ -39,191 +30,194 @@ function EditOpportunityForm() {
         setopportunityData(data)
       })
   }, [id])
-
-  const handleChange = (e) => {
-    e.preventDefault()
-    const { id, value } = e.target
-    setopportunityData((prevCredentials) => ({
-      ...prevCredentials,
-      [id]: value,
-    }))
-  }
-const handleChangeImage = (e) => {
-  e.persist();
-  setopportunityData((prevCredentials) => ({
-    ...prevCredentials,
-    image: e.target.files[0],
-  }));
-};
-
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}audiences/`)
-      .then((results) => {
-        return results.json()
-      })
-      .then((data) => {
-        setaudienceData(data)
-      })
-  }, [])
+    async function fetchTypes() {
+        try {
+            const r = await fetch(`${process.env.REACT_APP_API_URL}types/`);
+            const type = await r.json()
+            setTypeList(type)
+        } catch (error) {
+            setErrors(error)
+        }
+    }
+    async function fetchLocations() {
+        try {
+            const r = await fetch(`${process.env.REACT_APP_API_URL}locations/`);
+            const locations = await r.json()
+            setLocationList(locations)
+        } catch (error) {
+            setErrors(error)
+        }
+    }
+    async function fetchAudiences() {
+        try {
+            const r = await fetch(`${process.env.REACT_APP_API_URL}audiences/`);
+            const audiences = await r.json()
+            setAudienceList(audiences)
+        } catch (error) {
+            setErrors(error)
+        }
+    }
+    async function fetchLevels() {
+    try {
+        const r = await fetch(`${process.env.REACT_APP_API_URL}levels/`);
+        const levels = await r.json()
+        setLevelList(levels)
+    } catch (error) {
+        setErrors(error)
+    }
+    }
+    // Promise allows to run multiple functions in parallel
+    Promise.all([
+        fetchTypes(),
+        fetchLocations(),
+        fetchAudiences(),
+        fetchLevels()
+    ]).then(() => setIsLoading(false))
+},[]);
 
-  useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}levels/`)
-      .then((results) => {
-        return results.json()
-      })
-      .then((data) => {
-        setlevelData(data)
-      })
-  }, [])
+    const postData = async () => {
+    let form_data = new FormData();
+    form_data.append('title', opportunityData.title);
+    form_data.append('description', opportunityData.description);
+    form_data.append('start_date', opportunityData.start_date);
+    form_data.append('apply_by_date', opportunityData.apply_by_date);
+    form_data.append('link', opportunityData.link);
+    form_data.append('eligibility', opportunityData.eligibility);
+    opportunityData.typeList.forEach(t => form_data.append('typeList', t))
+    opportunityData.location.forEach(t => form_data.append('location', t))
+    opportunityData.level.forEach(t => form_data.append('level', t))
+    opportunityData.audience.forEach(t => form_data.append('audience', t))
 
-  useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}types/`)
-      .then((results) => {
-        return results.json()
-      })
-      .then((data) => {
-        settypeListData(data)
-      })
-  }, [])
-
-  useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}locations/`)
-      .then((results) => {
-        return results.json()
-      })
-      .then((data) => {
-        setlocationData(data)
-      })
-  }, [])
-
-  const postData = async () => {
-
-    var targetUrl = `${process.env.REACT_APP_API_URL}listing/${id}`,
-        proxyUrl = 'https://cors-anywhere.herokuapp.com/'
-    
     const response = await fetch(
-      (proxyUrl + targetUrl),
+      `${process.env.REACT_APP_API_URL}listing/${id}`,
       {
         method: "put",
         headers: {
           Authorization: `token ${token}`,
         },
-        body: JSON.stringify({
-          image: opportunityData.image,
-          title: opportunityData.title,
-          description: opportunityData.description,
-          date_created: opportunityData.date_created,
-          start_date: opportunityData.start_date,
-          apply_by_date: opportunityData.apply_by_date,
-          link: opportunityData.link,
-          eligibility: opportunityData.eligibility,
-          owner: opportunityData.owner,
-          typeList: opportunityData.typeList,
-          location: opportunityData.location,
-          level: opportunityData.level,
-          audience: opportunityData.audience,
-          organisation: opportunityData.organisation
-        }),
+        body: form_data,
       }
     )
     return response.json()
-  }
-
-  const handleSubmit = (e) => {
-    
-    e.preventDefault()
-    if (true) {
-      postData()
-        .then((response) => {
-          history.push(`/opportunities/${id}`)
-          // console.log(response);
-        })
-        .catch((error) => {
-          alert("There is an error in your request")
-        })
     }
-  }
+    //methods
+    const handleSubmit = (e) => {
+    e.preventDefault();
+    postData()
+      .then((response) => {
+        history.push(`/listing/${id}`)
+    })
+    .catch((error) => {
+      alert("you have not completed the form")
+    })
 
+    };
+
+    const handleChange = (e) => {
+    const { id, value } = e.target
+    setopportunityData((prevopportunityData) => ({
+      ...prevopportunityData,
+      [id]: value,
+    }))
+    }
+    // const handleChangeImage = (e) => {
+    // e.persist();
+    // setopportunityData((prevopportunityData) => ({
+    // ...prevopportunityData,
+    // image: e.target.files[0],
+    // }));
+    // };
+
+    const handleCheckbox = ({name, stateKey, checked}) => {
+    let nextValue = [...opportunityData[stateKey]]
+    if (checked){
+    nextValue.push(name) 
+    } else {
+    nextValue = nextValue.filter(item => item !== name)
+    }
+    setopportunityData({
+    ...opportunityData, 
+    [stateKey]: nextValue
+    })
+  }
+  if ( isLoading) {
+    return  <ReactLoading className = "bubbles" type = { "Bubbles" } color = { "#FE4A49" }/>
+} 
   //template
   return (
-    <div className="medium-form">
-    <form >
-        <div>
-          <label htmlFor="image">Upload your image:</label>
-          <img src={opportunityData.image} alt={`${opportunityData.title}`}/>
-          <input
-            type="file"
-            id="image"
-            placeholder="image"
-            onChange={handleChangeImage}
-            accept="image/*"
-          />
-        </div>
-      <div>
-        <label htmlFor="title">Title:</label>
+
+    <form>
+    {hasError? <span>Has error: {JSON.stringify(hasError)}</span> : null }
+      <div className="medium-form">
+        <label htmlFor="title">Change the Title:</label>
         <input
           type="text"
           id="title"
-          placeholder="Edit Opportunity Title"
-          value={opportunityData.title}
+          placeholder="Enter Opportunity Title"
           onChange={handleChange}
+          value={opportunityData.title}
         />
       </div>
+      {/* <div>
+        <img src={opportunityData.image} alt={`${opportunityData.title}`}/>
+          <label htmlFor="image">Upload a new image:</label>        <input
+          type="file"
+          id="image"
+          placeholder="Image"
+          onChange={handleChangeImage}
+          accept="image/*"
+        />
+      </div> */}
       <div>
-        <label htmlFor="start_date">Start Date:</label>
+        <label htmlFor="start_date">This opportunity starts on:</label>
         <input
           type="date"
           id="start_date"
           name="start_date"
-          min="2020-01-01"
-          max="2021-12-31"
-          value={opportunityData.start_date.substr(0, 10)}
           onChange={handleChange}
+          value={opportunityData.start_date}
+          placeholder="Choose a date"
         />
       </div>
       <div>
-        <label htmlFor="audience">Audience:</label>
-        <input
-          type="checkbox"
-          id="audience"
-          value={opportunityData.audience}
-          onChange={handleChange}
-
-        />
+        <label htmlFor="audiences">Update an audience:</label>
+        <br/>    
+        <div className="checkList">
+        {audienceList.map((listData, key) => {
+              return <Checkbox formData={opportunityData} formKey={"audience"} listData={listData} key={key} handleCheckbox={handleCheckbox}/>})}
+        </div>
       </div>
       <div>
-        <label htmlFor="level">Level:</label>
-        <input
-          type="checkbox"
-          id="level"
-          onChange={handleChange}
-          value={opportunityData.level}
-        />
+        <label htmlFor="locations">Update a location:</label>
+        <br/>    
+        <div className="checkList">
+        {locationList.map((listData, key) => {
+          return <Checkbox formData={opportunityData} formKey={"location"} listData={listData} key={key} handleCheckbox={handleCheckbox}/>})}
+        </div>
       </div>
       <div>
-        <label htmlFor="typeList">Type:</label>
-        <input
-          type="checkbox"
-          id="typeList"
-          onChange={handleChange}
-          value={opportunityData.typeList}
-        />
+        <label htmlFor="types">Update a type:</label>
+        <br/>    
+        <div className="checkList">
+        {typeList.map((listData, key) => {
+          return <Checkbox formData={opportunityData} formKey={"typeList"} listData={listData} key={key} handleCheckbox={handleCheckbox}/>})}
+        </div>
       </div>
       <div>
-        <label htmlFor="location">Location:</label>
-        <input
-          type="checkbox"
-          id="location"
-          onChange={handleChange}
-          value={opportunityData.location}
-        />
+        <label htmlFor="levels">Update a level:</label>
+        <br/>    
+        <div className="checkList">
+        {levelList.map((listData, key) => {
+          return <Checkbox formData={opportunityData} formKey={"level"} listData={listData} key={key} handleCheckbox={handleCheckbox}/>})}
+        </div>
       </div>
       <div>
-        <label htmlFor="link">Website:</label>
+        <label htmlFor="weblink">Update the link to this opportunity:</label>
         <input
-          type="text"
-          id="link"
-          placeholder="Edit opportunity link"
+          type="url"
+          id="weblink"
+          placeholder="Enter website link"
           onChange={handleChange}
           value={opportunityData.link}
         />
@@ -233,39 +227,40 @@ const handleChangeImage = (e) => {
         <input
           type="text"
           id="eligibility"
-          placeholder="Edit eligibility requirements"
+          placeholder="Enter eligibility requirements"
           onChange={handleChange}
           value={opportunityData.eligibility}
         />
       </div>
       <div>
         <label htmlFor="description">Description:</label>
-        <input
+        <textarea
           type="text"
           id="description"
-          placeholder="Edit description"
-          value={opportunityData.description}
+          placeholder="Description"
           onChange={handleChange}
+          value={opportunityData.description}
+          rows="10"
         />
       </div>
       <div>
-        <label htmlFor="apply_by_date">Apply by Date:</label>
+        <label htmlFor="apply_by_date">Application to validate before:</label>
         <input
           type="date"
           id="apply_by_date"
           name="apply_by_date"
           min="2020-01-01"
           max="2021-12-31"
-          value={opportunityData.apply_by_date.substr(0, 10)}
+          placeholder="Choose a date"
           onChange={handleChange}
+          value={opportunityData.apply_by_date}
         />
       </div>
 
       <button type="submit" onClick={handleSubmit}>
-        Save
+        Update this Opportunity
       </button>
     </form>
-    </div>
   )
 }
 

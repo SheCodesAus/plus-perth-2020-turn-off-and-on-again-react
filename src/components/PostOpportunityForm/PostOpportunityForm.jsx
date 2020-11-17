@@ -5,31 +5,24 @@ import Checkbox from "../Checkbox/Checkbox"
 
 
 function PostOpportunityForm() {
+  const organisation = window.localStorage.getItem("organisation")
+  console.log(organisation)
   const today = new Date()
   const todayDate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
   //variables
   const [credentials, setCredentials] = useState({
-      title: "Test",
-      description: "Learn the fundamentals of coding while creating a web page with this easy to follow, step by step online course. This course will help you understand the introductory concepts of web development and give some insight into work involved in creating a website.\r\n\r\nYou will work on building your basic page at the end of the course.\r\n\r\nThe videos are short, explaining one concept at a time, making it easy to follow along.\r\n\r\nSo jump right in and get started!",
+      title: "",
+      description: "",
       date_created: todayDate,
-      start_date: "2020-11-04T07:56:43Z",
-      apply_by_date: "2020-11-04T07:56:43Z",
-      link: "https://learn.codemasterinstitute.com/course/coding-101-website-development/",
-      eligibility: "none",
-      owner: "",
-      typeList: [
-        
-      ],
-      location: [
-          
-      ],
-      level: [
-          
-      ],
-      audience: [
-
-      ],
-      organisation: "Codemaster Institute",
+      start_date: "",
+      apply_by_date: "",
+      eligibility: "",
+      link: "https://your-website.com",
+      typeList: [],
+      location: [],
+      level: [],
+      audience: [],
+      organisation: organisation
   })
 
   const history = useHistory()
@@ -99,15 +92,13 @@ function PostOpportunityForm() {
     form_data.append('apply_by_date', credentials.apply_by_date);
     form_data.append('link', credentials.link);
     form_data.append('eligibility', credentials.eligibility);
-    form_data.append('owner', credentials.owner);
-    form_data.append('typeList', credentials.typeList);
-    form_data.append('location', credentials.location);
-    form_data.append('level', credentials.level);
-    form_data.append('audience', credentials.audience);
+    // form_data.append('owner', credentials.owner);
+    credentials.typeList.forEach(t => form_data.append('typeList', t))
+    credentials.location.forEach(t => form_data.append('location', t))
+    credentials.level.forEach(t => form_data.append('level', t))
+    credentials.audience.forEach(t => form_data.append('audience', t))
     form_data.append('organisation', credentials.organisation);
 
-    // var proxyUrl = 'https://cors-anywhere.herokuapp.com/',
-    //     targetUrl = `${process.env.REACT_APP_API_URL}listing/`
     const response = await fetch(
       `${process.env.REACT_APP_API_URL}listing/`,
       {
@@ -125,7 +116,7 @@ const handleSubmit = (e) => {
     e.preventDefault();
     postData()
       .then((response) => {
-        // history.push("/")
+        history.push("/")
         //  console.log(response);
     })
     .catch((error) => {
@@ -161,22 +152,6 @@ const handleCheckbox = ({name, stateKey, checked}) => {
     ...credentials, 
     [stateKey]: nextValue
   })
-  // e.g. name is "paid"
-  // setCredentials((prevCredentials) => {
-  //   // get the current list - e.g. ["free"]
-  //   const prevArray = prevCredentials[name] || []
-  //   if (checked) {
-  //     // add to the list - e.g. ["free", "paid"]
-  //     prevArray.concat(name)
-  //   } else {
-  //     // remove from the list - e.g. ["free"]
-  //     prevArray = prevArray.filter(item => item !== name)
-  //   }
-  //   return { 
-  //     ...prevCredentials,
-  //     [name]: prevArray,
-  //   }
-  // })
 }
         
   if ( isLoading) {
@@ -186,8 +161,7 @@ const handleCheckbox = ({name, stateKey, checked}) => {
   return (
     <form>
     {hasError? <span>Has error: {JSON.stringify(hasError)}</span> : null }
-      
-      <div>
+      <div className="medium-form">
         <label htmlFor="title">Title:</label>
         <input
           type="text"
@@ -216,16 +190,6 @@ const handleCheckbox = ({name, stateKey, checked}) => {
           onChange={handleChange}
           value={credentials.start_date}
           placeholder="Choose a date"
-        />
-      </div>
-      <div>
-        <label htmlFor="organisation">Organisation:</label>
-        <input
-          type="text"
-          id="organisation"
-          placeholder="Enter Organisation Name"
-          onChange={handleChange}
-          value={credentials.organisation}
         />
       </div>
       <div>
@@ -263,7 +227,7 @@ const handleCheckbox = ({name, stateKey, checked}) => {
       <div>
         <label htmlFor="weblink">Register to this opportunity online:</label>
         <input
-          type="url"
+          type="text"
           id="weblink"
           placeholder="Enter website link"
           onChange={handleChange}
@@ -306,7 +270,7 @@ const handleCheckbox = ({name, stateKey, checked}) => {
       </div>
 
       <button type="submit" onClick={handleSubmit}>
-        Create Opportunity
+        Create an Opportunity
       </button>
     </form>
   )
