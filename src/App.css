@@ -316,7 +316,9 @@ button:hover, .button-link:hover{
   width: 100%;
   object-fit: contain;
 }
-
+#not-in-the-list{
+  display: none;
+}
 /* Page Formatting */
 
 #page-blurb{
