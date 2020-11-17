@@ -56,14 +56,16 @@ const handleSubmit = (e) => {
         organisation.organisation && organisation.description  && organisation.website  && organisation.logo
     ) {
         console.log("All data is there...");
-    postData().then((response => {
+    postData().then((response) => {
         history.push("/");
-    })) 
+    }) 
 } else {
     console.log("Not all data there");
     alert("Please fill out all fields");
 }
 }
+
+
 //method
 const handleChange = (e) => {
     const {id, value} = e.target;

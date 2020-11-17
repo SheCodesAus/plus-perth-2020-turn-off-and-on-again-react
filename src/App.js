@@ -34,6 +34,8 @@ const organisationSlug = window.localStorage.getItem("organisation")
 function App() {
   const [username, setUsername] = useState(savedUsername)
   const [setOrganisation] = useState(savedOrganisation)
+
+  console.log("org", organisationSlug)
   //check with !== null whether username is strictly not null,
   //so if username is undefined or an empty string then it’ll be true
   const loggedIn = username !== null
