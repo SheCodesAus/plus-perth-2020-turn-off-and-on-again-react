@@ -159,6 +159,7 @@ const handleCheckbox = ({name, stateKey, checked}) => {
 } 
   //template
   return (
+    <div className="wide-form">
     <form>
     {hasError? <span>Has error: {JSON.stringify(hasError)}</span> : null }
       <div className="medium-form">
@@ -196,32 +197,36 @@ const handleCheckbox = ({name, stateKey, checked}) => {
         <label htmlFor="audiences">Choose an audience:</label>
         <br/>    
         <div className="checkList">
-        {audienceList.map((listData, key) => {
+        <span>{audienceList.map((listData, key) => {
               return <Checkbox formData={credentials} formKey={"audience"} listData={listData} key={key} handleCheckbox={handleCheckbox}/>})}
+        </span>
         </div>
       </div>
       <div>
         <label htmlFor="locations">Choose a location:</label>
         <br/>    
         <div className="checkList">
-        {locationList.map((listData, key) => {
+        <span>{locationList.map((listData, key) => {
           return <Checkbox formData={credentials} formKey={"location"} listData={listData} key={key} handleCheckbox={handleCheckbox}/>})}
+        </span>
         </div>
       </div>
       <div>
         <label htmlFor="types">Choose a type:</label>
         <br/>    
         <div className="checkList">
-        {typeList.map((listData, key) => {
+        <span>{typeList.map((listData, key) => {
           return <Checkbox formData={credentials} formKey={"typeList"} listData={listData} key={key} handleCheckbox={handleCheckbox}/>})}
+        </span>
         </div>
       </div>
       <div>
         <label htmlFor="levels">Choose a level:</label>
         <br/>    
         <div className="checkList">
-        {levelList.map((listData, key) => {
+        <span>{levelList.map((listData, key) => {
           return <Checkbox formData={credentials} formKey={"level"} listData={listData} key={key} handleCheckbox={handleCheckbox}/>})}
+        </span>
         </div>
       </div>
       <div>
@@ -273,6 +278,7 @@ const handleCheckbox = ({name, stateKey, checked}) => {
         Create an Opportunity
       </button>
     </form>
+    </div>
   )
 }
 
