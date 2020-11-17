@@ -1,31 +1,30 @@
 import React, { useState, useEffect } from "react"
-import { useParams, useHistory, Link } from "react-router-dom"
+import { useParams, useHistory} from "react-router-dom"
 
 function EditOpportunityForm() {
   //variables
+
   const [opportunityData, setopportunityData] = useState({
-    id: "",
     title: "",
     image: "",
-    start_date: "",
-    organisation: "",
-    audience: "",
-    level: "",
-    typeList: "",
-    location: "",
-    website: "",
-    eligibility: "",
     description: "",
+    start_date: "",
     apply_by_date: "",
-    date_created: "2020-09-09T20:31:00Z",
+    link: "",
+    eligibility: "",
     owner: "",
+    typeList: [],
+    location: [],
+    level: [],
+    audience: [],
+    organisation: ""
   })
 
   const { id } = useParams()
-  const [audienceData, setaudienceData] = useState([])
-  const [levelData, setlevelData] = useState([])
-  const [typeListData, settypeListData] = useState([])
-  const [locationData, setlocationData] = useState([])
+  const [ , setaudienceData] = useState([])
+  const [ , setlevelData] = useState([])
+  const [ , settypeListData] = useState([])
+  const [ , setlocationData] = useState([])
 
   const history = useHistory()
   const token = window.localStorage.getItem("token")
@@ -39,15 +38,23 @@ function EditOpportunityForm() {
       .then((data) => {
         setopportunityData(data)
       })
-  }, [])
+  }, [id])
 
   const handleChange = (e) => {
+    e.preventDefault()
     const { id, value } = e.target
-    setopportunityData((data) => ({
-      ...data,
+    setopportunityData((prevCredentials) => ({
+      ...prevCredentials,
       [id]: value,
     }))
   }
+const handleChangeImage = (e) => {
+  e.persist();
+  setopportunityData((prevCredentials) => ({
+    ...prevCredentials,
+    image: e.target.files[0],
+  }));
+};
 
   useEffect(() => {
     fetch(`${process.env.REACT_APP_API_URL}audiences/`)
@@ -90,27 +97,32 @@ function EditOpportunityForm() {
   }, [])
 
   const postData = async () => {
+
+    var targetUrl = `${process.env.REACT_APP_API_URL}listing/${id}`,
+        proxyUrl = 'https://cors-anywhere.herokuapp.com/'
+    
     const response = await fetch(
-      `${process.env.REACT_APP_API_URL}listing/${id}/`,
+      (proxyUrl + targetUrl),
       {
         method: "put",
         headers: {
-          "Content-Type": "application/json",
           Authorization: `token ${token}`,
-          "Content-Disposition": `attachment; filename="${opportunityData.image}"`,
         },
         body: JSON.stringify({
-          title: opportunityData.title,
-          start_date: opportunityData.start_date,
-          audience: opportunityData.audience,
-          level: opportunityData.level,
-          typeList: opportunityData.type,
-          location: opportunityData.location,
-          website: opportunityData.website,
-          description: opportunityData.description,
-          apply_by_date: opportunityData.apply_by_date,
           image: opportunityData.image,
-          is_open: opportunityData.is_open,
+          title: opportunityData.title,
+          description: opportunityData.description,
+          date_created: opportunityData.date_created,
+          start_date: opportunityData.start_date,
+          apply_by_date: opportunityData.apply_by_date,
+          link: opportunityData.link,
+          eligibility: opportunityData.eligibility,
+          owner: opportunityData.owner,
+          typeList: opportunityData.typeList,
+          location: opportunityData.location,
+          level: opportunityData.level,
+          audience: opportunityData.audience,
+          organisation: opportunityData.organisation
         }),
       }
     )
@@ -118,6 +130,7 @@ function EditOpportunityForm() {
   }
 
   const handleSubmit = (e) => {
+    
     e.preventDefault()
     if (true) {
       postData()
@@ -133,38 +146,39 @@ function EditOpportunityForm() {
 
   //template
   return (
-    <form className="medium-form">
-      <div>
-        <label htmlFor="image">Upload your image:</label>
-        <img src={opportunityData.image} alt={`${opportunityData.title}`} />
-        <input
-          type="file"
-          id="image"
-          placeholder="Image"
-          onChange={handleChange}
-          accept="image/*"
-        />
-      </div>
+    <div className="medium-form">
+    <form >
+        <div>
+          <label htmlFor="image">Upload your image:</label>
+          <img src={opportunityData.image} alt={`${opportunityData.title}`}/>
+          <input
+            type="file"
+            id="image"
+            placeholder="image"
+            onChange={handleChangeImage}
+            accept="image/*"
+          />
+        </div>
       <div>
         <label htmlFor="title">Title:</label>
         <input
           type="text"
           id="title"
           placeholder="Edit Opportunity Title"
-          onChange={handleChange}
           value={opportunityData.title}
+          onChange={handleChange}
         />
       </div>
       <div>
-        <label for="start_date">Start Date:</label>
+        <label htmlFor="start_date">Start Date:</label>
         <input
           type="date"
           id="start_date"
           name="start_date"
           min="2020-01-01"
           max="2021-12-31"
+          value={opportunityData.start_date.substr(0, 10)}
           onChange={handleChange}
-          value={opportunityData.start_date}
         />
       </div>
       <div>
@@ -172,9 +186,9 @@ function EditOpportunityForm() {
         <input
           type="checkbox"
           id="audience"
-          placeholder="is_open"
+          value={opportunityData.audience}
           onChange={handleChange}
-          value={opportunityData.is_open}
+
         />
       </div>
       <div>
@@ -182,9 +196,8 @@ function EditOpportunityForm() {
         <input
           type="checkbox"
           id="level"
-          placeholder="is_open"
           onChange={handleChange}
-          value={opportunityData.is_open}
+          value={opportunityData.level}
         />
       </div>
       <div>
@@ -192,9 +205,8 @@ function EditOpportunityForm() {
         <input
           type="checkbox"
           id="typeList"
-          placeholder="is_open"
           onChange={handleChange}
-          value={opportunityData.is_open}
+          value={opportunityData.typeList}
         />
       </div>
       <div>
@@ -202,19 +214,18 @@ function EditOpportunityForm() {
         <input
           type="checkbox"
           id="location"
-          placeholder="is_open"
           onChange={handleChange}
           value={opportunityData.location}
         />
       </div>
       <div>
-        <label htmlFor="website">Website:</label>
+        <label htmlFor="link">Website:</label>
         <input
           type="text"
-          id="website"
-          placeholder="Edit website link"
+          id="link"
+          placeholder="Edit opportunity link"
           onChange={handleChange}
-          value={opportunityData.website}
+          value={opportunityData.link}
         />
       </div>
       <div>
@@ -233,20 +244,20 @@ function EditOpportunityForm() {
           type="text"
           id="description"
           placeholder="Edit description"
-          onChange={handleChange}
           value={opportunityData.description}
+          onChange={handleChange}
         />
       </div>
       <div>
-        <label for="apply_by_date">Apply by Date:</label>
+        <label htmlFor="apply_by_date">Apply by Date:</label>
         <input
           type="date"
           id="apply_by_date"
           name="apply_by_date"
           min="2020-01-01"
           max="2021-12-31"
+          value={opportunityData.apply_by_date.substr(0, 10)}
           onChange={handleChange}
-          value={opportunityData.apply_by_date}
         />
       </div>
 
@@ -254,6 +265,7 @@ function EditOpportunityForm() {
         Save
       </button>
     </form>
+    </div>
   )
 }
 

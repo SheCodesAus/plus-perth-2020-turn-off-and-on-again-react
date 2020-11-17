@@ -88,7 +88,7 @@ function HomePage({loggedIn}) {
                 </>}
             </div>
             </div>
-            <div className="category-list">
+            <div className="mainContent">
                 <h1 id="opportunities"> Welcome to TechForMe listings </h1> 
                 <p id="page-blurb">Incentivised learning opportunities to connect providers with women and diverse technology enthusiasts.</p>
                 <div className="categoryCards" > 

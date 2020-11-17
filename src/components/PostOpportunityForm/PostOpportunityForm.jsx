@@ -1,25 +1,35 @@
 import React, { useState, useEffect } from "react"
 import { useHistory } from "react-router-dom"
 import ReactLoading from "react-loading"
+import Checkbox from "../Checkbox/Checkbox"
 
 
 function PostOpportunityForm() {
+  const today = new Date()
+  const todayDate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
   //variables
   const [credentials, setCredentials] = useState({
-    title: "test",
-    image: "test",
-    start_date: "test",
-    organisation: "shecodes",
-    audience: ["women"],
-    level: ["beginner"],
-    typeList: ["free"],
-    location: ["perth"],
-    website: "https://shecodes.com",
-    eligibility: "none",
-    description: "none",
-    apply_by_date: "2020-09-09T20:31:00Z",
-    date_created: "2020-09-09T20:31:00Z",
-    owner: "aws",
+      title: "Test",
+      description: "Learn the fundamentals of coding while creating a web page with this easy to follow, step by step online course. This course will help you understand the introductory concepts of web development and give some insight into work involved in creating a website.\r\n\r\nYou will work on building your basic page at the end of the course.\r\n\r\nThe videos are short, explaining one concept at a time, making it easy to follow along.\r\n\r\nSo jump right in and get started!",
+      date_created: todayDate,
+      start_date: "2020-11-04T07:56:43Z",
+      apply_by_date: "2020-11-04T07:56:43Z",
+      link: "https://learn.codemasterinstitute.com/course/coding-101-website-development/",
+      eligibility: "none",
+      owner: "",
+      typeList: [
+        
+      ],
+      location: [
+          
+      ],
+      level: [
+          
+      ],
+      audience: [
+
+      ],
+      organisation: "Codemaster Institute",
   })
 
   const history = useHistory()
@@ -80,40 +90,94 @@ function PostOpportunityForm() {
   },[]);
 
   const postData = async () => {
+    let form_data = new FormData();
+    form_data.append('image', credentials.image);
+    form_data.append('title', credentials.title);
+    form_data.append('description', credentials.description);
+    form_data.append('date_created', credentials.date_created);
+    form_data.append('start_date', credentials.start_date);
+    form_data.append('apply_by_date', credentials.apply_by_date);
+    form_data.append('link', credentials.link);
+    form_data.append('eligibility', credentials.eligibility);
+    form_data.append('owner', credentials.owner);
+    form_data.append('typeList', credentials.typeList);
+    form_data.append('location', credentials.location);
+    form_data.append('level', credentials.level);
+    form_data.append('audience', credentials.audience);
+    form_data.append('organisation', credentials.organisation);
+
+    // var proxyUrl = 'https://cors-anywhere.herokuapp.com/',
+    //     targetUrl = `${process.env.REACT_APP_API_URL}listing/`
     const response = await fetch(
-      `${process.env.REACT_APP_API_URL}OpportunityListPage/`,
+      `${process.env.REACT_APP_API_URL}listing/`,
       {
         method: "post",
         headers: {
-          "Content-Type": "application/json",
           Authorization: `token ${token}`,
         },
-        body: JSON.stringify(credentials),
+        body: form_data,
       }
     )
     return response.json()
   }
   //methods
-  const handleChange = (e) => {
+const handleSubmit = (e) => {
+    e.preventDefault();
+    postData()
+      .then((response) => {
+        // history.push("/")
+        //  console.log(response);
+    })
+    .catch((error) => {
+      alert("you have not completed the form")
+    })
+  
+  };
+
+const handleChange = (e) => {
     const { id, value } = e.target
     setCredentials((prevCredentials) => ({
       ...prevCredentials,
       [id]: value,
     }))
   }
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    if (true) {
-      postData()
-        .then((response) => {
-          history.push("/")
-          // console.log(response);
-        })
-        .catch((error) => {
-          alert("you have not completed the form")
-        })
-    }
+const handleChangeImage = (e) => {
+  e.persist();
+  setCredentials((prevCredentials) => ({
+    ...prevCredentials,
+    image: e.target.files[0],
+  }));
+};
+
+const handleCheckbox = ({name, stateKey, checked}) => {
+  // console.log(name,stateKey,checked)
+  let nextValue = [...credentials[stateKey]]
+  if (checked){
+    nextValue.push(name) 
+  } else {
+    nextValue = nextValue.filter(item => item !== name)
   }
+  setCredentials({
+    ...credentials, 
+    [stateKey]: nextValue
+  })
+  // e.g. name is "paid"
+  // setCredentials((prevCredentials) => {
+  //   // get the current list - e.g. ["free"]
+  //   const prevArray = prevCredentials[name] || []
+  //   if (checked) {
+  //     // add to the list - e.g. ["free", "paid"]
+  //     prevArray.concat(name)
+  //   } else {
+  //     // remove from the list - e.g. ["free"]
+  //     prevArray = prevArray.filter(item => item !== name)
+  //   }
+  //   return { 
+  //     ...prevCredentials,
+  //     [name]: prevArray,
+  //   }
+  // })
+}
         
   if ( isLoading) {
     return  <ReactLoading className = "bubbles" type = { "Bubbles" } color = { "#FE4A49" }/>
@@ -122,16 +186,7 @@ function PostOpportunityForm() {
   return (
     <form>
     {hasError? <span>Has error: {JSON.stringify(hasError)}</span> : null }
-      <div>
-        <label htmlFor="image">Upload your image:</label>
-        <input
-          type="file"
-          id="image"
-          placeholder="Image"
-          onChange={handleChange}
-          accept="image/*"
-        />
-      </div>
+      
       <div>
         <label htmlFor="title">Title:</label>
         <input
@@ -143,15 +198,24 @@ function PostOpportunityForm() {
         />
       </div>
       <div>
-        <label htmlFor="start_date">Start Date:</label>
+        <label htmlFor="image">Upload your image:</label>
+        <input
+          type="file"
+          id="image"
+          placeholder="Image"
+          onChange={handleChangeImage}
+          accept="image/*"
+        />
+      </div>
+      <div>
+        <label htmlFor="start_date">This opportunity starts on:</label>
         <input
           type="date"
           id="start_date"
           name="start_date"
-          min="2020-01-01"
-          max="2021-12-31"
           onChange={handleChange}
           value={credentials.start_date}
+          placeholder="Choose a date"
         />
       </div>
       <div>
@@ -165,56 +229,45 @@ function PostOpportunityForm() {
         />
       </div>
       <div>
-      {audienceList.map((audienceData, key) => {
-              return <button>Test</button>
-                                })}
-        <label htmlFor="audience">Audience:</label>
-        <input
-          type="checkbox"
-          id="audience"
-          placeholder="is_open"
-          onChange={handleChange}
-          value={credentials.is_open}
-        />
+        <label htmlFor="audiences">Choose an audience:</label>
+        <br/>    
+        <div className="checkList">
+        {audienceList.map((listData, key) => {
+              return <Checkbox formData={credentials} formKey={"audience"} listData={listData} key={key} handleCheckbox={handleCheckbox}/>})}
+        </div>
       </div>
       <div>
-        <label htmlFor="level">Level:</label>
-        <input
-          type="checkbox"
-          id="level"
-          placeholder="is_open"
-          onChange={handleChange}
-          value={credentials.is_open}
-        />
+        <label htmlFor="locations">Choose a location:</label>
+        <br/>    
+        <div className="checkList">
+        {locationList.map((listData, key) => {
+          return <Checkbox formData={credentials} formKey={"location"} listData={listData} key={key} handleCheckbox={handleCheckbox}/>})}
+        </div>
       </div>
       <div>
-        <label htmlFor="typeList">Type:</label>
-        <input
-          type="checkbox"
-          id="typeList"
-          placeholder="is_open"
-          onChange={handleChange}
-          value={credentials.is_open}
-        />
+        <label htmlFor="types">Choose a type:</label>
+        <br/>    
+        <div className="checkList">
+        {typeList.map((listData, key) => {
+          return <Checkbox formData={credentials} formKey={"typeList"} listData={listData} key={key} handleCheckbox={handleCheckbox}/>})}
+        </div>
       </div>
       <div>
-        <label htmlFor="location">Location:</label>
-        <input
-          type="checkbox"
-          id="location"
-          placeholder="is_open"
-          onChange={handleChange}
-          value={credentials.location}
-        />
+        <label htmlFor="levels">Choose a level:</label>
+        <br/>    
+        <div className="checkList">
+        {levelList.map((listData, key) => {
+          return <Checkbox formData={credentials} formKey={"level"} listData={listData} key={key} handleCheckbox={handleCheckbox}/>})}
+        </div>
       </div>
       <div>
-        <label htmlFor="website">Website:</label>
+        <label htmlFor="weblink">Register to this opportunity online:</label>
         <input
-          type="text"
-          id="website"
+          type="url"
+          id="weblink"
           placeholder="Enter website link"
           onChange={handleChange}
-          value={credentials.website}
+          value={credentials.link}
         />
       </div>
       <div>
@@ -229,22 +282,24 @@ function PostOpportunityForm() {
       </div>
       <div>
         <label htmlFor="description">Description:</label>
-        <input
+        <textarea
           type="text"
           id="description"
           placeholder="Description"
           onChange={handleChange}
           value={credentials.description}
+          rows="10"
         />
       </div>
       <div>
-        <label htmlFor="apply_by_date">Apply by Date:</label>
+        <label htmlFor="apply_by_date">Application to validate before:</label>
         <input
           type="date"
           id="apply_by_date"
           name="apply_by_date"
           min="2020-01-01"
           max="2021-12-31"
+          placeholder="Choose a date"
           onChange={handleChange}
           value={credentials.apply_by_date}
         />

@@ -17,8 +17,8 @@ function Dropdown({ title, data , handleDropDown, value}) {
           onChange={onChange}
           value={value  ? value : dataValue}>
           <option value={title} disabled>{title} </option>
-          {data.map(({ name, id}) => (
-          <option key={id} value={name}>
+          {data.map(({ name, id, slug}) => (
+          <option key={id} value={slug}>
               {name}
           </option>
           ))}

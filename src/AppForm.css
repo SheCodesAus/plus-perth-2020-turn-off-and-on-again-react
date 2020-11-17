@@ -118,3 +118,17 @@ form a {
     
 } */
 
+.checkList{
+  display:flex;
+  align-items: baseline;
+  background: #f2f2f2;
+  margin: 0 0 15px;
+  padding: 2px;
+}
+.checkList label {
+  font-size: 0.9rem;
+}
+.checkList input {
+  width:unset;
+  margin: 1rem 0.5rem 1rem 1.5rem;
+}
