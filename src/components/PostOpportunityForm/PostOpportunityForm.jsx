@@ -5,16 +5,17 @@ import Checkbox from "../Checkbox/Checkbox"
 
 
 function PostOpportunityForm() {
-
+  const today = new Date()
+  const todayDate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
   //variables
   const [credentials, setCredentials] = useState({
       title: "Test",
       description: "Learn the fundamentals of coding while creating a web page with this easy to follow, step by step online course. This course will help you understand the introductory concepts of web development and give some insight into work involved in creating a website.\r\n\r\nYou will work on building your basic page at the end of the course.\r\n\r\nThe videos are short, explaining one concept at a time, making it easy to follow along.\r\n\r\nSo jump right in and get started!",
-      date_created: "2020-11-04T07:56:43Z",
+      date_created: todayDate,
       start_date: "2020-11-04T07:56:43Z",
       apply_by_date: "2020-11-04T07:56:43Z",
       link: "https://learn.codemasterinstitute.com/course/coding-101-website-development/",
-      eligibility: "",
+      eligibility: "none",
       owner: "",
       typeList: [
           "free"
@@ -40,7 +41,6 @@ function PostOpportunityForm() {
   const [levelList, setLevelList] = useState([])
   const [isLoading, setIsLoading] = useState (true)
   const [hasError, setErrors] = useState(false)
-  
 
   
   useEffect(() => {
@@ -261,13 +261,13 @@ const handleCheckbox = ({name, stateKey, checked}) => {
         </div>
       </div>
       <div>
-        <label htmlFor="website">Register to this opportunity online:</label>
+        <label htmlFor="link">Register to this opportunity online:</label>
         <input
-          type="text"
-          id="website"
+          type="url"
+          id="link"
           placeholder="Enter website link"
           onChange={handleChange}
-          value={credentials.website}
+          value={credentials.link}
         />
       </div>
       <div>
