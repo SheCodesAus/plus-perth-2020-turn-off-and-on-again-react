@@ -31,7 +31,7 @@ const savedOrganisation = window.localStorage.getItem("organisation")
 
 function App() {
   const [username, setUsername] = useState(savedUsername)
-  const [organisation, setOrganisation] = useState(savedOrganisation)
+  const [setOrganisation] = useState(savedOrganisation)
   //check with !== null whether username is strictly not null,
   //so if username is undefined or an empty string then it’ll be true
   const loggedIn = username !== null

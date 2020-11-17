@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import { useHistory, useParams } from "react-router-dom"
 import { getStorage, isAuthenticated } from "../Utilities/LocalStorage"
 
-function EditOrganisationForm(props) {
+function EditOrganisationForm() {
   //variables
 
   const [organisationData, setOrganisationData] = useState({

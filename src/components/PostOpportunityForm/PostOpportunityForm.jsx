@@ -10,9 +10,9 @@ function PostOpportunityForm() {
   const [credentials, setCredentials] = useState({
       title: "Test",
       description: "Learn the fundamentals of coding while creating a web page with this easy to follow, step by step online course. This course will help you understand the introductory concepts of web development and give some insight into work involved in creating a website.\r\n\r\nYou will work on building your basic page at the end of the course.\r\n\r\nThe videos are short, explaining one concept at a time, making it easy to follow along.\r\n\r\nSo jump right in and get started!",
-      date_created:"",
-      start_date: "",
-      apply_by_date: "",
+      date_created:(new Date()),
+      start_date: (new Date()),
+      apply_by_date: (new Date()),
       link: "https://learn.codemasterinstitute.com/course/coding-101-website-development/",
       eligibility: "",
       owner: "",
@@ -20,7 +20,7 @@ function PostOpportunityForm() {
           "free"
       ],
       location: [
-          "online"
+          "online", "perth"
       ],
       level: [
           "beginner"
@@ -29,7 +29,6 @@ function PostOpportunityForm() {
           "financial-aid"
       ],
       organisation: "Codemaster Institute",
-      owner: 
   })
 
   const history = useHistory()
@@ -106,6 +105,9 @@ function PostOpportunityForm() {
     form_data.append('level', credentials.level);
     form_data.append('audience', credentials.audience);
     form_data.append('organisation', credentials.organisation);
+
+    // var proxyUrl = 'https://cors-anywhere.herokuapp.com/',
+    //     targetUrl = `${process.env.REACT_APP_API_URL}listing/`
     const response = await fetch(
       `${process.env.REACT_APP_API_URL}listing/`,
       {
@@ -124,7 +126,7 @@ const  handleSubmit = (e) => {
     postData()
       .then((response) => {
         // history.push("/")
-        // console.log(response);
+        //  console.log(response);
     })
     .catch((error) => {
       alert("you have not completed the form")
