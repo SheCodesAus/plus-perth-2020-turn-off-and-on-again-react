@@ -32,16 +32,16 @@ function OrganisationForm() {
             const data = await response.json() 
 
             const org = organisation.organisation
-            await fetch
-            (`${process.env.REACT_APP_API_URL}users/${id}`, 
-            {
-                method: "put",
-                headers: {
-                    Authorization: `token ${token}`,
-                },
-                body: org ,
-            }
-            );
+            // await fetch
+            // (`${process.env.REACT_APP_API_URL}users/${id}`, 
+            // {
+            //     method: "put",
+            //     headers: {
+            //         Authorization: `token ${token}`,
+            //     },
+            //     body: org ,
+            // }
+            // );
             window.localStorage.setItem("organisation", data.organisation)            
             return data
     }catch (error) {

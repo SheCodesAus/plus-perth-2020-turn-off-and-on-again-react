@@ -8,6 +8,11 @@ function LoginForm({ setUsername, setOrganisation }) {
         password: "",
     })
     const history = useHistory()
+
+    localStorage.removeItem("token")
+    localStorage.removeItem("username")
+    localStorage.removeItem("organisation")
+    
     const organisationSlug = window.localStorage.getItem("organisation")
 
     
@@ -51,7 +56,8 @@ function LoginForm({ setUsername, setOrganisation }) {
         const data = await response.json()
         if (data.token !== undefined) {
             window.localStorage.setItem("token", data.token)
-            if (organisationSlug === "not-in-the-list" || organisationSlug === undefined){
+            console.log("org2",organisationSlug)
+            if ((organisationSlug === "not-in-the-list" || organisationSlug) === undefined){
                 history.push("/organisations/register")
             }else{
                 history.push("/") 
