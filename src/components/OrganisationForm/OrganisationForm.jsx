@@ -3,7 +3,9 @@ import { useHistory } from "react-router-dom"
 
 function OrganisationForm() {
     //variables 
-    const [organisation, setOrganisation] = useState({});
+    const [organisation, setOrganisation] = useState({
+      website: "https://your-website.com",
+    });
     const history = useHistory();
     const token = window.localStorage.getItem("token")
     const id = window.localStorage.getItem("id")
@@ -40,23 +42,27 @@ function OrganisationForm() {
                 body: org ,
             }
             );
-            window.localStorage.setItem("organisation", data.organisation)
-        if ( organisation.organisation !== undefined && organisation.description !== undefined  && organisation.website !== undefined  && organisation.logo !== undefined ) {
-            
-            history.push("/");
+            window.localStorage.setItem("organisation", data.organisation)            
             return data
-        } else {
-            alert("Give us more details, all fields are required :)")
-        }
     }catch (error) {
         alert("Network error", error.message)
     }
 }
 
-const handleSubmit = async (e) => {
+const handleSubmit = (e) => {
     e.preventDefault()
     // console.log(credentials)
-    await postData(token)
+    if (
+        organisation.organisation && organisation.description  && organisation.website  && organisation.logo
+    ) {
+        console.log("All data is there...");
+    postData().then((response => {
+        history.push("/");
+    })) 
+} else {
+    console.log("Not all data there");
+    alert("Please fill out all fields");
+}
 }
 //method
 const handleChange = (e) => {
@@ -102,6 +108,7 @@ const handleChangeImage = (e) => {
                         type="text" 
                         id="website" placeholder="Enter a URL to the organisation homepage" 
                         onChange={handleChange}
+                        value={organisation.website}
                     />
                 </div>
                 <div>
