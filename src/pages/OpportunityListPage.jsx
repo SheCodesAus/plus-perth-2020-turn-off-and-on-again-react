@@ -30,16 +30,14 @@ function OpportunityListPage() {
 
     // template
     return ( 
-        <div>
-            <div className="mainContent">
+        <div className="mainContent">
             <h1>Latest {opportunityName} opportunities</h1>
-                <div id="opportunity-list" > 
-                    {opportunityList.map((opportunityData, key) => {
-                        return <OpportunityCard key={key} opportunityData={opportunityData}/>;
-                        })
-                    } 
-                </div> 
-            </div>
+            <div id="opportunity-list" > 
+                {opportunityList.map((opportunityData, key) => {
+                    return <OpportunityCard key={key} opportunityData={opportunityData}/>;
+                    })
+                } 
+            </div> 
         </div>
     );
 }

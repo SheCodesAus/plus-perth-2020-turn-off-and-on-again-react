@@ -1,25 +1,28 @@
 import React, { useState, useEffect } from "react"
 import { useHistory } from "react-router-dom"
 import ReactLoading from "react-loading"
+import Checkbox from "../Checkbox/Checkbox"
 
 
 function PostOpportunityForm() {
+  const organisation = window.localStorage.getItem("organisation")
+  console.log(organisation)
+  const today = new Date()
+  const todayDate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
   //variables
   const [credentials, setCredentials] = useState({
-    title: "test",
-    image: "test",
-    start_date: "test",
-    organisation: "shecodes",
-    audience: ["women"],
-    level: ["beginner"],
-    typeList: ["free"],
-    location: ["perth"],
-    website: "https://shecodes.com",
-    eligibility: "none",
-    description: "none",
-    apply_by_date: "2020-09-09T20:31:00Z",
-    date_created: "2020-09-09T20:31:00Z",
-    owner: "aws",
+      title: "",
+      description: "",
+      date_created: todayDate,
+      start_date: "",
+      apply_by_date: "",
+      eligibility: "",
+      link: "https://your-website.com",
+      typeList: [],
+      location: [],
+      level: [],
+      audience: [],
+      organisation: organisation
   })
 
   const history = useHistory()
@@ -80,59 +83,86 @@ function PostOpportunityForm() {
   },[]);
 
   const postData = async () => {
+    let form_data = new FormData();
+    form_data.append('image', credentials.image);
+    form_data.append('title', credentials.title);
+    form_data.append('description', credentials.description);
+    form_data.append('date_created', credentials.date_created);
+    form_data.append('start_date', credentials.start_date);
+    form_data.append('apply_by_date', credentials.apply_by_date);
+    form_data.append('link', credentials.link);
+    form_data.append('eligibility', credentials.eligibility);
+    // form_data.append('owner', credentials.owner);
+    credentials.typeList.forEach(t => form_data.append('typeList', t))
+    credentials.location.forEach(t => form_data.append('location', t))
+    credentials.level.forEach(t => form_data.append('level', t))
+    credentials.audience.forEach(t => form_data.append('audience', t))
+    form_data.append('organisation', credentials.organisation);
+
     const response = await fetch(
-      `${process.env.REACT_APP_API_URL}OpportunityListPage/`,
+      `${process.env.REACT_APP_API_URL}listing/`,
       {
         method: "post",
         headers: {
-          "Content-Type": "application/json",
           Authorization: `token ${token}`,
         },
-        body: JSON.stringify(credentials),
+        body: form_data,
       }
     )
     return response.json()
   }
   //methods
-  const handleChange = (e) => {
+const handleSubmit = (e) => {
+    e.preventDefault();
+    postData()
+      .then((response) => {
+        history.push("/")
+        //  console.log(response);
+    })
+    .catch((error) => {
+      alert("you have not completed the form")
+    })
+  
+  };
+
+const handleChange = (e) => {
     const { id, value } = e.target
     setCredentials((prevCredentials) => ({
       ...prevCredentials,
       [id]: value,
     }))
   }
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    if (true) {
-      postData()
-        .then((response) => {
-          history.push("/")
-          // console.log(response);
-        })
-        .catch((error) => {
-          alert("you have not completed the form")
-        })
-    }
+const handleChangeImage = (e) => {
+  e.persist();
+  setCredentials((prevCredentials) => ({
+    ...prevCredentials,
+    image: e.target.files[0],
+  }));
+};
+
+const handleCheckbox = ({name, stateKey, checked}) => {
+  // console.log(name,stateKey,checked)
+  let nextValue = [...credentials[stateKey]]
+  if (checked){
+    nextValue.push(name) 
+  } else {
+    nextValue = nextValue.filter(item => item !== name)
   }
+  setCredentials({
+    ...credentials, 
+    [stateKey]: nextValue
+  })
+}
         
   if ( isLoading) {
     return  <ReactLoading className = "bubbles" type = { "Bubbles" } color = { "#FE4A49" }/>
 } 
   //template
   return (
+    <div className="wide-form">
     <form>
     {hasError? <span>Has error: {JSON.stringify(hasError)}</span> : null }
-      <div>
-        <label htmlFor="image">Upload your image:</label>
-        <input
-          type="file"
-          id="image"
-          placeholder="Image"
-          onChange={handleChange}
-          accept="image/*"
-        />
-      </div>
-      <div>
+      <div className="medium-form">
         <label htmlFor="title">Title:</label>
         <input
           type="text"
@@ -143,78 +173,70 @@ function PostOpportunityForm() {
         />
       </div>
       <div>
-        <label htmlFor="start_date">Start Date:</label>
+        <label htmlFor="image">Upload your image:</label>
+        <input
+          type="file"
+          id="image"
+          placeholder="Image"
+          onChange={handleChangeImage}
+          accept="image/*"
+        />
+      </div>
+      <div>
+        <label htmlFor="start_date">This opportunity starts on:</label>
         <input
           type="date"
           id="start_date"
           name="start_date"
-          min="2020-01-01"
-          max="2021-12-31"
           onChange={handleChange}
           value={credentials.start_date}
+          placeholder="Choose a date"
         />
       </div>
       <div>
-        <label htmlFor="organisation">Organisation:</label>
+        <label htmlFor="audiences">Choose an audience:</label>
+        <br/>    
+        <div className="checkList">
+        <span>{audienceList.map((listData, key) => {
+              return <Checkbox formData={credentials} formKey={"audience"} listData={listData} key={key} handleCheckbox={handleCheckbox}/>})}
+        </span>
+        </div>
+      </div>
+      <div>
+        <label htmlFor="locations">Choose a location:</label>
+        <br/>    
+        <div className="checkList">
+        <span>{locationList.map((listData, key) => {
+          return <Checkbox formData={credentials} formKey={"location"} listData={listData} key={key} handleCheckbox={handleCheckbox}/>})}
+        </span>
+        </div>
+      </div>
+      <div>
+        <label htmlFor="types">Choose a type:</label>
+        <br/>    
+        <div className="checkList">
+        <span>{typeList.map((listData, key) => {
+          return <Checkbox formData={credentials} formKey={"typeList"} listData={listData} key={key} handleCheckbox={handleCheckbox}/>})}
+        </span>
+        </div>
+      </div>
+      <div>
+        <label htmlFor="levels">Choose a level:</label>
+        <br/>    
+        <div className="checkList">
+        <span>{levelList.map((listData, key) => {
+          return <Checkbox formData={credentials} formKey={"level"} listData={listData} key={key} handleCheckbox={handleCheckbox}/>})}
+        </span>
+        </div>
+      </div>
+      <div>
+        <label htmlFor="weblink">Register to this opportunity online:</label>
         <input
           type="text"
-          id="organisation"
-          placeholder="Enter Organisation Name"
-          onChange={handleChange}
-          value={credentials.organisation}
-        />
-      </div>
-      <div>
-      {audienceList.map((audienceData, key) => {
-              return <button>Test</button>
-                                })}
-        <label htmlFor="audience">Audience:</label>
-        <input
-          type="checkbox"
-          id="audience"
-          placeholder="is_open"
-          onChange={handleChange}
-          value={credentials.is_open}
-        />
-      </div>
-      <div>
-        <label htmlFor="level">Level:</label>
-        <input
-          type="checkbox"
-          id="level"
-          placeholder="is_open"
-          onChange={handleChange}
-          value={credentials.is_open}
-        />
-      </div>
-      <div>
-        <label htmlFor="typeList">Type:</label>
-        <input
-          type="checkbox"
-          id="typeList"
-          placeholder="is_open"
-          onChange={handleChange}
-          value={credentials.is_open}
-        />
-      </div>
-      <div>
-        <label htmlFor="location">Location:</label>
-        <input
-          type="checkbox"
-          id="location"
-          placeholder="is_open"
-          onChange={handleChange}
-          value={credentials.location}
-        />
-      </div>
-      <div>
-        <label htmlFor="website">Website:</label>
-        <input
-          type="text"
-          id="website"
+          id="weblink"
           placeholder="Enter website link"
           onChange={handleChange}
-          value={credentials.website}
+          value={credentials.link}
         />
       </div>
       <div>
@@ -229,31 +251,34 @@ function PostOpportunityForm() {
       </div>
       <div>
         <label htmlFor="description">Description:</label>
-        <input
+        <textarea
           type="text"
           id="description"
           placeholder="Description"
           onChange={handleChange}
           value={credentials.description}
+          rows="10"
         />
       </div>
       <div>
-        <label htmlFor="apply_by_date">Apply by Date:</label>
+        <label htmlFor="apply_by_date">Application to validate before:</label>
         <input
           type="date"
           id="apply_by_date"
           name="apply_by_date"
           min="2020-01-01"
           max="2021-12-31"
+          placeholder="Choose a date"
           onChange={handleChange}
           value={credentials.apply_by_date}
         />
       </div>
 
       <button type="submit" onClick={handleSubmit}>
-        Create Opportunity
+        Create an Opportunity
       </button>
     </form>
+    </div>
   )
 }
 

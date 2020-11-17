@@ -8,6 +8,13 @@ function LoginForm({ setUsername, setOrganisation }) {
         password: "",
     })
     const history = useHistory()
+
+    localStorage.removeItem("token")
+    localStorage.removeItem("username")
+    localStorage.removeItem("organisation")
+    
+    const organisationSlug = window.localStorage.getItem("organisation")
+
     
     //update the variable credentials when entering data in the input
     const handleChange = (e) => {
@@ -28,6 +35,7 @@ function LoginForm({ setUsername, setOrganisation }) {
         const data = await res.json()
         window.localStorage.setItem("username", data.username)
         window.localStorage.setItem("organisation", data.organisation)
+        window.localStorage.setItem("id", data.id)
         setUsername(data.username)
     }
     // getting the token is related to login so good practice to associate it to the login component
@@ -48,7 +56,12 @@ function LoginForm({ setUsername, setOrganisation }) {
         const data = await response.json()
         if (data.token !== undefined) {
             window.localStorage.setItem("token", data.token)
-            history.push("/")
+            console.log("org2",organisationSlug)
+            if ((organisationSlug === "not-in-the-list" || organisationSlug) === undefined){
+                history.push("/organisations/register")
+            }else{
+                history.push("/") 
+                }
             return data.token
         } else {
             alert("wrong username/password")

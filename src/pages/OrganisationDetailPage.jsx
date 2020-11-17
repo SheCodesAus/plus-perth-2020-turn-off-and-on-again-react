@@ -12,16 +12,16 @@ function OrganisationDetailPage() {
   
 
   useEffect(() => {
-    console.log("slug", slug)
+    // console.log("slug", slug)
     fetch(`${process.env.REACT_APP_API_URL}organisations/${slug}`)
       .then((results) => {
         return results.json()
       })
       .then((data) => {
-        console.log("hello", data)
+        // console.log("hello", data)
         setorganisationData(data)
       })
-  }, [])
+  }, [slug])
     
   //show edit button if the logged in user organisation is the same as the page loaded 
   //or if admin is logged in

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./CategoryCard.css";
 
 function CategoryCard({opportunityData, category, ...props}) {
-console.log(opportunityData)
+// console.log(opportunityData)
 return (
 <div className="category-card">
     

@@ -119,6 +119,7 @@ h1 {
   font-size: var(--fs-h1);
   color: var(--dark);
   text-align:center;
+  padding-top: 3rem;
 }
 
 h2 {
@@ -254,14 +255,23 @@ footer p{
   .bannerText {
     position: absolute;
     background: rgba(255,255,255, 0.8);
-    width: 25%;
+    width: 35%;
     right: 0;
-    top: 20%;
+    top: 10%;
     margin: auto 2rem;
     padding: 2rem;
+}
+
+}
+@media screen and (min-width: 900px) {
+  .bannerText {
+    width: 25%;
+    top: 20%;
   }
 
 }
+
+
 button, .button-link{
   border-radius: 0.3rem;
   color:var(--dark);
@@ -307,7 +317,9 @@ button:hover, .button-link:hover{
   width: 100%;
   object-fit: contain;
 }
-
+#not-in-the-list{
+  display: none;
+}
 /* Page Formatting */
 
 #page-blurb{
