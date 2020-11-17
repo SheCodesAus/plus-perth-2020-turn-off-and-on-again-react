@@ -13,7 +13,7 @@ import RegisterPage from "./pages/RegisterPage"
 import EditOrganisationPage from "./pages/EditOrganisationPage"
 import NewOrganisationPage from "./pages/NewOrganisationPage"
 import OrganisationListPage from "./pages/OrganisationListPage"
-import PostOpportunityForm from "./components/PostOpportunityForm/PostOpportunityForm"
+import PostOpportunityPage from "./pages/PostOpportunityPage"
 import OpportunityListPage from "./pages/OpportunityListPage"
 import OpportunityDetailPage from "./pages/OpportunityDetailPage"
 import OrganisationDetailPage from "./pages/OrganisationDetailPage"
@@ -27,6 +27,8 @@ import "./AppForm.css"
 
 const savedUsername = window.localStorage.getItem("username")
 const savedOrganisation = window.localStorage.getItem("organisation")
+const organisationSlug = window.localStorage.getItem("organisation")
+
 
 
 function App() {
@@ -49,7 +51,7 @@ function App() {
             <RegisterPage />
           </Route>
           <Route path="/opportunities/create" exact>
-            <PostOpportunityForm />
+            <PostOpportunityPage/>
           </Route>
           <Route path="/opportunities" exact>
             <OpportunityListPage />
@@ -90,7 +92,7 @@ function App() {
             )}
           </Route>
           <Route path="/">
-            <HomePage loggedIn={loggedIn}/>
+            {organisationSlug === "not-in-the-list" || organisationSlug === undefined ? <Redirect to="/organisations/register" /> : <HomePage loggedIn={loggedIn}/>}
           </Route>
         </Switch>
         <Footer />

@@ -8,6 +8,8 @@ function LoginForm({ setUsername, setOrganisation }) {
         password: "",
     })
     const history = useHistory()
+    const organisationSlug = window.localStorage.getItem("organisation")
+
     
     //update the variable credentials when entering data in the input
     const handleChange = (e) => {
@@ -49,7 +51,11 @@ function LoginForm({ setUsername, setOrganisation }) {
         const data = await response.json()
         if (data.token !== undefined) {
             window.localStorage.setItem("token", data.token)
-            history.push("/")
+            if (organisationSlug === "not-in-the-list" || organisationSlug === undefined){
+                history.push("/organisations/register")
+            }else{
+                history.push("/") 
+                }
             return data.token
         } else {
             alert("wrong username/password")
