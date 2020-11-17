@@ -28,18 +28,18 @@ function OrganisationForm() {
             );
             const data = await response.json() 
 
-            // const org = organisation.organisation
-            // const update = await fetch
-            // (`${process.env.REACT_APP_API_URL}users/${id}`, 
-            // {
-            //     method: "put",
-            //     headers: {
-            //         Authorization: `token ${token}`,
-            //     },
-            //     body: org ,
-            // }
-            // );
-            //window.localStorage.setItem("organisation", data.organisation)
+            const org = organisation.organisation
+            const update = await fetch
+            (`${process.env.REACT_APP_API_URL}users/${id}`, 
+            {
+                method: "put",
+                headers: {
+                    Authorization: `token ${token}`,
+                },
+                body: org ,
+            }
+            );
+            window.localStorage.setItem("organisation", data.organisation)
             // const dataUpdate = await update.json() 
         if ( organisation.organisation && organisation.description  && organisation.website  && organisation.logo !== undefined ) {
             
