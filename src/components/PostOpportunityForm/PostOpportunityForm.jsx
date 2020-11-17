@@ -18,16 +18,16 @@ function PostOpportunityForm() {
       eligibility: "none",
       owner: "",
       typeList: [
-          "free"
+        
       ],
       location: [
-          "online"
+          
       ],
       level: [
-          "beginner"
+          
       ],
       audience: [
-          "financial-aid"
+
       ],
       organisation: "Codemaster Institute",
   })
@@ -100,10 +100,10 @@ function PostOpportunityForm() {
     form_data.append('link', credentials.link);
     form_data.append('eligibility', credentials.eligibility);
     form_data.append('owner', credentials.owner);
-    form_data.append('typeList', credentials.typeList);
-    form_data.append('location', credentials.location);
-    form_data.append('level', credentials.level);
-    form_data.append('audience', credentials.audience);
+    form_data.append('typeList', JSON.stringify(credentials.typeList));
+    form_data.append('location', JSON.stringify(credentials.location));
+    form_data.append('level', JSON.stringify(credentials.level));
+    form_data.append('audience', JSON.stringify(credentials.audience));
     form_data.append('organisation', credentials.organisation);
 
     // var proxyUrl = 'https://cors-anywhere.herokuapp.com/',
