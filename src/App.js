@@ -91,8 +91,8 @@ function App() {
               <Redirect to="/" />
             )}
           </Route>
-          <Route path="/">
-            {organisationSlug === "not-in-the-list" || organisationSlug === undefined ? <Redirect to="/organisations/register" /> : <HomePage loggedIn={loggedIn}/>}
+          <Route path="/" exact>
+            {(organisationSlug === "not-in-the-list" || organisationSlug === undefined) ? <Redirect to="/organisations/register" /> : <HomePage loggedIn={loggedIn}/>}
           </Route>
         </Switch>
         <Footer />
