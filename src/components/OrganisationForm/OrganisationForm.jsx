@@ -32,16 +32,16 @@ function OrganisationForm() {
             const data = await response.json() 
 
             const org = organisation.organisation
-            // await fetch
-            // (`${process.env.REACT_APP_API_URL}users/${id}`, 
-            // {
-            //     method: "put",
-            //     headers: {
-            //         Authorization: `token ${token}`,
-            //     },
-            //     body: org ,
-            // }
-            // );
+            await fetch
+            (`${process.env.REACT_APP_API_URL}users/${id}`, 
+            {
+                method: "put",
+                headers: {
+                    Authorization: `token ${token}`,
+                },
+                body: org ,
+            }
+            );
             window.localStorage.setItem("organisation", data.organisation)            
             return data
     }catch (error) {
@@ -56,14 +56,16 @@ const handleSubmit = (e) => {
         organisation.organisation && organisation.description  && organisation.website  && organisation.logo
     ) {
         console.log("All data is there...");
-    postData().then((response => {
+    postData().then((response) => {
         history.push("/");
-    })) 
+    }) 
 } else {
     console.log("Not all data there");
     alert("Please fill out all fields");
 }
 }
+
+
 //method
 const handleChange = (e) => {
     const {id, value} = e.target;

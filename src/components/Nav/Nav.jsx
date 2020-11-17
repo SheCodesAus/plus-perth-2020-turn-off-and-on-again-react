@@ -69,7 +69,7 @@ return (
 				<span>My Organisation</span>
 				<ChevronDown/></button>
                 <div className={isOpen ? 'visible' : ''} role='menu' id='menu'>
-                    {organisationSlug !== "not-in-the-list" ?  
+                    {(organisationSlug !== "not-in-the-list" || organisationSlug !== undefined) ?  
                     <>
                     <Link {...itemProps[0]} to={`/organisations/${organisationSlug}`} className="navbar-link" onClick={() => {setOpened(false); setIsOpen(false)}}>
                         My Organisation Profile
