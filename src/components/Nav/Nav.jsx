@@ -9,7 +9,7 @@ import "./Nav.css"
 
 //internal components used in the main component Nav= cleaner  
 //Uses the props setUsername passed in Nav by App
-const LogoutButton = ({ setUsername, setOpened, setOrganisation }) => (
+const LogoutButton = ({ setUsername, setOpened }) => (
     <Link className={"navbar-link"} to="/"
     onClick={() => {
         localStorage.removeItem("token")
@@ -42,7 +42,7 @@ function Nav({ loggedIn, setUsername, setOrganisation }) {
     setOpened(!opened)
 }
 const { buttonProps, itemProps, isOpen, setIsOpen } = useDropdownMenu(3);
-const slug = window.localStorage.getItem("organisation")
+const organisationSlug = window.localStorage.getItem("organisation")
 
 return (
     <nav className="navbar">
@@ -69,16 +69,21 @@ return (
 				<span>My Organisation</span>
 				<ChevronDown/></button>
                 <div className={isOpen ? 'visible' : ''} role='menu' id='menu'>
-                    <Link {...itemProps[0]} to={`/organisations/${slug}`} className="navbar-link" onClick={() => {setOpened(false); setIsOpen(false)}}>
+                    {organisationSlug !== "not-in-the-list" ?  
+                    <>
+                    <Link {...itemProps[0]} to={`/organisations/${organisationSlug}`} className="navbar-link" onClick={() => {setOpened(false); setIsOpen(false)}}>
                         My Organisation Profile
-                    </Link>
-                    <Link {...itemProps[1]} to="/organisations/register" className="navbar-link" onClick={() => {setOpened(false); setIsOpen(false)}}>
-                        Register Organisation
                     </Link>
                     <Link {...itemProps[1]} to="/opportunities/create" className="navbar-link" onClick={() => {setOpened(false); setIsOpen(false)}}>
                         Create a new Opportunity
                     </Link>
+                    </>
+                    :
+                    <Link {...itemProps[1]} to="/organisations/register" className="navbar-link" onClick={() => {setOpened(false); setIsOpen(false)}}>
+                        Register your Organisation
+                    </Link>}
                     <LogoutButton setUsername={setUsername} setOpened={setOpened} setOrganisation={setOrganisation}/>
+                    
 
                 </div>
                 </>

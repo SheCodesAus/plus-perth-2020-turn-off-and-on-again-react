@@ -17,21 +17,18 @@ function RegisterForm() {
       // useEffect function to get the DATA from 2 different endpiints
   // because use async await no need to use promise .then .catch
   // adding [] at the end of the useEffect avoid looping
-  useEffect(() => {
+useEffect(() => {
     async function fetchOrganisations() {
-      try {
+        try {
         const r = await fetch(`${process.env.REACT_APP_API_URL}organisations/`);
         const organisations = await r.json()
         let setOrganisationsList = organisations.map((org) => {
-            return {name: org.slug, id: org.id}
+            return {name: org.organisation, id: org.id, slug: org.slug}
         })
-
-    
         setOrganisations(setOrganisationsList)
-      } catch (error) {
-        setErrors(error)
-      }
-      
+    } catch (error) {
+    setErrors(error)
+    }
     }
     // Promise allows to run 2 functions in parallel
     Promise.all([
@@ -43,8 +40,8 @@ function RegisterForm() {
 
     const handleDropDownOrganisation = (dataValue) => {
         setCredentials({...credentials,
-          organisation: dataValue})
-      }
+            organisation: dataValue})
+    }
     const handleChange = (e) => {
         const {id, value} = e.target;
         setCredentials((prevCredentials) => ({
@@ -52,8 +49,6 @@ function RegisterForm() {
             [id]: value,
         }))
     }
-
-
 
     const postUser = async() => {
         try{

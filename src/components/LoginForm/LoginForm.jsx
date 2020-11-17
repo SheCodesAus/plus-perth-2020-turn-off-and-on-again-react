@@ -28,6 +28,7 @@ function LoginForm({ setUsername, setOrganisation }) {
         const data = await res.json()
         window.localStorage.setItem("username", data.username)
         window.localStorage.setItem("organisation", data.organisation)
+        window.localStorage.setItem("id", data.id)
         setUsername(data.username)
     }
     // getting the token is related to login so good practice to associate it to the login component

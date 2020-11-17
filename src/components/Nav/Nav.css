@@ -1,7 +1,7 @@
 .logo {
     width: 230px;
     margin-top: 5px;  
-    min-width: 200px;
+    min-width: 105px;
 }
   .navbar {
     display: flex;
@@ -110,7 +110,6 @@
       font-size: var(--fs-body);
       color: var(--dark);
       font-weight: var(--fw-bold);
-      min-width: 205px;
     }
     
     #menu-button:hover {
@@ -163,5 +162,8 @@
       background-color: white;
       border-radius: 0.3rem;
   }
-
+}
+  @media screen and (min-width: 900px) {
+    #menu-button {  min-width: 205px;
+    }
   }

@@ -254,14 +254,23 @@ footer p{
   .bannerText {
     position: absolute;
     background: rgba(255,255,255, 0.8);
-    width: 25%;
+    width: 35%;
     right: 0;
-    top: 20%;
+    top: 10%;
     margin: auto 2rem;
     padding: 2rem;
+}
+
+}
+@media screen and (min-width: 900px) {
+  .bannerText {
+    width: 25%;
+    top: 20%;
   }
 
 }
+
+
 button, .button-link{
   border-radius: 0.3rem;
   color:var(--dark);

@@ -153,7 +153,7 @@ const handleCheckbox = ({name, stateKey, checked}) => {
   // console.log(name,stateKey,checked)
   let nextValue = [...credentials[stateKey]]
   if (checked){
-    nextValue.push(name) 
+    nextValue.concat(name) 
   } else {
     nextValue = nextValue.filter(item => item !== name)
   }
@@ -261,10 +261,10 @@ const handleCheckbox = ({name, stateKey, checked}) => {
         </div>
       </div>
       <div>
-        <label htmlFor="link">Register to this opportunity online:</label>
+        <label htmlFor="weblink">Register to this opportunity online:</label>
         <input
           type="url"
-          id="link"
+          id="weblink"
           placeholder="Enter website link"
           onChange={handleChange}
           value={credentials.link}
