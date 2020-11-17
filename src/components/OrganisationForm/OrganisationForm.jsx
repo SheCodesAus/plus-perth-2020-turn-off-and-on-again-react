@@ -55,7 +55,7 @@ function OrganisationForm() {
 
 const handleSubmit = async (e) => {
     e.preventDefault()
-    // console.log(credentials)
+    console.log(organisation)
     await postData(token)
 }
 //method
@@ -114,7 +114,6 @@ const handleChangeImage = (e) => {
                         accept="image/*"
                     />
                 </div>
-
 
                 <button type="submit" onClick={handleSubmit}>Register New Organisation</button>
             </form>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { useHistory, useParams } from "react-router-dom"
-import { getStorage, isAuthenticated } from "../Utilities/LocalStorage"
+import { isAuthenticated } from "../Utilities/LocalStorage"
 
 function EditOrganisationForm() {
   //variables
@@ -30,32 +30,71 @@ function EditOrganisationForm() {
       ...data,
       [id]: value,
     }))
+    
   }
 
-  const postData = async () => {
-    const response = await fetch(
-      `${process.env.REACT_APP_API_URL}organisations/${slug}`,
-      {
-        method: "put",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Token ${getStorage("token")}`,
-        },
-        body: JSON.stringify({
-          organisation: organisationData.organisation,
-          description: organisationData.description,
-          website: organisationData.website,
-          logo: organisationData.logo,
-        }),
+  const handleChangeImage = (e) => {
+    e.persist();
+    setOrganisationData((data) => ({
+        ...data,
+        logo: e.target.files[0],
+    }));
+  };
+
+  const token = window.localStorage.getItem("token")
+  const id = window.localStorage.getItem("id")
+
+
+  const postData = async() => {
+    
+      try{
+          let form_data = new FormData();
+          form_data.append('logo', organisationData.logo);
+          form_data.append('description', organisationData.description);
+          form_data.append('website', organisationData.website);
+          form_data.append('organisation', organisationData.organisation);
+          
+          const response = await fetch
+          (`${process.env.REACT_APP_API_URL}organisations/${slug}`, 
+          {
+              method: "put",
+              headers: {
+                  Authorization: `token ${token}`,
+              },
+              body: form_data,
+          }
+          );
+          const data = await response.json() 
+
+          const org = organisationData.organisation
+          await fetch
+          (`${process.env.REACT_APP_API_URL}users/${id}`, 
+          {
+              method: "put",
+              headers: {
+                  Authorization: `token ${token}`,
+              },
+              body: org ,
+          }
+          );
+          window.localStorage.setItem("organisation", data.organisation)
+      if ( organisationData.organisation && organisationData.description  && organisationData.website  && organisationData.logo !== undefined ) {
+          
+          history.push("/");
+          return data
+      } else {
+          alert("Give us more details, all fields are required :)")
       }
-    )
-    return response.json()
+  }catch (error) {
+      alert("Network error", error.message)
   }
+}
 
   const handleSubmit = (e) => {
     e.preventDefault()
 
     postData().then((response) => {
+      console.log(organisationData)
       if (isAuthenticated()) {
         history.push(`/organisations/${slug}`)
       }
@@ -100,8 +139,8 @@ function EditOrganisationForm() {
             type="file"
             id="logo"
             placeholder="logo"
-            onChange={handleChange}
-            accept="logo/*"
+            onChange={handleChangeImage}
+            accept="image/*"
           />
         </div>
         <button type="submit" onClick={handleSubmit}>
