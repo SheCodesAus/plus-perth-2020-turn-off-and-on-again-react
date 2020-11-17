@@ -10,9 +10,9 @@ function PostOpportunityForm() {
   const [credentials, setCredentials] = useState({
       title: "Test",
       description: "Learn the fundamentals of coding while creating a web page with this easy to follow, step by step online course. This course will help you understand the introductory concepts of web development and give some insight into work involved in creating a website.\r\n\r\nYou will work on building your basic page at the end of the course.\r\n\r\nThe videos are short, explaining one concept at a time, making it easy to follow along.\r\n\r\nSo jump right in and get started!",
-      date_created:(new Date()),
-      start_date: (new Date()),
-      apply_by_date: (new Date()),
+      date_created:"",
+      start_date: "",
+      apply_by_date: "",
       link: "https://learn.codemasterinstitute.com/course/coding-101-website-development/",
       eligibility: "",
       owner: "",
@@ -28,7 +28,8 @@ function PostOpportunityForm() {
       audience: [
           "financial-aid"
       ],
-      organisation: "Codemaster Institute"
+      organisation: "Codemaster Institute",
+      owner: 
   })
 
   const history = useHistory()
@@ -146,24 +147,34 @@ const handleChangeImage = (e) => {
   }));
 };
 
-const handleCheckbox = (e) => {
-  const { name, checked } = e.target;
-  // e.g. name is "paid"
-  setCredentials((prevCredentials) => {
-    // get the current list - e.g. ["free"]
-    const prevArray = prevCredentials[name] || []
-    if (checked) {
-      // add to the list - e.g. ["free", "paid"]
-      prevArray.concat(name)
-    } else {
-      // remove from the list - e.g. ["free"]
-      prevArray = prevArray.filter(item => item !== name)
-    }
-    return { 
-      ...prevCredentials,
-      [name]: prevArray,
-    }
+const handleCheckbox = ({name, stateKey, checked}) => {
+  // console.log(name,stateKey,checked)
+  let nextValue = [...credentials[stateKey]]
+  if (checked){
+    nextValue.push(name) 
+  } else {
+    nextValue = nextValue.filter(item => item !== name)
+  }
+  setCredentials({
+    ...credentials, 
+    [stateKey]: nextValue
   })
+  // e.g. name is "paid"
+  // setCredentials((prevCredentials) => {
+  //   // get the current list - e.g. ["free"]
+  //   const prevArray = prevCredentials[name] || []
+  //   if (checked) {
+  //     // add to the list - e.g. ["free", "paid"]
+  //     prevArray.concat(name)
+  //   } else {
+  //     // remove from the list - e.g. ["free"]
+  //     prevArray = prevArray.filter(item => item !== name)
+  //   }
+  //   return { 
+  //     ...prevCredentials,
+  //     [name]: prevArray,
+  //   }
+  // })
 }
         
   if ( isLoading) {
@@ -220,7 +231,7 @@ const handleCheckbox = (e) => {
         <br/>    
         <div className="checkList">
         {audienceList.map((listData, key) => {
-              return <Checkbox formData={credentials} listData={listData} key={key} handleCheckbox={handleCheckbox}/>})}
+              return <Checkbox formData={credentials} formKey={"audience"} listData={listData} key={key} handleCheckbox={handleCheckbox}/>})}
         </div>
       </div>
       <div>
@@ -228,7 +239,7 @@ const handleCheckbox = (e) => {
         <br/>    
         <div className="checkList">
         {locationList.map((listData, key) => {
-          return <Checkbox formData={credentials} listData={listData} key={key} handleCheckbox={handleCheckbox}/>})}
+          return <Checkbox formData={credentials} formKey={"location"} listData={listData} key={key} handleCheckbox={handleCheckbox}/>})}
         </div>
       </div>
       <div>
@@ -236,7 +247,7 @@ const handleCheckbox = (e) => {
         <br/>    
         <div className="checkList">
         {typeList.map((listData, key) => {
-          return <Checkbox formData={credentials} listData={listData} key={key} handleCheckbox={handleCheckbox}/>})}
+          return <Checkbox formData={credentials} formKey={"typeList"} listData={listData} key={key} handleCheckbox={handleCheckbox}/>})}
         </div>
       </div>
       <div>
@@ -244,7 +255,7 @@ const handleCheckbox = (e) => {
         <br/>    
         <div className="checkList">
         {levelList.map((listData, key) => {
-          return <Checkbox formData={credentials} listData={listData} key={key} handleCheckbox={handleCheckbox}/>})}
+          return <Checkbox formData={credentials} formKey={"level"} listData={listData} key={key} handleCheckbox={handleCheckbox}/>})}
         </div>
       </div>
       <div>

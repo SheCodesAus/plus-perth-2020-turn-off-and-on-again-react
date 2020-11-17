@@ -1,18 +1,23 @@
 import React from "react"
 
-const Checkbox = ({formData, listData, handleCheckbox}) => {
-    debugger
-    const checked= formData[listData.id].includes(listData.slug)
-
+const Checkbox = ({formData, listData, handleCheckbox, formKey}) => {
+    let checked = false
+    if(formData[formKey]){
+        checked = formData[formKey].includes(listData.slug)
+    }
+    // console.log(formData)
     return(
         <>
         <input
             type="checkbox"
-            key={listData.id} 
             id={listData.slug}
             label={listData.slug}
             checked={checked}
-            onChange={handleCheckbox}/>
+            onChange = {(e) => handleCheckbox({
+                checked: e.target.checked,
+                name: e.target.id,
+                stateKey: formKey,
+            })}/>
         <label htmlFor={listData.slug}>{listData.name}</label>
         </>
     )
