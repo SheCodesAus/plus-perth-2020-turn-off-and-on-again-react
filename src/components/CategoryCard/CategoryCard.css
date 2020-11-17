@@ -6,7 +6,7 @@
 }
 .category-card img{
     border-bottom-right-radius: 2rem;
-    height:170px;
+    min-height: 210px;
     object-fit:cover;
 }
 .category-card p{
