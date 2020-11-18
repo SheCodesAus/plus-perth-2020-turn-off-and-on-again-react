@@ -49,12 +49,12 @@ function OpportunityDetailPage() {
   return (
     <div className="detail-box">
       <h1>{opportunityData.title}</h1>
-      <h2>{opportunityData.organisation}</h2>
+      <img src={opportunityData.image} alt={opportunityData.title} />
+      <h2>{opportunityData.organisation} Opportunity Descritpion</h2>
       <a href={opportunityData.link}>{opportunityData.link}</a>
       <p>{opportunityData.description}</p>
       <h4>Apply by: {opportunityData.apply_by_date.substr(0, 10)}</h4>
       <h4>Start date: {opportunityData.start_date.substr(0, 10)}</h4>
-      <img src={opportunityData.image} alt={opportunityData.title} />
       <p>Created by {opportunityData.owner}</p>
       <p>
         Created on:{" "}
