@@ -42,7 +42,7 @@ function OrganisationForm() {
                 body: org ,
             }
             );
-            window.localStorage.setItem("organisation", data.organisation)            
+            window.localStorage.setItem("organisation", data.slug)            
             return data
     }catch (error) {
         alert("Network error", error.message)

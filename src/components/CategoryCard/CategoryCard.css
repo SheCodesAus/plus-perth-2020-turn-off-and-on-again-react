@@ -2,7 +2,9 @@
     background-color: rgba(255,255,255, 0.8);
     border-radius: 0.3rem;
     text-align:center;
-    padding:0.3rem
+    padding:0.3rem;
+    box-shadow: var(--bs);
+    transition: 0.4s;
 }
 .category-card img{
     border-bottom-right-radius: 2rem;
@@ -12,3 +14,13 @@
 .category-card p{
     margin:.3rem;
 }
+
+.category-card:hover {
+    -webkit-transform: scale(1.03);
+    -moz-transform: scale(1.03);
+    -ms-transform: scale(1.03);
+    -o-transform: scale(1.03);
+    transform: scale(1.03);
+  }
+
+ 

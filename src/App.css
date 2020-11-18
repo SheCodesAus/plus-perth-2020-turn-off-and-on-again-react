@@ -183,8 +183,8 @@ a:hover {
 
 #opportunity-list, #organisation-list {
   display: grid;
-  column-gap: 10px;
-  row-gap: 10px;
+  column-gap: 15px;
+  row-gap: 15px;
   justify-items: center;
   grid-template-columns: 1fr;
   grid-template-rows: auto;

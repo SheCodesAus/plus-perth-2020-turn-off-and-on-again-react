@@ -69,7 +69,14 @@ return (
 				<span>My Organisation</span>
 				<ChevronDown/></button>
                 <div className={isOpen ? 'visible' : ''} role='menu' id='menu'>
-                    {(organisationSlug !== "not-in-the-list" || organisationSlug !== undefined) ?  
+                    {organisationSlug === "not-in-the-list" ?  
+                    <>
+                    <Link {...itemProps[1]} to="/organisations/register" className="navbar-link" onClick={() => {setOpened(false); setIsOpen(false)}}>
+                        Register your Organisation
+                    </Link>
+                    <LogoutButton setUsername={setUsername} setOpened={setOpened} setOrganisation={setOrganisation}/>
+                    </>
+                    :
                     <>
                     <Link {...itemProps[0]} to={`/organisations/${organisationSlug}`} className="navbar-link" onClick={() => {setOpened(false); setIsOpen(false)}}>
                         My Organisation Profile
@@ -77,13 +84,9 @@ return (
                     <Link {...itemProps[1]} to="/opportunities/create" className="navbar-link" onClick={() => {setOpened(false); setIsOpen(false)}}>
                         Create a new Opportunity
                     </Link>
-                    </>
-                    :
-                    <Link {...itemProps[1]} to="/organisations/register" className="navbar-link" onClick={() => {setOpened(false); setIsOpen(false)}}>
-                        Register your Organisation
-                    </Link>}
                     <LogoutButton setUsername={setUsername} setOpened={setOpened} setOrganisation={setOrganisation}/>
-                    
+                    </>
+                }
 
                 </div>
                 </>
