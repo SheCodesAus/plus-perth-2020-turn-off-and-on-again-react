@@ -5,7 +5,6 @@ function OrganisationForm() {
     //variables 
     const [organisation, setOrganisation] = useState({
         logo:"",
-        website: "https://your-website.com",
         organisation:"",
         description:"",
     });
@@ -45,7 +44,7 @@ function OrganisationForm() {
                 body: org ,
             }
             );
-            window.localStorage.setItem("organisation", data.slug)            
+            window.localStorage.setItem("organisation", data.slug) 
             return data
     }catch (error) {
         alert("Network error", error.message)
@@ -60,7 +59,8 @@ const handleSubmit = (e) => {
     ) {
         console.log("All data is there...");
     postData().then((response) => {
-        history.push("/");
+        const organisationSlug = window.localStorage.getItem("organisation")          
+        history.push(`/organisation/${organisationSlug}`);
     }) 
 } else {
     console.log("Not all data there");
@@ -110,7 +110,7 @@ const handleChangeImage = (e) => {
                 <div>
                     <label htmlFor="website">Website:</label>
                     <input 
-                        type="text" 
+                        type="url" 
                         id="website" placeholder="Enter a URL to the organisation homepage" 
                         onChange={handleChange}
                         value={organisation.website}
