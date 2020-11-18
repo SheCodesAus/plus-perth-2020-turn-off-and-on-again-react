@@ -47,41 +47,50 @@ function OpportunityDetailPage() {
   // console.log("can edit is", canEdit)
 
   return (
-  <div className="mainContent"> 
-    <div className="detail-box">
-      <h1>{opportunityData.title}</h1>
-      <img className="oppdetail-img" src={opportunityData.image} alt={opportunityData.title} />
-      <h2 className="oppdetail-h2">Opportunity Details</h2>
-      <a className="oppdetail-a" href={opportunityData.link}>{opportunityData.link}</a>
-      <p className="oppdetail-p">{opportunityData.description}</p>
-      <h2 className="oppdetail-h2">Key Dates</h2>
-      <h4 className="oppdetail-h4">Apply by: {opportunityData.apply_by_date.substr(0, 10)}</h4>
-      <h4 className="oppdetail-h4">Start date: {opportunityData.start_date.substr(0, 10)}</h4>
-      <p className="oppdetail-p">Created by {opportunityData.owner}</p>
-      {/* <p className="oppdetail-p">
+    <div className="mainContent">
+      <div className="detail-box">
+        <h1>{opportunityData.title}</h1>
+        <img
+          className="oppdetail-img"
+          src={opportunityData.image}
+          alt={opportunityData.title}
+        />
+        <h2 className="oppdetail-h2">Opportunity Details</h2>
+        <p className="oppdetail-p">{opportunityData.description}</p>
+        <a className="oppdetail-a" href={opportunityData.link}>
+          {opportunityData.link}
+        </a>
+        <h2 className="oppdetail-h2">Key Dates</h2>
+        <h4 className="oppdetail-h4">
+          Apply by: {opportunityData.apply_by_date.substr(0, 10)}
+        </h4>
+        <h4 className="oppdetail-h4">
+          Start date: {opportunityData.start_date.substr(0, 10)}
+        </h4>
+        <p className="oppdetail-p">Created by {opportunityData.owner}</p>
+        {/* <p className="oppdetail-p">
         Created on:{" "}
         {opportunityData.date_created
           ? opportunityData.date_created.substr(0, 10)
           : ""}
       </p> */}
 
-      {canEdit ? (
-        <Link className="button-link" to={`/opportunities/edit/${id}`}>
-          Edit
-        </Link>
-      ) : (
-        ""
-      )}
-      {canEdit ? (
-        <button type="delete" onClick={deleteData}>
-          Delete
-        </button>
-      ) : (
-        ""
-      )}
+        {canEdit ? (
+          <Link className="button-link" to={`/opportunities/edit/${id}`}>
+            Edit
+          </Link>
+        ) : (
+          ""
+        )}
+        {canEdit ? (
+          <button type="delete" onClick={deleteData}>
+            Delete
+          </button>
+        ) : (
+          ""
+        )}
+      </div>
     </div>
-    </div>
-
   )
 }
 
