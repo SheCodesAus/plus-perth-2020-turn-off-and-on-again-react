@@ -10,7 +10,7 @@ function OrganisationCard({ organisationData, ...props }) {
         <img src={organisationData.logo} alt="organisation-overview" />
         <h2>{organisationData.organisation}</h2>
         {/* <p>{organisationData.website}</p> */}
-        <p>{organisationData.description}</p>
+        <p>{organisationData.description.split(" ").splice(0,20).join(" ")}...</p>
         {/* <p>Created by {organisationData.owner}</p> */}
       </Link>
     </div>

@@ -32,6 +32,8 @@ function OrganisationListPage() {
     <div>
       <div className="mainContent">
         <h1> Organisations </h1>
+        <p id="page-blurb">These organisations have recently uploaded new learning opportunities to help you progress your skills in Tech.</p>
+        <p id="page-blurb">Click through to see their latest offerings.</p>
         <div id="organisation-list">
           {organisationList.map((organisationData, key) => {
             return (
