@@ -5,6 +5,12 @@
     padding:0.3rem;
     box-shadow: var(--bs);
     transition: 0.4s;
+    min-width: 90vw;
+}
+@media screen and (min-width: 600px) {
+    .category-card{
+        min-width: auto;
+    }
 }
 .category-card img{
     border-bottom-right-radius: 2rem;

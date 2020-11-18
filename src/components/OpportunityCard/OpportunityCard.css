@@ -2,7 +2,13 @@
     background-color: rgba(255,255,255, 0.8);
     border-radius: 0.3rem;
     text-align:center;
-    padding:0.3rem
+    padding:0.3rem;
+    min-width:90vw;
+}
+@media screen and (min-width: 600px) {
+    .listing-card{
+        min-width: auto;
+    }
 }
 .listing-card img{
     border-bottom-right-radius: 2rem;
