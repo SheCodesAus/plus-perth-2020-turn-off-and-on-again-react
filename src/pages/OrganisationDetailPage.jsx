@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from "react"
-import { useParams, useHistory, Link } from "react-router-dom"
+import { useParams, Link } from "react-router-dom"
 
 function OrganisationDetailPage() {
   const [organisationData, setorganisationData] = useState({
     loading: true,
   })
   const { slug } = useParams()
-
-  // const token = window.localStorage.getItem("token")
-  // const history = useHistory()
 
   useEffect(() => {
     // console.log("slug", slug)

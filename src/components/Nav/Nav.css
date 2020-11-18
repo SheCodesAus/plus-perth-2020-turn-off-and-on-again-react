@@ -21,9 +21,9 @@
     justify-content: center;
     font-size: 1.2rem;
   }
-  .navbar .opened{
-    /* height: calc(100vh - 120px); */
-  }
+  /* .navbar .opened{
+    height: calc(100vh - 120px);
+  } */
   .navbar-links {
     display: flex;
     flex-direction: column;

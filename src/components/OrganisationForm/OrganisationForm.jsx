@@ -110,7 +110,7 @@ const handleChangeImage = (e) => {
                 <div>
                     <label htmlFor="website">Website:</label>
                     <input 
-                        type="url" 
+                        type="text" 
                         id="website" placeholder="Enter a URL to the organisation homepage" 
                         onChange={handleChange}
                         value={organisation.website}

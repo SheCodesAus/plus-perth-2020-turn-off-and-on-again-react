@@ -56,17 +56,21 @@ function OpportunityDetailPage() {
           alt={opportunityData.title}
         />
         <h2 className="oppdetail-h2">Opportunity Details</h2>
+        <div className="keywords"><Link to={`/opportunities/?audience=${opportunityData.audience}`}>{opportunityData.audience}</Link></div>
+        <div className="keywords"><Link to={`/opportunities/?location=${opportunityData.location}`}>{opportunityData.location}</Link></div>
+        <div className="keywords"><Link to={`/opportunities/?level=${opportunityData.level}`}>{opportunityData.level}</Link></div>
+        <div className="keywords"><Link to={`/opportunities/?type=${opportunityData.typeList}`}>{opportunityData.typeList}</Link></div>
         <p className="oppdetail-p">{opportunityData.description}</p>
         <a className="oppdetail-a" href={opportunityData.link}>
           {opportunityData.link}
         </a>
         <h2 className="oppdetail-h2">Key Dates</h2>
-        <h4 className="oppdetail-h4">
+        <p className="oppdetail-h4"><strong>
           Apply by: {opportunityData.apply_by_date.substr(0, 10)}
-        </h4>
-        <h4 className="oppdetail-h4">
+        </strong></p>
+        <p className="oppdetail-h4"><strong>
           Start date: {opportunityData.start_date.substr(0, 10)}
-        </h4>
+          </strong></p>
         <p className="oppdetail-p">Created by {opportunityData.owner}</p>
         {/* <p className="oppdetail-p">
         Created on:{" "}

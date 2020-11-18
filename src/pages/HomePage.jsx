@@ -16,7 +16,7 @@ function HomePage({loggedIn}) {
     const [levelList, setLevelList] = useState([])
     const [isLoading, setIsLoading] = useState (true)
     const [hasError, setErrors] = useState(false)
-
+    const organisationSlug = window.localStorage.getItem("organisation")
     
     useEffect(() => {
         async function fetchTypes() {
@@ -67,25 +67,38 @@ function HomePage({loggedIn}) {
     if ( isLoading) {
         return  <ReactLoading className = "bubbles" type = { "Bubbles" } color = { "#FE4A49" }/>
     } 
-
+    let bannerDiv
+    if(loggedIn){
+        if(organisationSlug === "not-in-the-list") {
+            bannerDiv = <>
+            <h2>Your organisation</h2>
+            <p>Don't forget to register your organisation to be able to post an opportunity</p>
+            <Link to="/organisations/register">
+                <button>Register your organisation</button>
+            </Link>
+        </>
+        } else {
+            bannerDiv = <>
+            <h2>Does your organisation have an opportunity to share?</h2>
+            <p>You can share a new listing, select an audience, set your requirement and choose your location.</p>
+            <Link to="/opportunities/create">
+                <button>Create a new opportunity</button>
+            </Link>
+        </>
+        }
+    }else{
+        bannerDiv = <><h2>Looking for an opportunity to start your journey in Tech?</h2>
+        <p>TechForMe is a place where you can find a sponsorship, an internship, a discount, an event in Tech related to your criterias and needs.</p>
+        <a href="#opportunities"><ArrowDownCircle/></a>
+        </>
+    }
     return ( 
         <div>
             {hasError? <span>Has error: {JSON.stringify(hasError)}</span> : null }
             <div className="banner">
             <img src={banner} alt="Banner"/>
             <div className="bannerText">
-                {loggedIn?
-                <>
-                    <h2>Does your organisation have an opportunity to share?</h2>
-                    <p>You can share a new listing, select an audience, set your requirement and choose your location.</p>
-                    <Link to="/opportunities/create">
-                        <button>Create a new opportunity</button>
-                    </Link>
-                </>
-                : <><h2>Looking for an opportunity to start your journey in Tech?</h2>
-                <p>TechForMe is a place where you can find a sponsorship, an internship, a discount, an event in Tech related to your criterias and needs.</p>
-                <a href="#opportunities"><ArrowDownCircle/></a>
-                </>}
+                {bannerDiv}
             </div>
             </div>
             <div className="mainContent">

@@ -231,7 +231,7 @@ const handleCheckbox = ({name, stateKey, checked}) => {
       <div>
         <label htmlFor="weblink">Register to this opportunity online:</label>
         <input
-          type="url"
+          type="text"
           id="weblink"
           placeholder="Enter website link"
           onChange={handleChange}
