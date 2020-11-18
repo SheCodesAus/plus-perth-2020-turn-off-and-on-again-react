@@ -47,6 +47,7 @@ function OpportunityDetailPage() {
   // console.log("can edit is", canEdit)
 
   return (
+  <div className="mainContent"> 
     <div className="detail-box">
       <h1>{opportunityData.title}</h1>
       <img className="oppdetail-img" src={opportunityData.image} alt={opportunityData.title} />
@@ -62,7 +63,7 @@ function OpportunityDetailPage() {
         {opportunityData.date_created
           ? opportunityData.date_created.substr(0, 10)
           : ""}
-      </p>
+      </p> */}
 
       {canEdit ? (
         <Link className="button-link" to={`/opportunities/edit/${id}`}>
@@ -79,6 +80,8 @@ function OpportunityDetailPage() {
         ""
       )}
     </div>
+    </div>
+
   )
 }
 

@@ -9,7 +9,7 @@ function RegisterPage() {
                 <RegisterForm/>
             </div> 
         </div>
-      );
+    );
 }
 
 export default RegisterPage;
