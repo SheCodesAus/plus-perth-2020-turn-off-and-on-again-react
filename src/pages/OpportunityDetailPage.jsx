@@ -58,7 +58,7 @@ function OpportunityDetailPage() {
       <h4 className="oppdetail-h4">Apply by: {opportunityData.apply_by_date.substr(0, 10)}</h4>
       <h4 className="oppdetail-h4">Start date: {opportunityData.start_date.substr(0, 10)}</h4>
       <p className="oppdetail-p">Created by {opportunityData.owner}</p>
-      <p className="oppdetail-p">
+      {/* <p className="oppdetail-p">
         Created on:{" "}
         {opportunityData.date_created
           ? opportunityData.date_created.substr(0, 10)
