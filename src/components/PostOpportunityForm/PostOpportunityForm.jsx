@@ -17,7 +17,6 @@ function PostOpportunityForm() {
       start_date: "",
       apply_by_date: "",
       eligibility: "",
-      link: "https://your-website.com",
       typeList: [],
       location: [],
       level: [],
@@ -159,10 +158,10 @@ const handleCheckbox = ({name, stateKey, checked}) => {
 } 
   //template
   return (
-    <div className="wide-form">
+    <div className="medium-form">
     <form>
     {hasError? <span>Has error: {JSON.stringify(hasError)}</span> : null }
-      <div className="medium-form">
+      <div>
         <label htmlFor="title">Title:</label>
         <input
           type="text"
@@ -232,7 +231,7 @@ const handleCheckbox = ({name, stateKey, checked}) => {
       <div>
         <label htmlFor="weblink">Register to this opportunity online:</label>
         <input
-          type="text"
+          type="url"
           id="weblink"
           placeholder="Enter website link"
           onChange={handleChange}

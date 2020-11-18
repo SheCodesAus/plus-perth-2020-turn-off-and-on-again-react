@@ -19,9 +19,10 @@
     align-items: center; 
     padding: 20px; 
     justify-content: center;
+    font-size: 1.2rem;
   }
   .navbar .opened{
-    height: calc(100vh - 120px);
+    /* height: calc(100vh - 120px); */
   }
   .navbar-links {
     display: flex;
@@ -30,7 +31,7 @@
   }
   
   .navbar-link {
-    border-bottom: 1px solid var(--dark);
+    border-bottom: 1px solid var(--white);
   }
   .navbar-links.closed {
     display: none;
@@ -70,7 +71,7 @@
       border-bottom: none;
       padding:5px;
       margin: 0px 10px -5px;
-  
+      font-size: 1rem;
     }
     a.navbar-link  {
       border: transparent solid 1px;

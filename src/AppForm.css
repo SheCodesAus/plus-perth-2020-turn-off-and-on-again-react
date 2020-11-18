@@ -12,10 +12,15 @@ label {
 }
 
 .medium-form {
-  max-width: 550px;
-  width: 70vw;
+  width: 85vw;
   padding: 4% 0 0;
   margin: auto;
+}
+@media screen and (min-width: 600px) {
+  .medium-form {
+    max-width: 550px;
+    width: 70vw;
+  }
 }
 
 .wide-form {
@@ -34,6 +39,7 @@ form {
   text-align: center;
   border-radius: 0px;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 var(--light);
+  border-radius: 0.3rem;
 }
 
 .form-page form {

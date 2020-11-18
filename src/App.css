@@ -119,9 +119,13 @@ h1 {
   font-size: var(--fs-h1);
   color: var(--dark);
   text-align:center;
-  padding-top: 3rem;
+  padding-top: 2rem;
 }
-
+@media screen and (min-width: 600px) {
+  footer{
+    padding-top: 3rem;
+  }
+}
 h2 {
   font-size: var(--fs-h2);
   color: var(--accent)
@@ -177,7 +181,7 @@ a:hover {
   background-size: 1800px 130px, 300px 300px;
   background-repeat: repeat-x, repeat;
   background-position: 0 0;
-  padding: 0 10% 5%;
+  padding: 0 5% 5%;
   margin: 0 0 -20px 0;
 }
 
@@ -196,6 +200,9 @@ a:hover {
   grid-template-columns: 1fr 1fr;
   margin: 20px 100px;
   margin: 20px;
+  }
+  .mainContent {
+    padding: 0 10% 5%;
   }
 
 }
@@ -305,11 +312,8 @@ button:hover, .button-link:hover{
 
 .detail-box {
   align-self: center;
-  max-width: 550px;
-  width: 70vw;
-  padding: 4% 0 2%;
-  margin: 3rem;
-  overflow: hidden;
+  width: 85vw;
+  margin: 0 1rem;
 }
 
 .detail-box > img {
@@ -319,6 +323,16 @@ button:hover, .button-link:hover{
 }
 #not-in-the-list{
   display: none;
+}
+@media screen and (min-width: 600px) {
+  .detail-box {
+    align-self: center;
+    max-width: 550px;
+    width: 70vw;
+    padding: 4% 0 2%;
+    margin: 3rem;
+    overflow: hidden;
+  }
 }
 /* Page Formatting */
 
