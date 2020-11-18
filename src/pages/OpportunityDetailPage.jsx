@@ -49,14 +49,15 @@ function OpportunityDetailPage() {
   return (
     <div className="detail-box">
       <h1>{opportunityData.title}</h1>
-      <img src={opportunityData.image} alt={opportunityData.title} />
-      <h2>{opportunityData.organisation} Opportunity Descritpion</h2>
-      <a href={opportunityData.link}>{opportunityData.link}</a>
-      <p>{opportunityData.description}</p>
-      <h4>Apply by: {opportunityData.apply_by_date.substr(0, 10)}</h4>
-      <h4>Start date: {opportunityData.start_date.substr(0, 10)}</h4>
-      <p>Created by {opportunityData.owner}</p>
-      <p>
+      <img className="oppdetail-img" src={opportunityData.image} alt={opportunityData.title} />
+      <h2 className="oppdetail-h2">Opportunity Details</h2>
+      <a className="oppdetail-a" href={opportunityData.link}>{opportunityData.link}</a>
+      <p className="oppdetail-p">{opportunityData.description}</p>
+      <h2 className="oppdetail-h2">Key Dates</h2>
+      <h4 className="oppdetail-h4">Apply by: {opportunityData.apply_by_date.substr(0, 10)}</h4>
+      <h4 className="oppdetail-h4">Start date: {opportunityData.start_date.substr(0, 10)}</h4>
+      <p className="oppdetail-p">Created by {opportunityData.owner}</p>
+      <p className="oppdetail-p">
         Created on:{" "}
         {opportunityData.date_created
           ? opportunityData.date_created.substr(0, 10)

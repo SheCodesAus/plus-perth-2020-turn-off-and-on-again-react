@@ -191,6 +191,11 @@ a:hover {
   margin: 20px 0;
 }
 
+.oppdetail-h2, .oppdetail-h4, .oppdetail-p, .oppdetail-a {
+  text-align: center;
+  justify-content: center;
+}
+
 @media screen and (min-width: 600px) {
   #opportunity-list, #organisation-list  {
   grid-template-columns: 1fr 1fr;
