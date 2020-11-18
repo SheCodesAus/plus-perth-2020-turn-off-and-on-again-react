@@ -4,7 +4,10 @@ import { useHistory } from "react-router-dom"
 function OrganisationForm() {
     //variables 
     const [organisation, setOrganisation] = useState({
-      website: "https://your-website.com",
+        logo:"",
+        website: "https://your-website.com",
+        organisation:"",
+        description:"",
     });
     const history = useHistory();
     const token = window.localStorage.getItem("token")
