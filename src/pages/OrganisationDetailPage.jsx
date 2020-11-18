@@ -53,14 +53,17 @@ function OrganisationDetailPage() {
   }
 
   return (
-    <div className="detail-box">
-      <img src={organisationData.logo} alt="organisation" />
-      <h2>{organisationData.organisation}</h2>
-      <a href={organisationData.website}>{organisationData.website}</a>
-      <p>{organisationData.description}</p>
-      {canEdit ? <Link className="button-link" to={`/organisations/${slug}/edit`}>Edit</Link> : ""}
-        
+      <div className="mainContent"> 
+        <div className="detail-box">
+          <img src={organisationData.logo} alt="organisation" />
+          <h2>{organisationData.organisation}</h2>
+          <a href={organisationData.website}>{organisationData.website}</a>
+          <p>{organisationData.description}</p>
+          {canEdit ? <Link className="button-link" to={`/organisations/${slug}/edit`}>Edit</Link> : ""}
+            
+        </div>
     </div>
+
   )
 }
 

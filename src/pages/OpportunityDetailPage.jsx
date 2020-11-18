@@ -47,21 +47,24 @@ function OpportunityDetailPage() {
   // console.log("can edit is", canEdit)
 
   return (
+  <div className="mainContent"> 
     <div className="detail-box">
       <h1>{opportunityData.title}</h1>
       <h2>{opportunityData.organisation}</h2>
-      <a href={opportunityData.link}>{opportunityData.link}</a>
+      <strong> Categories: {opportunityData.audience} - {opportunityData.location} - {opportunityData.level} - {opportunityData.typeList}</strong>
+      <br/><br/>
+      <a href={opportunityData.link}>Click to have more information about this opportunity</a>
       <p>{opportunityData.description}</p>
       <h4>Apply by: {opportunityData.apply_by_date.substr(0, 10)}</h4>
       <h4>Start date: {opportunityData.start_date.substr(0, 10)}</h4>
       <img src={opportunityData.image} alt={opportunityData.title} />
-      <p>Created by {opportunityData.owner}</p>
+      {/* <p>Created by {opportunityData.owner}</p>
       <p>
         Created on:{" "}
         {opportunityData.date_created
           ? opportunityData.date_created.substr(0, 10)
           : ""}
-      </p>
+      </p> */}
 
       {canEdit ? (
         <Link className="button-link" to={`/opportunities/edit/${id}`}>
@@ -78,6 +81,8 @@ function OpportunityDetailPage() {
         ""
       )}
     </div>
+    </div>
+
   )
 }
 
